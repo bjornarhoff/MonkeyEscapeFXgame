@@ -1,0 +1,4 @@
+serialization guide:
+https://www.youtube.com/watch?v=4NoW9yHYPQY
+https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html
+https://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html
