@@ -15,12 +15,12 @@ import javafx.scene.layout.Pane;
  * @Gaute, @Eirik, @Bjørnar
  */
 
-public class verden {
+public class Verden {
 
     private GraphicsContext grafikk;
     private Canvas lerret;
     private Pane root;
-    private ape player;
+    private Ape player;
     private Image bakgrunn;
     private Image tre1;
     private Image tre2;
@@ -36,7 +36,7 @@ public class verden {
         lerret = new Canvas(600, 600);
         grafikk = lerret.getGraphicsContext2D();
 
-        player = new ape("spillet/ape.png", 150, 150);
+        player = new Ape("spillet/ape.png", 150, 150);
         bakgrunn = new Image("spillet/bakgrunn.png");
         tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");

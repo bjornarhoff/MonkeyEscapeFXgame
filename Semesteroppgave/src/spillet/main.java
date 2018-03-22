@@ -21,15 +21,13 @@ import javafx.event.EventHandler;
 public class main extends Application {
 
     private GraphicsContext grafikk;
-    private Canvas lerret;
-    private Pane root;
     private Scene vinduInnhold;
-    private ape player;
+    private Ape player;
+    private Frukt eple1, eple2, eple3;
     private Image bakgrunn;
     private Image tre1, tre2, tre3, tre4, tre5, tre6;
     private double apebredde = 100;
     private double apehøyde = 100;
-    private AnimationTimer timer;
 
     public static void main(String[] args) {
 
@@ -46,8 +44,6 @@ public class main extends Application {
         vindu.setTitle("Prøvespill");
         vinduInnhold = new Scene(lagVerden());
 
-        moveApe();
-
         vindu.setScene(vinduInnhold);
         vindu.show();
     }
@@ -57,12 +53,15 @@ public class main extends Application {
      * @return root
      */
     private Parent lagVerden() {
-        root = new Pane();
-        lerret = new Canvas(600, 600);
+        Pane root = new Pane();
+        Canvas lerret = new Canvas(600, 600);
         grafikk = lerret.getGraphicsContext2D();
 
-        player = new ape("spillet/ape.png", 150, 150);
+        player = new Ape("spillet/ape.png", 150, 150);
         bakgrunn = new Image("spillet/bakgrunn.png");
+        eple1 = new Frukt("spillet/eple.png", 400, 450);
+        eple2 = new Frukt("spillet/eple.png", 450 ,100);
+        eple3 = new Frukt("spillet/eple.png", 50, 390);
         tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");
         tre3 = new Image("spillet/tre.png");
@@ -71,14 +70,13 @@ public class main extends Application {
         tre6 = new Image("spillet/tre.png");
         renderVerden();
 
-        player.render(grafikk, apebredde, apehøyde);
-
         root.getChildren().add(lerret);
 
-        timer = new AnimationTimer() {
+        AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 renderVerden();
+                moveApe();
             }
         };
         timer.start();
@@ -98,6 +96,9 @@ public class main extends Application {
         grafikk.drawImage(tre4, 0, 0, 10,590);
         grafikk.drawImage(tre5, 60, 0, 540, 10);
         grafikk.drawImage(tre6, 590, 10, 10,590);
+        eple1.render(grafikk, 50, 50);
+        eple2.render(grafikk, 50, 50);
+        eple3.render(grafikk, 50, 50);
         player.render(grafikk, apebredde, apehøyde);
     }
 
@@ -118,6 +119,22 @@ public class main extends Application {
                 }
             }
         });
+/*
+        vinduInnhold.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                if (e.getCode() == KeyCode.UP) {
+                    player.setDeltaXY(0,0);
+                } else if (e.getCode() == KeyCode.DOWN) {
+                    player.setDeltaXY(0,0);
+                } else if (e.getCode() == KeyCode.LEFT) {
+                    player.setDeltaXY(0,0);
+                } else if (e.getCode() == KeyCode.RIGHT) {
+                    player.setDeltaXY(0,0);
+                }
+            }
+        }); */
+
+
     }
 
 

@@ -1,6 +1,5 @@
 package spillet;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
@@ -9,21 +8,23 @@ import javafx.scene.image.Image;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class ape extends Avatar {
+public class Ape extends SpillObject {
 
     /**
-     * Constructor for ape, denne overrider konstruktøren til avatar.
+     * Constructor for Ape, denne overrider konstruktøren til spillobjekt.
      * @param filename
      * @param x
      * @param y
      */
-    public ape (String filename, double x, double y) {
+    public Ape(String filename, double x, double y) {
         super(filename, x, y);
         Image bilde = new Image(filename);
         setImage(bilde);
-        setPositionY(y);
-        setPositionX(x);
+        setX(x);
+        setY(y);
     }
+
+
 
     /**
      * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
@@ -32,13 +33,17 @@ public class ape extends Avatar {
      */
     public void beveg(String retning) {
         if (retning.equals("Opp")) {
-            setPositionY(getPositionY() - 10);
+//            addDeltaXY(0, -50);
+            setY(getY() - 10);
         } else if (retning.equals("Ned")) {
-            setPositionY(getPositionY() + 10);
+//            addDeltaXY(0,50);
+            setY(getY() + 10);
         } else if (retning.equals("Venstre")) {
-            setPositionX(getPositionX() - 10);
+//            addDeltaXY(-50,0);
+            setX(getX() - 10);
         } else if (retning.equals("Høyre")) {
-            setPositionX(getPositionX() + 10);
+//            addDelta(50,0);
+            setX(getX() + 10);
         }
     }
 }
