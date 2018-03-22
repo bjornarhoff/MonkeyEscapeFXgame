@@ -5,8 +5,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 
@@ -22,7 +25,7 @@ public class FrameStart extends Application implements EventHandler<KeyEvent> {
     double xSpeed = 5;
 
 
-    // Main metode
+    // Main
     public static void main(String[] args) {
         launch(args);
     }
@@ -33,21 +36,15 @@ public class FrameStart extends Application implements EventHandler<KeyEvent> {
 
         primaryStage.setTitle("MonkeyEscape");
 
-        // Lager scenen
+        // Scene
         Group root = new Group();
         Scene scene = new Scene(root, WIDTH, HEIGHT, Color.BLACK);
 
-        // Lager sirkel
+        // Draw
         Circle circle = new Circle();
-
-        // Setter posisjon på sirkel
         circle.setCenterX(circleX);
         circle.setCenterY(circleY);
-
-        // Definerer radius på sirkel
         circle.setRadius(circleRadius);
-
-        // Definerer farge på sirkel
         circle.setFill(Color.RED);
 
 
@@ -55,11 +52,24 @@ public class FrameStart extends Application implements EventHandler<KeyEvent> {
         root.getChildren().add(circle);
 
 
+        // KeyEvent våkner
+        final StackPane keyboardNode = new StackPane();
+        keyboardNode.setFocusTraversable(true);
+        keyboardNode.requestFocus();
+        keyboardNode.setOnKeyPressed(this);
+
+
+        root.getChildren().add(keyboardNode);
+
+
         // Viser scenen til brukeren
-        primaryStage.show();
         primaryStage.setScene(scene);
+        primaryStage.show();
 
 
+
+
+        // AnimationTimer (gameloop)
         AnimationTimer gameLoop = new AnimationTimer() {
 
             @Override
@@ -76,7 +86,7 @@ public class FrameStart extends Application implements EventHandler<KeyEvent> {
                     xSpeed *= -1;
                 }
 
-                // RENDER
+
                 circle.setCenterX(circleX);
             }
         };
@@ -84,12 +94,12 @@ public class FrameStart extends Application implements EventHandler<KeyEvent> {
         gameLoop.start();
 
     }
-
+        // Metoden som gjør at figuren skifter retning
        @Override
         public void handle (KeyEvent arg0){
 
-            if (arg0.getCode() == KeyCode.SPACE) {
-                xSpeed *= -1;
+            if (arg0.getCode()==KeyCode.SPACE) {
+                xSpeed*= -1;
             }
         }
     }
