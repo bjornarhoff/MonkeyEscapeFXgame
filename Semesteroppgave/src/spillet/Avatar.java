@@ -2,23 +2,18 @@ package spillet;
 
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.geometry.Rectangle2D;
 
-public class Sprite {
+public class Avatar {
     private Image image;
     private double positionX;
     private double positionY;
-    private double velocityX;
-    private double velocityY;
     private double width;
     private double height;
 
-    public Sprite()
+    public Avatar()
     {
         positionX = 0;
         positionY = 0;
-        velocityX = 0;
-        velocityY = 0;
     }
 
     public void setImage(Image i)
@@ -44,12 +39,6 @@ public class Sprite {
         positionY = y;
     }
 
-    public void setVelocity(double x, double y)
-    {
-        velocityX = x;
-        velocityY = y;
-    }
-
     public double getPositionX() {
         return positionX;
     }
@@ -58,36 +47,14 @@ public class Sprite {
         return positionY;
     }
 
-    public void addVelocity(double x, double y)
-    {
-        velocityX += x;
-        velocityY += y;
+    public Image getImage() {
+        return image;
     }
 
-    public void update(double time)
+    public void render(GraphicsContext gc, double w, double h)
     {
-        positionX += velocityX * time;
-        positionY += velocityY * time;
+        gc.drawImage(image, positionX, positionY, w, h);
     }
 
-    public void render(GraphicsContext gc)
-    {
-        gc.drawImage(image, positionX, positionY, 30, 30);
-    }
 
-    public Rectangle2D getBoundary()
-    {
-        return new Rectangle2D(positionX,positionY,width,height);
-    }
-
-    public boolean intersects(Sprite s)
-    {
-        return s.getBoundary().intersects( this.getBoundary() );
-    }
-
-    public String toString()
-    {
-        return " Position: [" + positionX + "," + positionY + "]"
-                + " Velocity: [" + velocityX + "," + velocityY + "]";
-    }
 }
