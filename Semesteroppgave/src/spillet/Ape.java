@@ -25,8 +25,6 @@ public class Ape extends SpillObjekt {
         setY(y);
     }
 
-
-
     /**
      * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene

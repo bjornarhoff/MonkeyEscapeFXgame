@@ -15,8 +15,7 @@ public class SpillObjekt {
     private double dY;
     private double Y;
     private double X;
-
-
+    
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
      * posisjonen til objektet.
