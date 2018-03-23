@@ -8,8 +8,9 @@ import javafx.scene.image.Image;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class Ape extends SpillObject {
+public class Ape extends SpillObjekt {
 
+    private double bevegelse = 10;
     /**
      * Constructor for Ape, denne overrider konstruktøren til spillobjekt.
      * @param filename
@@ -34,16 +35,16 @@ public class Ape extends SpillObject {
     public void beveg(String retning) {
         if (retning.equals("Opp")) {
 //            addDeltaXY(0, -50);
-            setY(getY() - 10);
+            setY(getY() - bevegelse);
         } else if (retning.equals("Ned")) {
 //            addDeltaXY(0,50);
-            setY(getY() + 10);
+            setY(getY() + bevegelse);
         } else if (retning.equals("Venstre")) {
 //            addDeltaXY(-50,0);
-            setX(getX() - 10);
+            setX(getX() - bevegelse);
         } else if (retning.equals("Høyre")) {
 //            addDelta(50,0);
-            setX(getX() + 10);
+            setX(getX() + bevegelse);
         }
     }
 }

@@ -9,7 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class SpillObject {
+public class SpillObjekt {
     private Image bilde;
     private double dX;
     private double dY;
@@ -24,7 +24,7 @@ public class SpillObject {
      * @param x
      * @param y
      */
-    public SpillObject(String filename, double x, double y)
+    public SpillObjekt(String filename, double x, double y)
     {
         this.bilde = new Image(filename);
         setImage(bilde);

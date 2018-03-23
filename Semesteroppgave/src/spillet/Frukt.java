@@ -8,10 +8,10 @@ import javafx.scene.image.Image;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class Frukt extends SpillObject {
+public class Frukt extends SpillObjekt {
 
     /**
-     * Constructor for Ape, denne overrider konstruktøren til avatar.
+     * Constructor for Frukt, denne overrider konstruktøren til avatar.
      * @param filename
      * @param x
      * @param y
