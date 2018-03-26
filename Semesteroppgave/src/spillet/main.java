@@ -20,8 +20,8 @@ import javafx.event.EventHandler;
  */
 public class main extends Application {
 
-    private GraphicsContext grafikk;
-    private Scene vinduInnhold;
+    private GraphicsContext gc;
+    private Scene scene;
     private Ape player;
     private Frukt eple1, eple2, eple3;
     private Image bakgrunn;
@@ -42,10 +42,10 @@ public class main extends Application {
      */
     @Override
     public void start(Stage vindu) throws Exception {
-        vindu.setTitle("Prøvespill");
-        vinduInnhold = new Scene(lagVerden());
+        vindu.setTitle("MonkeyEscape");
+        scene = new Scene(lagVerden());
 
-        vindu.setScene(vinduInnhold);
+        vindu.setScene(scene);
         vindu.show();
     }
 
@@ -56,7 +56,7 @@ public class main extends Application {
     private Parent lagVerden() {
         Pane root = new Pane();
         Canvas lerret = new Canvas(600, 600);
-        grafikk = lerret.getGraphicsContext2D();
+        gc = lerret.getGraphicsContext2D();
 
         player = new Ape("spillet/ape.png", 150, 150);
         bakgrunn = new Image("spillet/bakgrunn.png");
@@ -89,25 +89,26 @@ public class main extends Application {
      * Metode som fjerner og reanimerer innholdet i scenen.
      */
     public void renderVerden() {
-        grafikk.clearRect(0, 0, 600, 600);
-        grafikk.drawImage(bakgrunn, 0, 0, 600, 600);
-        grafikk.drawImage(tre1, 60, 0, 540, 10);
-        grafikk.drawImage(tre2, 590, 10, 10,590);
-        grafikk.drawImage(tre3, 0, 590, 590, 10);
-        grafikk.drawImage(tre4, 0, 0, 10,590);
-        grafikk.drawImage(tre5, 60, 0, 540, 10);
-        grafikk.drawImage(tre6, 590, 10, 10,590);
-        eple1.render(grafikk, 50, 50);
-        eple2.render(grafikk, 50, 50);
-        eple3.render(grafikk, 50, 50);
-        player.render(grafikk, apebredde, apehøyde);
+        gc.clearRect(0, 0, 600, 600);
+        gc.drawImage(bakgrunn, 0, 0, 600, 600);
+        gc.drawImage(tre1, 60, 0, 540, 10);
+        gc.drawImage(tre2, 590, 10, 10,590);
+        gc.drawImage(tre3, 0, 590, 590, 10);
+        gc.drawImage(tre4, 0, 0, 10,590);
+        gc.drawImage(tre5, 60, 0, 540, 10);
+        gc.drawImage(tre6, 590, 10, 10,590);
+
+        eple1.render(gc, 50, 50);
+        eple2.render(gc, 50, 50);
+        eple3.render(gc, 50, 50);
+        player.render(gc, apebredde, apehøyde);
     }
 
     /**
      * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
      */
     public void moveApe() {
-        vinduInnhold.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
                 if (e.getCode() == KeyCode.UP) {
                     player.beveg("Opp");
