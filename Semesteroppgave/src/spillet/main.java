@@ -1,22 +1,35 @@
 package spillet;
 
 import com.apple.laf.AquaButtonBorder;
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.*;
 import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
+import javafx.util.Duration;
+
+import java.awt.*;
+import java.util.ArrayList;
+
+import static javafx.scene.paint.Color.BLACK;
 
 
 /**
@@ -51,12 +64,13 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        scene = new Scene(setScene(),WIDTH,HEIGHT, Color.BLACK);
+        scene = new Scene(setScene(),WIDTH,HEIGHT, BLACK);
         primaryStage.setTitle("MonkeyEscape");
         primaryStage.setResizable(false);
 
 
         Group root = new Group();
+
         // Close Operation
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
@@ -65,8 +79,26 @@ public class main extends Application {
         });
 
 
+        // Hinder   // Funker ikke
+        Circle circle = new Circle();
+        circle.setFill(Color.AQUAMARINE);
+        circle.setRadius(20);
+        circle.setLayoutX(50);
+        circle.setLayoutY(50);
 
-        // Menu bar
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(Duration.seconds(3));
+        transition.setToX(400);
+        transition.setToY(400);
+        transition.setAutoReverse(true);
+        transition.setCycleCount(Animation.INDEFINITE);
+        transition.setNode(circle);
+        transition.play();
+
+
+
+
+        // Menu bar  // Funker ikke
         MenuBar menuBar = new MenuBar();
         menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
 
@@ -79,6 +111,7 @@ public class main extends Application {
         menu.getItems().add(new MenuItem("Exit Game"));
 
 
+
         // Action Handler MENU
         MenuItem newItem = new MenuItem("New Game", null);
         newItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -87,6 +120,26 @@ public class main extends Application {
                 System.out.println("Action");
             }
         });
+
+
+
+        // Sleppe tilfeldige frukt rundt på brettet
+        ArrayList<Sprite> fruitList = new ArrayList<Sprite>();
+
+        for (int i = 0; i < 15; i++) {
+            Sprite fruit = new Sprite();
+            fruit.setImage("spillet/eple.png");
+            double px = 300* Math.random()+50;
+            double py = 300* Math.random()+50;
+            fruit.setPosition(px,py);
+            fruitList.add(fruit);
+
+
+        }
+
+
+
+
 
         menu.getItems().add(newItem);
         menu.getItems().add(new SeparatorMenuItem());
@@ -116,6 +169,7 @@ public class main extends Application {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
+
         player = new Ape("spillet/ape.png", 150, 150);
 
         eple1 = new Frukt("spillet/eple.png", 356, HEIGHT-50);
@@ -138,9 +192,14 @@ public class main extends Application {
         tre14 = new Image("spillet/tre.png");
         tre15 = new Image("spillet/tre.png");
 
-        renderVerden();
 
+
+        renderVerden();
         pane.getChildren().add(canvas);
+
+
+
+
 
         // AnimationTimer
         AnimationTimer timer = new AnimationTimer() {
@@ -185,6 +244,7 @@ public class main extends Application {
         eple2.render(gc, 50, 50);
         eple3.render(gc, 50, 50);
         player.render(gc, apebredde, apehøyde);
+
     }
 
     /**
@@ -223,5 +283,11 @@ public class main extends Application {
     }
 
 
+    private class Sprite {
+        public void setImage(String s) {
+        }
 
+        public void setPosition(double px, double py) {
+        }
+    }
 }
