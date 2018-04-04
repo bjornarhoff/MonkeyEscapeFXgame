@@ -30,9 +30,7 @@ public class main extends Application {
     private double apehøyde = 100;
 
     public static void main(String[] args) {
-
         launch(args);
-
     }
 
     /**
@@ -43,7 +41,17 @@ public class main extends Application {
     @Override
     public void start(Stage vindu) throws Exception {
         vindu.setTitle("Prøvespill");
-        vinduInnhold = new Scene(lagVerden());
+        Verden banen = new Verden();
+        vinduInnhold = new Scene(banen.lagVerden());
+
+        AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                banen.renderVerden();
+                moveApe();
+            }
+        };
+        timer.start();
 
         vindu.setScene(vinduInnhold);
         vindu.show();
@@ -53,7 +61,7 @@ public class main extends Application {
      * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
      * @return root
      */
-    private Parent lagVerden() {
+/*    private Parent lagVerden() {
         Pane root = new Pane();
         Canvas lerret = new Canvas(600, 600);
         grafikk = lerret.getGraphicsContext2D();
@@ -73,22 +81,13 @@ public class main extends Application {
 
         root.getChildren().add(lerret);
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                renderVerden();
-                moveApe();
-            }
-        };
-        timer.start();
-
         return root;
     }
 
     /**
      * Metode som fjerner og reanimerer innholdet i scenen.
      */
-    public void renderVerden() {
+/*    public void renderVerden() {
         grafikk.clearRect(0, 0, 600, 600);
         grafikk.drawImage(bakgrunn, 0, 0, 600, 600);
         grafikk.drawImage(tre1, 60, 0, 540, 10);

@@ -22,8 +22,8 @@ public class Verden {
     private Pane root;
     private Ape player;
     private Image bakgrunn;
-    private Image tre1;
-    private Image tre2;
+    private Image tre1, tre2, tre3, tre4, tre5, tre6;
+    private Frukt eple1, eple2, eple3;
     private double apebredde = 100;
     private double apehøyde = 100;
     private AnimationTimer timer;
@@ -32,14 +32,21 @@ public class Verden {
     }
 
     public Parent lagVerden() {
-        root = new Pane();
-        lerret = new Canvas(600, 600);
+        Pane root = new Pane();
+        Canvas lerret = new Canvas(600, 600);
         grafikk = lerret.getGraphicsContext2D();
 
         player = new Ape("spillet/ape.png", 150, 150);
         bakgrunn = new Image("spillet/bakgrunn.png");
+        eple1 = new Frukt("spillet/eple.png", 400, 450);
+        eple2 = new Frukt("spillet/eple.png", 450 ,100);
+        eple3 = new Frukt("spillet/eple.png", 50, 390);
         tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");
+        tre3 = new Image("spillet/tre.png");
+        tre4 = new Image("spillet/tre.png");
+        tre5 = new Image("spillet/tre.png");
+        tre6 = new Image("spillet/tre.png");
         renderVerden();
 
         root.getChildren().add(lerret);
@@ -48,10 +55,18 @@ public class Verden {
     }
 
     public void renderVerden() {
-        grafikk.clearRect(0, 0, 30, 30);
+        grafikk.clearRect(0, 0, 600, 600);
         grafikk.drawImage(bakgrunn, 0, 0, 600, 600);
-        grafikk.drawImage(tre1, 50, 50, 50, 300);
-        grafikk.drawImage(tre2, 50, 50, 350,50);
+        grafikk.drawImage(tre1, 60, 0, 540, 10);
+        grafikk.drawImage(tre2, 590, 10, 10,590);
+        grafikk.drawImage(tre3, 0, 590, 590, 10);
+        grafikk.drawImage(tre4, 0, 0, 10,590);
+        grafikk.drawImage(tre5, 60, 0, 540, 10);
+        grafikk.drawImage(tre6, 590, 10, 10,590);
+        eple1.render(grafikk, 50, 50);
+        eple2.render(grafikk, 50, 50);
+        eple3.render(grafikk, 50, 50);
+        player.render(grafikk, apebredde, apehøyde);
     }
 
 
