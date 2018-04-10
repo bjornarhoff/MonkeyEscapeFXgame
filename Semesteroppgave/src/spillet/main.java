@@ -9,6 +9,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.*;
 import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
@@ -41,13 +44,13 @@ public class main extends Application {
     @Override
     public void start(Stage vindu) throws Exception {
         vindu.setTitle("Prøvespill");
-        Verden banen = new Verden();
-        vinduInnhold = new Scene(banen.lagVerden());
+        vinduInnhold = new Scene(lagVerden());
+
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                banen.renderVerden();
+                renderVerden();
                 moveApe();
             }
         };
@@ -61,16 +64,16 @@ public class main extends Application {
      * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
      * @return root
      */
-/*    private Parent lagVerden() {
+    private Parent lagVerden() {
         Pane root = new Pane();
         Canvas lerret = new Canvas(600, 600);
         grafikk = lerret.getGraphicsContext2D();
 
-        player = new Ape("spillet/ape.png", 150, 150);
+        player = new Ape(150, 150);
         bakgrunn = new Image("spillet/bakgrunn.png");
-        eple1 = new Frukt("spillet/eple.png", 400, 450);
-        eple2 = new Frukt("spillet/eple.png", 450 ,100);
-        eple3 = new Frukt("spillet/eple.png", 50, 390);
+        eple1 = new Frukt( 400, 450);
+        eple2 = new Frukt(450 ,100);
+        eple3 = new Frukt( 50, 390);
         tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");
         tre3 = new Image("spillet/tre.png");
@@ -79,7 +82,15 @@ public class main extends Application {
         tre6 = new Image("spillet/tre.png");
         renderVerden();
 
+        Rectangle rekt = new Rectangle(60, 60);
+        Image bilde = new Image("spillet/ape.png");
+        ImagePattern imagePattern = new ImagePattern(bilde);
+        rekt.setFill(imagePattern);
+        rekt.setX(50);
+        rekt.setY(50);
+
         root.getChildren().add(lerret);
+        root.getChildren().add(rekt);
 
         return root;
     }
@@ -87,7 +98,7 @@ public class main extends Application {
     /**
      * Metode som fjerner og reanimerer innholdet i scenen.
      */
-/*    public void renderVerden() {
+    public void renderVerden() {
         grafikk.clearRect(0, 0, 600, 600);
         grafikk.drawImage(bakgrunn, 0, 0, 600, 600);
         grafikk.drawImage(tre1, 60, 0, 540, 10);

@@ -2,7 +2,7 @@ package spillet;
 
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
-
+import javafx.scene.Node;
 /**
  * Dette er superclass for spillobjekter skal arve fra. Dette inkluderer Apen, Zookeepers, power-ups osv.
  *
@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class SpillObjekt {
     private Image bilde;
+    private Node node;
     private double dX;
     private double dY;
     private double Y;
@@ -19,16 +20,11 @@ public class SpillObjekt {
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
      * posisjonen til objektet.
-     * @param filename
      * @param x
      * @param y
      */
-    public SpillObjekt(String filename, double x, double y)
+    public SpillObjekt(double x, double y)
     {
-        this.bilde = new Image(filename);
-        setImage(bilde);
-        Y = y;
-        X = x;
     }
 
     /**

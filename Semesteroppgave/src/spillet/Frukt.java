@@ -12,13 +12,13 @@ public class Frukt extends SpillObjekt {
 
     /**
      * Constructor for Frukt, denne overrider konstruktøren til avatar.
-     * @param filename
+
      * @param x
      * @param y
      */
-    public Frukt(String filename, double x, double y) {
-        super(filename, x, y);
-        Image bilde = new Image(filename);
+    public Frukt(double x, double y) {
+        super(x, y);
+        Image bilde = new Image("spillet/eple.png");
         setImage(bilde);
         setX(x);
         setY(y);

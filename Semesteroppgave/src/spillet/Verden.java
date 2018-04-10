@@ -31,7 +31,7 @@ public class Verden {
     public void verden() {
     }
 
-    public Parent lagVerden() {
+/*    public Parent lagVerden() {
         Pane root = new Pane();
         Canvas lerret = new Canvas(600, 600);
         grafikk = lerret.getGraphicsContext2D();
@@ -68,6 +68,6 @@ public class Verden {
         eple3.render(grafikk, 50, 50);
         player.render(grafikk, apebredde, apehøyde);
     }
-
+*/
 
 }

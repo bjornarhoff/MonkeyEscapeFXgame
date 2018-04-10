@@ -1,6 +1,8 @@
 package spillet;
 
 import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 /**
  * Dette er class for avataren til spilleren.
@@ -13,13 +15,12 @@ public class Ape extends SpillObjekt {
     private double bevegelse = 10;
     /**
      * Constructor for Ape, denne overrider konstruktøren til spillobjekt.
-     * @param filename
      * @param x
      * @param y
      */
-    public Ape(String filename, double x, double y) {
-        super(filename, x, y);
-        Image bilde = new Image(filename);
+    public Ape(double x, double y) {
+        super(x, y);
+        Image bilde = new Image("spillet/ape.png");
         setImage(bilde);
         setX(x);
         setY(y);
