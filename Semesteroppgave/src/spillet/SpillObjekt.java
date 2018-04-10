@@ -1,8 +1,8 @@
 package spillet;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.Node;
 /**
  * Dette er superclass for spillobjekter skal arve fra. Dette inkluderer Apen, Zookeepers, power-ups osv.
  *
@@ -11,11 +11,12 @@ import javafx.scene.Node;
 
 public class SpillObjekt {
     private Image bilde;
-    private Node node;
     private double dX;
     private double dY;
     private double Y;
     private double X;
+    private double W;
+    private double H;
 
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
@@ -70,16 +71,40 @@ public class SpillObjekt {
         return Y;
     }
 
+    public void setW(double w) {
+        this.W = w;
+    }
+
+    public double getW() {
+        return W;
+    }
+
+    public void setH(double h) {
+        this.H = h;
+    }
+
+    public double getH() {
+        return H;
+    }
+
     /**
      * Metode for å rendere avataren med image, positionX, positionY samt tar bredde w og høyde h som parametere
      * @param gc
-     * @param w
-     * @param h
+
      */
-    public void render(GraphicsContext gc, double w, double h)
+    public void render(GraphicsContext gc)
     {
-        gc.drawImage(bilde, X, Y, w, h);
+        gc.drawImage(bilde, X, Y, W, H);
     }
+
+    public Rectangle2D objektGrense() {
+        return new Rectangle2D(X,Y,W,H);
+    }
+
+    public boolean kollisjon(SpillObjekt s) {
+        return s.objektGrense().intersects(this.objektGrense());
+    }
+
 /*
     public void setDeltaXY(double x, double y)
     {
