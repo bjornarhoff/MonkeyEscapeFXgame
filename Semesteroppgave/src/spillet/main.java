@@ -1,12 +1,11 @@
 package spillet;
 
-import com.apple.laf.AquaButtonBorder;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.application.Application;
@@ -26,7 +25,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import static javafx.scene.paint.Color.BLACK;
@@ -41,6 +39,7 @@ public class main extends Application {
 
     private GraphicsContext gc;
     private Scene scene;
+    private Parent parent;
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
     private Ape player;
@@ -64,12 +63,13 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        scene = new Scene(setScene(),WIDTH,HEIGHT, BLACK);
+        //scene = new Scene(setScene(),WIDTH,HEIGHT, BLACK);
+       // Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("MonkeyEscape");
         primaryStage.setResizable(false);
 
 
-        Group root = new Group();
+        Group group = new Group();
 
         // Close Operation
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -97,7 +97,7 @@ public class main extends Application {
 
 
 
-
+ /**  KODE TIL OVERS, BRUKER HELLER SCENE BUILDER
         // Menu bar  // Funker ikke
         MenuBar menuBar = new MenuBar();
         menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
@@ -120,6 +120,11 @@ public class main extends Application {
                 System.out.println("Action");
             }
         });
+        menu.getItems().add(newItem);
+        menu.getItems().add(new SeparatorMenuItem());
+
+        menuBar.getMenus().add(menu);
+        root.getChildren().add(menuBar);      */
 
 
 
@@ -140,12 +145,10 @@ public class main extends Application {
 
 
 
-
-        menu.getItems().add(newItem);
-        menu.getItems().add(new SeparatorMenuItem());
-
-        menuBar.getMenus().add(menu);
-        root.getChildren().add(menuBar);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Controller/Menu.fxml"));
+        parent = loader.load();
+        scene = new Scene(parent);
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -158,12 +161,10 @@ public class main extends Application {
      * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
      * @return root
      */
-    private Parent setScene() {
+    public Parent setScene() {
         Pane pane = new Pane();
         pane.setPrefSize(WIDTH,HEIGHT);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
-
-
 
 
         /** Tegner */
@@ -194,23 +195,30 @@ public class main extends Application {
 
 
 
-        renderVerden();
-        pane.getChildren().add(canvas);
 
 
+        final long nanoTime = System.nanoTime();
 
-
-
-        // AnimationTimer
         AnimationTimer timer = new AnimationTimer() {
+
             @Override
-            public void handle(long nanoTime) {
+            public void handle(long currentNanoTime) {
+
+               // double t = (currentNanoTime - nanoTime) / 1000000000.0;
+
+               // double x = 250 + 125 * Math.cos(t);
+                //double y = 250 + 125 * Math.sin(t);
 
                 renderVerden();
                 moveApe();
+
             }
-        };
-        timer.start();
+        }; timer.start();
+
+
+        //renderVerden();
+        pane.getChildren().add(canvas);
+
 
         return pane;
     }
