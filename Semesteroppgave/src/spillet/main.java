@@ -121,7 +121,7 @@ public class main extends Application {
 
 
 
-        // Sleppe tilfeldige frukt rundt på brettet
+        /** Sleppe tilfeldige frukt rundt på brettet
         ArrayList<Sprite> fruitList = new ArrayList<Sprite>();
 
         for (int i = 0; i < 15; i++) {
@@ -133,11 +133,11 @@ public class main extends Application {
             fruitList.add(fruit);
 
 
-        }
+        } */
 
 
 
-
+        // Laster FXML OG CSS, og viser til scenen§
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/Controller/Menu.fxml"));
         parent = loader.load();
@@ -289,11 +289,4 @@ public class main extends Application {
         return scene;
     }
 
-    private class Sprite {
-        public void setImage(String s) {
-        }
-
-        public void setPosition(double px, double py) {
-        }
-    }
 }
