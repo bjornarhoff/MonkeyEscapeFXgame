@@ -3,7 +3,6 @@ package spillet;
 import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -11,10 +10,6 @@ import javafx.scene.Scene;
 import javafx.application.Application;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.*;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
@@ -26,8 +21,6 @@ import javafx.event.EventHandler;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-
-import static javafx.scene.paint.Color.BLACK;
 
 
 /**
@@ -149,6 +142,9 @@ public class main extends Application {
         loader.setLocation(getClass().getResource("/Controller/Menu.fxml"));
         parent = loader.load();
         scene = new Scene(parent);
+
+        String css = getClass().getClassLoader().getResource("CSS/fxmlStyle.css").toString();
+        parent.getStylesheets().add(css);
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -289,7 +285,9 @@ public class main extends Application {
 
 
     }
-
+    public Scene getScene() {
+        return scene;
+    }
 
     private class Sprite {
         public void setImage(String s) {

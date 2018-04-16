@@ -1,30 +1,44 @@
 package Controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
-
-import java.awt.event.ActionEvent;
+import javafx.scene.layout.AnchorPane;
+import spillet.GameSession;
 
 public class MenuController {
 
+    private GameSession gs;
+    private Button NewGame;
 
-        @FXML
-        public void newGame() {
-        }
+    @FXML
+    private AnchorPane rootPane;
 
-        @FXML
-        public void loadGame() {
-        }
+    @FXML
+    public void newGame() {
 
-        @FXML
-        public void exitGame() {
-            System.exit(0);
-        }
 
+        gs = new GameSession(rootPane);
+        rootPane.getChildren().add(gs.getCanvas());
+    }
+
+    @FXML
+    public void loadGame() {
+        System.out.println("Load game");
+    }
+
+    @FXML
+    public void exitGame() {
+        System.exit(0);
+    }
+
+    @FXML
+    public void resumeGame() {
 
     }
 
+    
+
+
+
+}
 
