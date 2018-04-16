@@ -178,12 +178,15 @@ public class GameSession {
         });
 
     }
-    // Metode til å sette spillet på pause
+    /** Setter spillet på pause (går til menyen) */
     public void pause() {
         timer.stop();
         canvas.setVisible(false);
-        System.out.println("pause");
     }
 
-    public Canvas getCanvas(){return this.canvas;}
+
+
+
+    public Canvas getCanvas(){
+        return this.canvas;}
 }
