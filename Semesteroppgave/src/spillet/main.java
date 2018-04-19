@@ -90,19 +90,19 @@ public class main extends Application {
             eple1.drep();
         } else if (player.kollisjon(eple2)) {
             eple2.drep();
-        } else if (player.kollisjon(eple3))
+        } else if (player.kollisjon(eple3)) {
             eple3.drep();
         }
 
-        if (eple1.finnes()) {
+        if (eple1.status()) {
             eple1.render(grafikk);
         }
 
-        if (eple2.finnes()) {
+        if (eple2.status()) {
             eple2.render(grafikk);
         }
 
-        if (eple3.finnes()) {
+        if (eple3.status()) {
             eple3.render(grafikk);
         }
     }

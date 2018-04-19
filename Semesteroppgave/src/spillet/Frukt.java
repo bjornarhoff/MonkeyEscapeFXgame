@@ -31,7 +31,7 @@ public class Frukt extends SpillObjekt {
         this.finnes = false;
     }
 
-    public boolean finnes() {
+    public boolean status() {
         return finnes;
     }
 
