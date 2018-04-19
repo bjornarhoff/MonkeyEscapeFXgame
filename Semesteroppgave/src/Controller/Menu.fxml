@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" minHeight="650.0" minWidth="650.0" prefHeight="650.0" prefWidth="650.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+   <children>
+      <Label layoutX="96.0" layoutY="97.0" prefHeight="95.0" prefWidth="480.0" text="MonkeyEscape" textFill="#d06614" AnchorPane.bottomAnchor="458.0" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="97.0">
+         <font>
+            <Font name="Herculanum" size="64.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="108.0" fitWidth="187.0" layoutX="282.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" style="visibility: TRUE;" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="237.0">
+         <image>
+            <Image url="@../spillet/ape.png" />
+         </image></ImageView>
+      <VBox layoutX="216.0" layoutY="404.0" prefHeight="198.0" prefWidth="240.0">
+         <children>
+            <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#newGame" prefHeight="72.0" prefWidth="245.0" styleClass="MenuButton" text="NEW GAME" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Herculanum" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#loadGame" prefHeight="72.0" prefWidth="245.0" styleClass="MenuButton" text="LOAD GAME " textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Herculanum" size="24.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="75.0" prefWidth="251.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
+               <font>
+                  <Font name="Herculanum" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
