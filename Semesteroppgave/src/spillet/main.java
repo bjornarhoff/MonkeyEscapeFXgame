@@ -1,10 +1,8 @@
 package spillet;
 
-import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
-import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.application.Application;
@@ -13,14 +11,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.*;
 import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
-import javafx.util.Duration;
 
-import java.util.ArrayList;
 
 
 /**
@@ -57,40 +51,58 @@ public class main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         //scene = new Scene(setScene(),WIDTH,HEIGHT, BLACK);
-       // Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("MonkeyEscape");
         primaryStage.setResizable(false);
 
 
-        Group group = new Group();
+        // Laster FXML fil
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Controller/Menu.fxml"));
+        parent = loader.load();
+        scene = new Scene(parent);
 
-        // Close Operation
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-            }
+        // Laster CSS fil
+        String css = getClass().getClassLoader().getResource("CSS/fxmlStyle.css").toString();
+        parent.getStylesheets().add(css);
+
+
+        // Avslutter programmet
+        primaryStage.setOnCloseRequest((WindowEvent e) -> {
+            Platform.exit();
+            System.exit(0);
         });
 
+        // Setter posisjonen til vindu i senter, og fokuserer.
+        primaryStage.centerOnScreen();
+        primaryStage.requestFocus();
 
-        // Hinder   // Funker ikke
-        Circle circle = new Circle();
-        circle.setFill(Color.AQUAMARINE);
-        circle.setRadius(20);
-        circle.setLayoutX(50);
-        circle.setLayoutY(50);
+        // Viser scenen
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-        TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.seconds(3));
-        transition.setToX(400);
-        transition.setToY(400);
-        transition.setAutoReverse(true);
-        transition.setCycleCount(Animation.INDEFINITE);
-        transition.setNode(circle);
-        transition.play();
+
+
 
 
 
  /**  KODE TIL OVERS, BRUKER HELLER SCENE BUILDER
+  *
+          * // Hinder   // Funker ikke
+          Circle circle = new Circle();
+          circle.setFill(Color.AQUAMARINE);
+          circle.setRadius(20);
+          circle.setLayoutX(50);
+          circle.setLayoutY(50);
+
+          TranslateTransition transition = new TranslateTransition();
+          transition.setDuration(Duration.seconds(3));
+          transition.setToX(400);
+          transition.setToY(400);
+          transition.setAutoReverse(true);
+          transition.setCycleCount(Animation.INDEFINITE);
+          transition.setNode(circle);
+          transition.play();
+
         // Menu bar  // Funker ikke
         MenuBar menuBar = new MenuBar();
         menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
@@ -135,19 +147,6 @@ public class main extends Application {
 
         } */
 
-
-
-        // Laster FXML OG CSS, og viser til scenen§
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/Controller/Menu.fxml"));
-        parent = loader.load();
-        scene = new Scene(parent);
-
-        String css = getClass().getClassLoader().getResource("CSS/fxmlStyle.css").toString();
-        parent.getStylesheets().add(css);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
     }
 
 
@@ -248,6 +247,8 @@ public class main extends Application {
         eple2.render(gc, 50, 50);
         eple3.render(gc, 50, 50);
         player.render(gc, apebredde, apehøyde);
+
+
 
     }
 

@@ -1,15 +1,14 @@
 package spillet;
 
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+
 
 public class GameSession {
 
@@ -25,6 +24,9 @@ public class GameSession {
     private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
     private double apebredde = 100;
     private double apehøyde = 100;
+
+
+
 
     public GameSession(Pane gameView) {
         this.gameView = gameView;
@@ -42,14 +44,6 @@ public class GameSession {
                 renderVerden();
                 moveApe();
 
-
-/*             gameView.getScene().setOnKeyPressed(event -> {
-
-
-
-                    }
-               });
-*/
             }
         };
         timer.start();
@@ -96,33 +90,6 @@ public class GameSession {
         tre15 = new Image("spillet/tre.png");
 
 
-/*
-        final long nanoTime = System.nanoTime();
-
-        AnimationTimer timer = new AnimationTimer() {
-
-            @Override
-            public void handle(long currentNanoTime) {
-
-                // double t = (currentNanoTime - nanoTime) / 1000000000.0;
-
-                // double x = 250 + 125 * Math.cos(t);
-                //double y = 250 + 125 * Math.sin(t);
-
-                renderVerden();
-                moveApe();
-
-            }
-        };
-        timer.start();
-
-        renderVerden();
-        moveApe();
-        pane.getChildren().add(canvas);
-
-
-        return pane;
-*/
     }
 
     /**
@@ -172,6 +139,7 @@ public class GameSession {
                     player.beveg("Høyre");
                 } else if (event.getCode() == KeyCode.ESCAPE) {
                         pause();
+
                 }
 
 

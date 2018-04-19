@@ -1,17 +1,21 @@
 package Controller;
 
+import filbehandling.ResManager;
+import filbehandling.SaveData;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import spillet.GameSession;
 
+import static filbehandling.ResManager.*;
+
 public class MenuController {
 
-    private GameSession gs;
-    private Button NewGame;
+
 
     @FXML
     private AnchorPane rootPane;
+    private GameSession gs;
 
     @FXML
     public void newGame() {
@@ -23,6 +27,7 @@ public class MenuController {
 
     @FXML
     public void loadGame() {
+
         System.out.println("Load game");
     }
 
@@ -32,7 +37,7 @@ public class MenuController {
     }
 
     @FXML
-    public void resumeGame() {
+    public void saveGame() {
 
     }
 
