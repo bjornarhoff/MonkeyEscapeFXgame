@@ -1,7 +1,7 @@
 package filbehandling;
 import java.io.*;
 
-public class filbehandling {
+public class Filbehandling {
 
     public static void main(String[] args) throws Exception {
 

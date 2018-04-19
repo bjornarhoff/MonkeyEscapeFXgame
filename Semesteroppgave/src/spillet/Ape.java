@@ -1,8 +1,6 @@
 package spillet;
 
 import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 
 /**
  * Dette er class for avataren til spilleren.
@@ -35,16 +33,16 @@ public class Ape extends SpillObjekt {
      * @param retning
      */
     public void beveg(String retning) {
-        if (retning.equals("Opp") && getY() >= 0) {
+        if (retning.equals("Opp") && getY() >= -20) {
 //            addDeltaXY(0, -50);
             setY(getY() - bevegelse);
-        } else if (retning.equals("Ned") && getY() < 500) {
+        } else if (retning.equals("Ned") && getY() < 530) {
 //            addDeltaXY(0,50);
             setY(getY() + bevegelse);
-        } else if (retning.equals("Venstre") && getX() >= 0) {
+        } else if (retning.equals("Venstre") && getX() >= -20) {
 //            addDeltaXY(-50,0);
             setX(getX() - bevegelse);
-        } else if (retning.equals("Høyre") && getX() < 500) {
+        } else if (retning.equals("Høyre") && getX() < 530) {
 //            addDelta(50,0);
             setX(getX() + bevegelse);
         }
