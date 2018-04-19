@@ -26,8 +26,6 @@ public class GameSession {
     private double apehøyde = 100;
 
 
-
-
     public GameSession(Pane gameView) {
         this.gameView = gameView;
 
@@ -49,9 +47,6 @@ public class GameSession {
         timer.start();
     }
 
-
-
-
     /**
      * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
      *
@@ -67,11 +62,11 @@ public class GameSession {
         gc = canvas.getGraphicsContext2D();
 
 
-        player = new Ape("spillet/ape.png", 150, 150);
+        player = new Ape(150, 150);
 
-        eple1 = new Frukt("spillet/eple.png", 356, HEIGHT - 50);
-        eple2 = new Frukt("spillet/eple.png", WIDTH - 50, 70);
-        eple3 = new Frukt("spillet/eple.png", 50, 35);
+        eple1 = new Frukt( 400, 450);
+        eple2 = new Frukt(450 ,100);
+        eple3 = new Frukt( 50, 390);
 
         tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");
@@ -116,11 +111,27 @@ public class GameSession {
         gc.drawImage(tre14, 400, 270, 10, 400);
         gc.drawImage(tre15, 575, 610, 10, 40);
 
+        player.render(gc);
 
-        eple1.render(gc, 50, 50);
-        eple2.render(gc, 50, 50);
-        eple3.render(gc, 50, 50);
-        player.render(gc, apebredde, apehøyde);
+        if (player.kollisjon(eple1)) {
+            eple1.drep();
+        } else if (player.kollisjon(eple2)) {
+            eple2.drep();
+        } else if (player.kollisjon(eple3)) {
+            eple3.drep();
+        }
+
+        if (eple1.status()) {
+            eple1.render(gc);
+        }
+
+        if (eple2.status()) {
+            eple2.render(gc);
+        }
+
+        if (eple3.status()) {
+            eple3.render(gc);
+        }
 
     }
 

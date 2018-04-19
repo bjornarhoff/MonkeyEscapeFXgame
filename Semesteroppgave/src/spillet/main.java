@@ -1,20 +1,15 @@
 package spillet;
 
-import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.application.Application;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
+
 import javafx.stage.*;
-import javafx.scene.input.KeyEvent;
-import javafx.event.EventHandler;
+
 
 /**
  * Launcherklasse som inneholder main-metoden og start-metoden for å danne scenen, samt animere innholdet.
@@ -22,12 +17,9 @@ import javafx.event.EventHandler;
  * @Gaute, @Eirik og @Bjørnar
  */
 public class main extends Application {
-
-    private GraphicsContext grafikk;
-    private Scene vinduInnhold;
-    private Ape player;
-    private Frukt eple1, eple2, eple3;
-    private Image bakgrunn;
+    
+    private Scene scene;
+    private Parent parent;
 
     public static void main(String[] args) {
         launch(args);
@@ -35,97 +27,52 @@ public class main extends Application {
 
     /**
      * Metoden overrider start-metoden i Application og starter vinduet og legger til innholdet.
-     * @param vindu
+     * @param primaryStage
      * @throws Exception
      */
     @Override
-    public void start(Stage vindu) throws Exception {
-        vindu.setTitle("Prøvespill");
-        vinduInnhold = new Scene(lagVerden());
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Monkey Escape");
+        primaryStage.setResizable(false);
 
-        AnimationTimer timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                renderVerden();
-                moveApe();
-            }
-        };
-        timer.start();
+        // Laster FXML fil
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/Controller/Menu.fxml"));
+        parent = loader.load();
+        scene = new Scene(parent);
 
-        vindu.setScene(vinduInnhold);
-        vindu.show();
+        // Laster CSS fil
+        String css = getClass().getClassLoader().getResource("CSS/fxmlStyle.css").toString();
+        parent.getStylesheets().add(css);
+
+        // Avslutter programmet
+        primaryStage.setOnCloseRequest((WindowEvent e) -> {
+            Platform.exit();
+            System.exit(0);
+        });
+
+        // Setter posisjonen til vindu i senter, og fokuserer.
+        primaryStage.centerOnScreen();
+        primaryStage.requestFocus();
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     /**
      * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
      * @return root
      */
-    private Parent lagVerden() {
-        Pane root = new Pane();
-        Canvas lerret = new Canvas(600, 600);
-        grafikk = lerret.getGraphicsContext2D();
 
-        player = new Ape(150, 150);
-        bakgrunn = new Image("spillet/bakgrunn.png");
-        eple1 = new Frukt( 400, 450);
-        eple2 = new Frukt(450 ,100);
-        eple3 = new Frukt( 50, 390);
-        renderVerden();
-
-        root.getChildren().add(lerret);
-
-        return root;
-    }
 
     /**
      * Metode som fjerner og reanimerer innholdet i scenen.
      */
-    public void renderVerden() {
-        grafikk.clearRect(0, 0, 600, 600);
-        grafikk.drawImage(bakgrunn, 0, 0, 600, 600);
 
-        player.render(grafikk);
-
-        if (player.kollisjon(eple1)) {
-            eple1.drep();
-        } else if (player.kollisjon(eple2)) {
-            eple2.drep();
-        } else if (player.kollisjon(eple3)) {
-            eple3.drep();
-        }
-
-        if (eple1.status()) {
-            eple1.render(grafikk);
-        }
-
-        if (eple2.status()) {
-            eple2.render(grafikk);
-        }
-
-        if (eple3.status()) {
-            eple3.render(grafikk);
-        }
-    }
 
     /**
      * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
      */
-    public void moveApe() {
-        vinduInnhold.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
-                if (e.getCode() == KeyCode.UP) {
-                    player.beveg("Opp");
-                } else if (e.getCode() == KeyCode.DOWN) {
-                    player.beveg("Ned");
-                } else if (e.getCode() == KeyCode.LEFT) {
-                    player.beveg("Venstre");
-                } else if (e.getCode() == KeyCode.RIGHT) {
-                    player.beveg("Høyre");
-                }
-            }
-        });
-    }
-
 
 
 }
