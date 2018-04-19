@@ -98,7 +98,7 @@ public class SpillObjekt {
     }
 
     public Rectangle2D objektGrense() {
-        return new Rectangle2D(X,Y,W,H);
+        return new Rectangle2D(X+15,Y+15,W-30,H-30);
     }
 
     public boolean kollisjon(SpillObjekt s) {

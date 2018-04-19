@@ -28,7 +28,6 @@ public class main extends Application {
     private Ape player;
     private Frukt eple1, eple2, eple3;
     private Image bakgrunn;
-    private Image tre1, tre2, tre3, tre4, tre5, tre6;
 
     public static void main(String[] args) {
         launch(args);
@@ -43,7 +42,6 @@ public class main extends Application {
     public void start(Stage vindu) throws Exception {
         vindu.setTitle("Prøvespill");
         vinduInnhold = new Scene(lagVerden());
-
 
         AnimationTimer timer = new AnimationTimer() {
             @Override
@@ -72,12 +70,6 @@ public class main extends Application {
         eple1 = new Frukt( 400, 450);
         eple2 = new Frukt(450 ,100);
         eple3 = new Frukt( 50, 390);
-        tre1 = new Image("spillet/tre.png");
-        tre2 = new Image("spillet/tre.png");
-        tre3 = new Image("spillet/tre.png");
-        tre4 = new Image("spillet/tre.png");
-        tre5 = new Image("spillet/tre.png");
-        tre6 = new Image("spillet/tre.png");
         renderVerden();
 
         root.getChildren().add(lerret);
@@ -98,7 +90,7 @@ public class main extends Application {
             eple1.drep();
         } else if (player.kollisjon(eple2)) {
             eple2.drep();
-        } else if (player.kollisjon(eple3)) {
+        } else if (player.kollisjon(eple3))
             eple3.drep();
         }
 
