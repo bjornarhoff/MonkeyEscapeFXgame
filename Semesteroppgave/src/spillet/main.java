@@ -5,10 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.application.Application;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+
 
 import javafx.stage.*;
+
 
 
 /**

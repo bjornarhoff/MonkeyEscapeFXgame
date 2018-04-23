@@ -4,14 +4,9 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 
 
@@ -23,15 +18,14 @@ public class GameSession {
     private GraphicsContext gc;
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
-    private Ape player;
+    private Ape ape;
     private Frukt eple1, eple2, eple3;
     private Image bakgrunn;
     private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
-    private double apebredde = 100;
-    private double apehøyde = 100;
-
     private long timeLstFrm;
     ArrayList<String> input = new ArrayList<>();
+
+
 
     /** Konstruktør */
     public GameSession(Pane gameView) {
@@ -56,7 +50,7 @@ public class GameSession {
 
                     renderVerden();
                     Input();
-                    player.move(input);
+                    ape.move(input);
 
                     timeLstFrm = System.nanoTime();
                 }
@@ -79,7 +73,7 @@ public class GameSession {
         gc = canvas.getGraphicsContext2D();
 
 
-        player = new Ape(150, 150);
+        ape = new Ape(0, 500);
 
         eple1 = new Frukt( 400, 450);
         eple2 = new Frukt(450 ,100);
@@ -128,13 +122,13 @@ public class GameSession {
         gc.drawImage(tre14, 400, 270, 10, 400);
         gc.drawImage(tre15, 575, 610, 10, 40);
 
-        player.render(gc);
+        ape.render(gc);
 
-        if (player.kollisjon(eple1)) {
+        if (ape.kollisjon(eple1)) {
             eple1.drep();
-        } else if (player.kollisjon(eple2)) {
+        } if (ape.kollisjon(eple2)) {
             eple2.drep();
-        } else if (player.kollisjon(eple3)) {
+        } if (ape.kollisjon(eple3)) {
             eple3.drep();
         }
 

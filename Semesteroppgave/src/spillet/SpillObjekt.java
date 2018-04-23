@@ -24,8 +24,8 @@ public class SpillObjekt {
      * @param x
      * @param y
      */
-    public SpillObjekt(double x, double y)
-    {
+    public SpillObjekt(double x, double y) {
+
     }
 
     /**

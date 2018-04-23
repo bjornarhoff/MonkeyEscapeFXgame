@@ -1,10 +1,6 @@
 package spillet;
 
-import javafx.animation.AnimationTimer;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
-
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +11,9 @@ import java.util.ArrayList;
 
 public class Ape extends SpillObjekt {
 
-    private double bevegelse = 3;
+    private double bevegelse = 5;
+    private double apebredde = 100;
+    private double apehøyde = 100;
 
 
     /**
@@ -29,8 +27,8 @@ public class Ape extends SpillObjekt {
         setImage(bilde);
         setX(x);
         setY(y);
-        setH(100);
-        setW(100);
+        setH(apehøyde);
+        setW(apebredde);
     }
 
 
@@ -53,10 +51,10 @@ public class Ape extends SpillObjekt {
             setX(getX() + bevegelse);
 
         } if (input.contains("ESCAPE")) {
-        }
 
         }
 
+        }
 
 
     }
