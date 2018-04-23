@@ -1,6 +1,11 @@
 package spillet;
 
+import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Dette er class for avataren til spilleren.
@@ -10,7 +15,9 @@ import javafx.scene.image.Image;
 
 public class Ape extends SpillObjekt {
 
-    private double bevegelse = 10;
+    private double bevegelse = 3;
+
+
     /**
      * Constructor for Ape, denne overrider konstruktøren til spillobjekt.
      * @param x
@@ -30,21 +37,28 @@ public class Ape extends SpillObjekt {
     /**
      * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
-     * @param retning
+     *
      */
-    public void beveg(String retning) {
-        if (retning.equals("Opp") && getY() >= -20) {
-//            addDeltaXY(0, -50);
+    public void move(ArrayList<String> input) {
+        if (input.contains("UP") && getY() >= -20) {
             setY(getY() - bevegelse);
-        } else if (retning.equals("Ned") && getY() < 530) {
-//            addDeltaXY(0,50);
+
+        } if (input.contains("DOWN")&& getY() < 530) {
             setY(getY() + bevegelse);
-        } else if (retning.equals("Venstre") && getX() >= -20) {
-//            addDeltaXY(-50,0);
+
+        } if (input.contains("LEFT") && getX() >= -20) {
             setX(getX() - bevegelse);
-        } else if (retning.equals("Høyre") && getX() < 530) {
-//            addDelta(50,0);
+
+        } if (input.contains("RIGHT") && getX() < 530) {
             setX(getX() + bevegelse);
+
+        } if (input.contains("ESCAPE")) {
         }
+
+        }
+
+
+
     }
-}
+
+

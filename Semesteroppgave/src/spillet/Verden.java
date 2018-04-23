@@ -2,11 +2,16 @@ package spillet;
 
 
 import javafx.animation.AnimationTimer;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "main". Det skal etterhvert
@@ -28,7 +33,20 @@ public class Verden {
     private double apehøyde = 100;
     private AnimationTimer timer;
 
+
+
+    int [][] map = new int [][] {
+            {111, 500, 10, 150},
+            {0, 396, 290, 10},
+            {210, 550, 110, 10}
+    };
+
     public void verden() {
+
+
+    }
+
+    public void drawWalls (Group group) {
     }
 
 /*    public Parent lagVerden() {

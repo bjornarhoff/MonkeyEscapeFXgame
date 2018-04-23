@@ -1,20 +1,25 @@
 package spillet;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 
 public class GameSession {
 
     private Pane gameView;
-    private Canvas canvas;
-    private AnimationTimer timer;
+    public Canvas canvas;
+    public AnimationTimer timer;
     private GraphicsContext gc;
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
@@ -25,7 +30,10 @@ public class GameSession {
     private double apebredde = 100;
     private double apehøyde = 100;
 
+    private long timeLstFrm;
+    ArrayList<String> input = new ArrayList<>();
 
+    /** Konstruktør */
     public GameSession(Pane gameView) {
         this.gameView = gameView;
 
@@ -34,16 +42,25 @@ public class GameSession {
 
     }
 
+
+
+
+ /** Animation timer */
     private void Timer() {
         timer = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
-                renderVerden();
-                moveApe();
+                if (System.nanoTime() - timeLstFrm > 1E9/60) {
 
-            }
-        };
+
+                    renderVerden();
+                    Input();
+                    player.move(input);
+
+                    timeLstFrm = System.nanoTime();
+                }
+            }};
         timer.start();
     }
 
@@ -135,28 +152,37 @@ public class GameSession {
 
     }
 
-    /**
-     * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
-     */
-    public void moveApe() {
-        this.gameView.getScene().setOnKeyPressed(event ->  {
-                if (event.getCode() == KeyCode.UP) {
-                    player.beveg("Opp");
-                } else if (event.getCode() == KeyCode.DOWN) {
-                    player.beveg("Ned");
-                } else if (event.getCode() == KeyCode.LEFT) {
-                    player.beveg("Venstre");
-                } else if (event.getCode() == KeyCode.RIGHT) {
-                    player.beveg("Høyre");
-                } else if (event.getCode() == KeyCode.ESCAPE) {
-                        pause();
 
+     /** Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den */
+    public void Input(){
+        this.gameView.getScene().setOnKeyPressed(
+                new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent e) {
+                        String keyCode = e.getCode().toString();
+
+                        if (!input.contains(keyCode)) {
+                            input.add(keyCode);
+                        }
+                    }
                 }
+        );
 
+        this.gameView.getScene().setOnKeyReleased(
+                new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent e) {
+                        String keyCode = e.getCode().toString();
 
-        });
-
+                        input.remove(keyCode);
+                    }
+                }
+        );
     }
+
+
+
+
     /** Setter spillet på pause (går til menyen) */
     public void pause() {
         timer.stop();
