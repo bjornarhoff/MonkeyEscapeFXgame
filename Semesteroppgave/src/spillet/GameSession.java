@@ -1,5 +1,6 @@
 package spillet;
 
+import Highscore.ScoreManager;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -24,6 +25,7 @@ public class GameSession {
     private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
     private long timeLstFrm;
     ArrayList<String> input = new ArrayList<>();
+    ScoreManager sm = new ScoreManager();
 
 
 
@@ -189,7 +191,9 @@ public class GameSession {
 
 
     public Canvas getCanvas(){
-        return this.canvas;}
+        return this.canvas;
+    }
+
 
     public GameSession getGS() {
         return this;

@@ -1,5 +1,7 @@
 package spillet;
 
+import Highscore.ScoreManager;
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
