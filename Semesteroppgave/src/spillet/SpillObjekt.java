@@ -10,7 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
  */
 
 public class SpillObjekt {
-    private Image bilde;
+    protected Image bilde;
     private double dX;
     private double dY;
     private double Y;
@@ -98,7 +98,7 @@ public class SpillObjekt {
     }
 
     public Rectangle2D objektGrense() {
-        return new Rectangle2D(X+15,Y+15,W-30,H-30);
+        return new Rectangle2D(X+5,Y+5,W-5,H-5);
     }
 
     public boolean kollisjon(SpillObjekt s) {

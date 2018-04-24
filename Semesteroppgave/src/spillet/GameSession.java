@@ -50,7 +50,9 @@ public class GameSession {
 
                     renderVerden();
                     Input();
-                    ape.move(input);
+                    ape.move(input, getGS());
+                    //System.out.println("X: " + ape.getX());
+                    //System.out.println("Y: " + ape.getY());
 
                     timeLstFrm = System.nanoTime();
                 }
@@ -73,7 +75,7 @@ public class GameSession {
         gc = canvas.getGraphicsContext2D();
 
 
-        ape = new Ape(0, 500);
+        ape = new Ape(565, 570);
 
         eple1 = new Frukt( 400, 450);
         eple2 = new Frukt(450 ,100);
@@ -188,4 +190,8 @@ public class GameSession {
 
     public Canvas getCanvas(){
         return this.canvas;}
+
+    public GameSession getGS() {
+        return this;
+    }
 }

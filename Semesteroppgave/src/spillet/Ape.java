@@ -37,22 +37,24 @@ public class Ape extends SpillObjekt {
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
      *
      */
-    public void move(ArrayList<String> input) {
+    public void move(ArrayList<String> input, GameSession gs) {
         if (input.contains("UP") && getY() >= -20) {
             setY(getY() - bevegelse);
 
-        } if (input.contains("DOWN")&& getY() < 530) {
+        } if (input.contains("DOWN")&& getY() < gs.getCanvas().getHeight()-20) {
             setY(getY() + bevegelse);
 
         } if (input.contains("LEFT") && getX() >= -20) {
             setX(getX() - bevegelse);
 
-        } if (input.contains("RIGHT") && getX() < 530) {
+        } if (input.contains("RIGHT") && getX() < gs.getCanvas().getWidth()-20) {
             setX(getX() + bevegelse);
 
         } if (input.contains("ESCAPE")) {
-
+            gs.pause();
         }
+
+
 
         }
 
