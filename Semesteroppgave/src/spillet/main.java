@@ -1,7 +1,5 @@
 package spillet;
 
-import Highscore.ScoreManager;
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.application.Application;
 
 
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.*;
 
 
@@ -19,7 +19,7 @@ import javafx.stage.*;
  * @Gaute, @Eirik og @Bjørnar
  */
 public class main extends Application {
-    
+
     private Scene scene;
     private Parent parent;
 
@@ -29,6 +29,7 @@ public class main extends Application {
 
     /**
      * Metoden overrider start-metoden i Application og starter vinduet og legger til innholdet.
+     *
      * @param primaryStage
      * @throws Exception
      */
@@ -53,6 +54,7 @@ public class main extends Application {
             System.exit(0);
         });
 
+
         // Setter posisjonen til vindu i senter, og fokuserer.
         primaryStage.centerOnScreen();
         primaryStage.requestFocus();
@@ -60,6 +62,8 @@ public class main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+}
+
 
     /**
      * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
@@ -77,4 +81,3 @@ public class main extends Application {
      */
 
 
-}

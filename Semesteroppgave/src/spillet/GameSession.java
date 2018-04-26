@@ -5,9 +5,12 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 
@@ -20,16 +23,17 @@ public class GameSession {
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
     private Ape ape;
+    private Fiende fiende;
     private Frukt eple1, eple2, eple3;
     private Image bakgrunn;
     private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
     private long timeLstFrm;
     ArrayList<String> input = new ArrayList<>();
-    ScoreManager sm = new ScoreManager();
 
 
-
-    /** Konstruktør */
+    /**
+     * Konstruktør
+     */
     public GameSession(Pane gameView) {
         this.gameView = gameView;
 
@@ -39,26 +43,29 @@ public class GameSession {
     }
 
 
-
-
- /** Animation timer */
+    /**
+     * Animation timer
+     */
     private void Timer() {
         timer = new AnimationTimer() {
 
             @Override
             public void handle(long now) {
-                if (System.nanoTime() - timeLstFrm > 1E9/60) {
+                if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
 
 
                     renderVerden();
                     Input();
                     ape.move(input, getGS());
+                    fiende.bounce();
+
                     //System.out.println("X: " + ape.getX());
                     //System.out.println("Y: " + ape.getY());
 
                     timeLstFrm = System.nanoTime();
                 }
-            }};
+            }
+        };
         timer.start();
     }
 
@@ -78,10 +85,11 @@ public class GameSession {
 
 
         ape = new Ape(565, 570);
+        fiende = new Fiende(150, 150,2,8,400,400);
 
-        eple1 = new Frukt( 400, 450);
-        eple2 = new Frukt(450 ,100);
-        eple3 = new Frukt( 50, 390);
+        eple1 = new Frukt(400, 450);
+        eple2 = new Frukt(450, 100);
+        eple3 = new Frukt(50, 390);
 
         tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");
@@ -126,13 +134,18 @@ public class GameSession {
         gc.drawImage(tre14, 400, 270, 10, 400);
         gc.drawImage(tre15, 575, 610, 10, 40);
 
+        // Tegner fiende og avatar
         ape.render(gc);
+        fiende.render(gc);
+
 
         if (ape.kollisjon(eple1)) {
             eple1.drep();
-        } if (ape.kollisjon(eple2)) {
+        }
+        if (ape.kollisjon(eple2)) {
             eple2.drep();
-        } if (ape.kollisjon(eple3)) {
+        }
+        if (ape.kollisjon(eple3)) {
             eple3.drep();
         }
 
@@ -151,8 +164,10 @@ public class GameSession {
     }
 
 
-     /** Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den */
-    public void Input(){
+    /**
+     * Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den
+     */
+    public void Input() {
         this.gameView.getScene().setOnKeyPressed(
                 new EventHandler<KeyEvent>() {
                     @Override
@@ -179,15 +194,13 @@ public class GameSession {
     }
 
 
-
-
-    /** Setter spillet på pause (går til menyen) */
+    /**
+     * Setter spillet på pause (går til menyen)
+     */
     public void pause() {
         timer.stop();
         canvas.setVisible(false);
     }
-
-
 
 
     public Canvas getCanvas(){

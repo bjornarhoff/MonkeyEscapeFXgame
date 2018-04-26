@@ -1,7 +1,9 @@
 package Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import spillet.GameSession;
 
 
@@ -18,6 +20,7 @@ public class MenuController {
 
         gs = new GameSession(rootPane);
         rootPane.getChildren().add(gs.getCanvas());
+
     }
 
     @FXML
