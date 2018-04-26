@@ -1,0 +1,14 @@
+.MenuButton {
+    -fx-background-color: Transparent;
+    -fx-font-family: Herculanum;
+    -fx-font-size: 24px;
+    -fx-fill: WHITE;
+}
+
+.MenuButton:hover {
+    -fx-background-color: #d06614;
+}
+
+/* .MenuButton:focused {
+    -fx-background-color: red;
+} */
