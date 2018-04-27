@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class GameSession {
@@ -23,6 +24,8 @@ public class GameSession {
     private Image bakgrunn;
     private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
     private long timeLstFrm;
+    private Hinder hinder1, hinder2;
+    ArrayList<Hinder> bane = new ArrayList<>();
     ArrayList<String> input = new ArrayList<>();
 
 
@@ -80,8 +83,13 @@ public class GameSession {
         eple1 = new Frukt( 400, 450);
         eple2 = new Frukt(450 ,100);
         eple3 = new Frukt( 50, 390);
+        hinder1 = new Hinder(111, 500, 10, 150);
+        hinder2 = new Hinder(0, 396, 290, 10);
+        bane.add(hinder1);
+        bane.add(hinder2);
 
-        tre1 = new Image("spillet/tre.png");
+
+    //    tre1 = new Image("spillet/tre.png");
         tre2 = new Image("spillet/tre.png");
         tre3 = new Image("spillet/tre.png");
         tre4 = new Image("spillet/tre.png");
@@ -107,7 +115,7 @@ public class GameSession {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
         // Ramme
         gc.fillRect(0, 0, WIDTH, HEIGHT);
-        gc.drawImage(tre3, 0, 0, 10, HEIGHT);
+ /*       gc.drawImage(tre3, 0, 0, 10, HEIGHT);
         gc.drawImage(tre5, 0, 0, WIDTH, 10);
         gc.drawImage(tre6, WIDTH - 10, 0, 10, HEIGHT);
         gc.drawImage(tre7, 0, HEIGHT - 10, 575, 10);
@@ -123,8 +131,23 @@ public class GameSession {
         gc.drawImage(tre13, 550, 520, 100, 10);
         gc.drawImage(tre14, 400, 270, 10, 400);
         gc.drawImage(tre15, 575, 610, 10, 40);
-
+*/
         ape.render(gc);
+        bane.forEach(p -> p.render(gc));
+
+        Iterator<Hinder> hinderIterator = bane.iterator();
+        while (hinderIterator.hasNext()) {
+            Hinder hinder = hinderIterator.next();
+            if (ape.collisionLeft(hinder)) {
+                System.out.println("LEFT");
+            } else if (ape.collisionRight(hinder)) {
+                System.out.println("RIGHT");
+            } else if (ape.collisionBottom(hinder)) {
+              //  System.out.println("BOTTOM");
+            } else if (ape.collisionTop(hinder)) {
+              //  System.out.println("TOP");
+            }
+        }
 
         if (ape.kollisjon(eple1)) {
             eple1.drep();

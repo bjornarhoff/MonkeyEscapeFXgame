@@ -1,7 +1,10 @@
 package spillet;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Dette er class for avataren til spilleren.
@@ -12,8 +15,9 @@ import java.util.ArrayList;
 public class Ape extends SpillObjekt {
 
     private double bevegelse = 5;
-    private double apebredde = 100;
-    private double apehøyde = 100;
+    private double apebredde = 50;
+    private double apehøyde = 50;
+
 
 
     /**
@@ -30,6 +34,39 @@ public class Ape extends SpillObjekt {
         setH(apehøyde);
         setW(apebredde);
     }
+
+    public Rectangle2D boundaryLeft() {
+        return new Rectangle2D(getX(),getY()+5,1,getH()-10);
+    }
+
+    public Rectangle2D boundaryRight() {
+        return new Rectangle2D(getX()+getW()-1,getY()+5,1,getH()-10);
+    }
+
+    public Rectangle2D boundaryTop() {
+        return new Rectangle2D(getX()+5,getY(),getW()-10,1);
+    }
+
+    public Rectangle2D boundaryBottom() {
+        return new Rectangle2D(getX()+getH()-5,getY(),getW()-10,1);
+    }
+
+    public boolean collisionLeft(SpillObjekt s) {
+        return s.objektGrense().intersects(this.boundaryLeft());
+    }
+
+    public boolean collisionRight(SpillObjekt s) {
+        return s.objektGrense().intersects(this.boundaryRight());
+    }
+
+    public boolean collisionTop(SpillObjekt s) {
+        return s.objektGrense().intersects(this.boundaryTop());
+    }
+
+    public boolean collisionBottom(SpillObjekt s) {
+        return s.objektGrense().intersects(this.boundaryBottom());
+    }
+
 
 
     /**
