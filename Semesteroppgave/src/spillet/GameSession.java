@@ -7,9 +7,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.List;
 
 public class GameSession {
 
@@ -21,12 +23,12 @@ public class GameSession {
     private final int HEIGHT = 650;
     private Ape ape;
     private Frukt eple1, eple2, eple3;
-    private Image bakgrunn;
-    private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
     private long timeLstFrm;
-    private Hinder hinder1, hinder2;
+    private Hinder hinder1, hinder2, hinder3, hinder4, hinder5, hinder6, hinder7, hinder8, hinder9, hinder10, hinder11, hinder12, hinder13, hinder14, hinder15;
     ArrayList<Hinder> bane = new ArrayList<>();
     ArrayList<String> input = new ArrayList<>();
+    ArrayList<Boolean> collision = new ArrayList<>();
+    private Verden verden = new Verden();
 
 
 
@@ -39,9 +41,6 @@ public class GameSession {
 
     }
 
-
-
-
  /** Animation timer */
     private void Timer() {
         timer = new AnimationTimer() {
@@ -50,13 +49,9 @@ public class GameSession {
             public void handle(long now) {
                 if (System.nanoTime() - timeLstFrm > 1E9/60) {
 
-
                     renderVerden();
                     Input();
-                    ape.move(input, getGS());
-                    //System.out.println("X: " + ape.getX());
-                    //System.out.println("Y: " + ape.getY());
-
+                    ape.move(input, getGS(), ape.getCollisionRight(), ape.getCollisionLeft(), ape.getCollisionTop(), ape.getCollisionBottom());
                     timeLstFrm = System.nanoTime();
                 }
             }};
@@ -77,35 +72,48 @@ public class GameSession {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
+        ape = new Ape(590, 590);
 
-        ape = new Ape(565, 570);
+        eple1 = new Frukt( 450, 450);
+        eple2 = new Frukt(420 ,100);
+        eple3 = new Frukt( 50, 300);
 
-        eple1 = new Frukt( 400, 450);
-        eple2 = new Frukt(450 ,100);
-        eple3 = new Frukt( 50, 390);
-        hinder1 = new Hinder(111, 500, 10, 150);
+        bane = verden.minVerden();
+
+
+       /* hinder1 = new Hinder(111, 500, 10, 150);
         hinder2 = new Hinder(0, 396, 290, 10);
+        hinder3 = new Hinder(0, 0, 10, HEIGHT);
+        hinder4 = new Hinder(210, 550, 110, 10);
+        hinder5 = new Hinder(0, 0, WIDTH, 10);
+        hinder6 = new Hinder(WIDTH - 10, 0, 10, HEIGHT);
+        hinder7 = new Hinder(0, HEIGHT - 10, 575, 10);
+        hinder8 = new Hinder(200, 190, 10, 70);
+        hinder9 = new Hinder(103, 85, 10, 100);
+        hinder10 = new Hinder(280, 145, 220, 10);
+        hinder11 = new Hinder(570, 75, 10, 100);
+        hinder12 = new Hinder(510, 420, 50, 10);
+        hinder13 = new Hinder(550, 520, 100, 10);
+        hinder14 = new Hinder(400, 270, 10, 400);
+        hinder15= new Hinder(575, 610, 10, 40);
+
         bane.add(hinder1);
         bane.add(hinder2);
+        bane.add(hinder3);
+        bane.add(hinder4);
+        bane.add(hinder5);
+        bane.add(hinder6);
+        bane.add(hinder7);
+        bane.add(hinder8);
+        bane.add(hinder9);
+        bane.add(hinder10);
+        bane.add(hinder11);
+        bane.add(hinder12);
+        bane.add(hinder13);
+        bane.add(hinder14);
+        bane.add(hinder15);
 
-
-    //    tre1 = new Image("spillet/tre.png");
-        tre2 = new Image("spillet/tre.png");
-        tre3 = new Image("spillet/tre.png");
-        tre4 = new Image("spillet/tre.png");
-        tre5 = new Image("spillet/tre.png");
-        tre6 = new Image("spillet/tre.png");
-        tre7 = new Image("spillet/tre.png");
-        tre8 = new Image("spillet/tre.png");
-        tre9 = new Image("spillet/tre.png");
-        tre10 = new Image("spillet/tre.png");
-        tre11 = new Image("spillet/tre.png");
-        tre12 = new Image("spillet/tre.png");
-        tre13 = new Image("spillet/tre.png");
-        tre14 = new Image("spillet/tre.png");
-        tre15 = new Image("spillet/tre.png");
-
-
+*/
     }
 
     /**
@@ -113,41 +121,40 @@ public class GameSession {
      */
     public void renderVerden() {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
-        // Ramme
         gc.fillRect(0, 0, WIDTH, HEIGHT);
- /*       gc.drawImage(tre3, 0, 0, 10, HEIGHT);
-        gc.drawImage(tre5, 0, 0, WIDTH, 10);
-        gc.drawImage(tre6, WIDTH - 10, 0, 10, HEIGHT);
-        gc.drawImage(tre7, 0, HEIGHT - 10, 575, 10);
-        // Brett
-        gc.drawImage(tre1, 111, 500, 10, 150);
-        gc.drawImage(tre2, 0, 396, 290, 10);
-        gc.drawImage(tre4, 210, 550, 110, 10);
-        gc.drawImage(tre8, 200, 190, 10, 70);
-        gc.drawImage(tre9, 103, 85, 10, 100);
-        gc.drawImage(tre10, 280, 145, 220, 10);
-        gc.drawImage(tre11, 570, 75, 10, 100);
-        gc.drawImage(tre12, 510, 420, 50, 10);
-        gc.drawImage(tre13, 550, 520, 100, 10);
-        gc.drawImage(tre14, 400, 270, 10, 400);
-        gc.drawImage(tre15, 575, 610, 10, 40);
-*/
         ape.render(gc);
         bane.forEach(p -> p.render(gc));
+
 
         Iterator<Hinder> hinderIterator = bane.iterator();
         while (hinderIterator.hasNext()) {
             Hinder hinder = hinderIterator.next();
+
             if (ape.collisionLeft(hinder)) {
-                System.out.println("LEFT");
-            } else if (ape.collisionRight(hinder)) {
-                System.out.println("RIGHT");
-            } else if (ape.collisionBottom(hinder)) {
-              //  System.out.println("BOTTOM");
-            } else if (ape.collisionTop(hinder)) {
-              //  System.out.println("TOP");
+                ape.setCollisionLeft(true);
+            } else {
+                ape.setCollisionLeft(false);
+            }
+
+            if (ape.collisionRight(hinder)) {
+                ape.setCollisionRight(true);
+            } else {
+                ape.setCollisionRight(false);
+            }
+
+            if (ape.collisionBottom(hinder)) {
+                ape.setCollisionBottom(true);
+            } else {
+                ape.setCollisionBottom(false);
+            }
+
+            if (ape.collisionTop(hinder)) {
+                ape.setCollisionTop(true);
+            } else {
+                ape.setCollisionTop(false);
             }
         }
+
 
         if (ape.kollisjon(eple1)) {
             eple1.drep();
@@ -170,7 +177,6 @@ public class GameSession {
         }
 
     }
-
 
      /** Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den */
     public void Input(){
@@ -199,17 +205,11 @@ public class GameSession {
         );
     }
 
-
-
-
     /** Setter spillet på pause (går til menyen) */
     public void pause() {
         timer.stop();
         canvas.setVisible(false);
     }
-
-
-
 
     public Canvas getCanvas(){
         return this.canvas;}
