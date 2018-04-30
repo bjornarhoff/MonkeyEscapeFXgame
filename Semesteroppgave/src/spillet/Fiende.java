@@ -34,6 +34,9 @@ public class Fiende extends SpillObjekt {
         this.yMin = y;
     }
 
+    /**
+     * Metode som beveger fiende, og "bouncer" mellom to x og y verdier som blir oppgitt i GameSession
+     */
     public void bounce () {
 
 

@@ -86,6 +86,7 @@ public class GameSession {
 
         ape = new Ape(565, 570);
         fiende = new Fiende(150, 150,2,8,400,400);
+        fiende = new Fiende(20,440, 5,0,320,400);
 
         eple1 = new Frukt(400, 450);
         eple2 = new Frukt(450, 100);
