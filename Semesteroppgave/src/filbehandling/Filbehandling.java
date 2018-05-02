@@ -3,18 +3,51 @@ import java.io.*;
 
 public class Filbehandling {
 
-    public static void main(String[] args) throws Exception {
+    public static final String filename = "TestOutput.sav";
 
-        Save nyobj = new Save();
+    public static void main(String[] args) {
 
-        File saveFile = new File("obj.txt");
-        FileOutputStream fos = new FileOutputStream(saveFile);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(nyobj);
+        SaveData nyobj = new SaveData();
+        System.out.println(nyobj.toString());
+
+        save(nyobj);
+
 
     }
-}
 
-class Save implements Serializable {
-    int i = 10;
+
+    public static void save(Serializable objectToSerialise) {
+        FileOutputStream fos = null;
+
+
+        try {
+            fos = new FileOutputStream(filename);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(objectToSerialise);
+            oos.flush();
+            oos.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void load(){
+        if(checkFileExists()){
+            FileInputStream fis = null;
+
+            try{
+                fis = new FileInputStream(filename);
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                SaveData loadedObject = (SaveData) ois.readObject();
+                ois.close();
+            } catch (ClassNotFoundException | IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean checkFileExists(){
+        return new File(filename).isFile();
+    }
 }
