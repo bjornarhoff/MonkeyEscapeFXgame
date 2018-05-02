@@ -1,8 +1,10 @@
 package spillet;
 
-import Highscore.ScoreManager;
+import Controller.MenuController;
+import com.sun.glass.ui.Menu;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -10,12 +12,16 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 public class GameSession {
 
+    private MenuController controller;
+    private String gameState;
     private Pane gameView;
     public Canvas canvas;
     public AnimationTimer timer;
@@ -34,8 +40,10 @@ public class GameSession {
     /**
      * Konstruktør
      */
-    public GameSession(Pane gameView) {
+    public GameSession(Pane gameView, MenuController controller) {
         this.gameView = gameView;
+        this.gameState = "running";
+        this.controller = controller;
 
         setScene();
         Timer();
@@ -51,18 +59,24 @@ public class GameSession {
 
             @Override
             public void handle(long now) {
-                if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
 
 
-                    renderVerden();
-                    Input();
-                    ape.move(input, getGS());
-                    fiende.bounce();
+                    if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
 
-                    //System.out.println("X: " + ape.getX());
-                    //System.out.println("Y: " + ape.getY());
+                        Input();
+                        handleGameStateInput(input);
 
-                    timeLstFrm = System.nanoTime();
+                        if (gameState.equals("running")) {
+
+                        renderVerden();
+                        ape.move(input, getGS());
+                        fiende.bounce();
+
+                        //System.out.println("X: " + ape.getX());
+                        //System.out.println("Y: " + ape.getY());
+
+                        timeLstFrm = System.nanoTime();
+                    }
                 }
             }
         };
@@ -83,10 +97,9 @@ public class GameSession {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-
         ape = new Ape(565, 570);
-        fiende = new Fiende(150, 150,2,8,400,400);
         fiende = new Fiende(20,440, 5,0,320,400);
+
 
         eple1 = new Frukt(400, 450);
         eple2 = new Frukt(450, 100);
@@ -135,11 +148,22 @@ public class GameSession {
         gc.drawImage(tre14, 400, 270, 10, 400);
         gc.drawImage(tre15, 575, 610, 10, 40);
 
+        gc.strokeText("Score: ", 450.0,50.0, 150);
+        gc.setFont(new Font(30));
+        gc.setStroke(Color.WHITE);
+
+
+
+
+
+
+
+
         // Tegner fiende og avatar
         ape.render(gc);
         fiende.render(gc);
 
-
+        // Kollisjon med frukt
         if (ape.kollisjon(eple1)) {
             eple1.drep();
         }
@@ -150,6 +174,12 @@ public class GameSession {
             eple3.drep();
         }
 
+        // Kollisjon med fiende
+        if (ape.kollisjon(fiende)) {
+            System.out.println("DØD");
+        }
+
+        // Sjekker om boolean er sann, om objektet finnes
         if (eple1.status()) {
             eple1.render(gc);
         }
@@ -162,6 +192,9 @@ public class GameSession {
             eple3.render(gc);
         }
 
+        if (ape.status()) {
+            ape.render(gc);
+        }
     }
 
 
@@ -195,12 +228,31 @@ public class GameSession {
     }
 
 
+    public void handleGameStateInput(ArrayList<String> input) {
+        for (String string:input) {
+            if (string.equals("p") || string.equals("P")) {
+                pause();
+                menu();
+            }
+        }
+    }
+
     /**
      * Setter spillet på pause (går til menyen)
      */
-    public void pause() {
-        timer.stop();
+
+    public void menu() {
         canvas.setVisible(false);
+        controller.setMenuPage("ingameMenuButtons");
+    }
+
+    public void pause () {
+        if (gameState.equals("running")) {
+            gameState = "pause";
+        }else {
+            gameState = "running";
+        }
+
     }
 
 

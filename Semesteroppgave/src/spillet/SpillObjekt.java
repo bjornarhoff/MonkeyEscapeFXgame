@@ -17,6 +17,7 @@ public class SpillObjekt {
     private double X;
     private double W;
     private double H;
+    private boolean finnes = true;
 
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
@@ -85,6 +86,14 @@ public class SpillObjekt {
 
     public double getH() {
         return H;
+    }
+
+    public void drep() {
+        this.finnes = false;
+    }
+
+    public boolean status() {
+        return finnes;
     }
 
     /**

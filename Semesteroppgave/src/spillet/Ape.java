@@ -1,9 +1,6 @@
 package spillet;
 
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 
 /**
@@ -53,11 +50,8 @@ public class Ape extends SpillObjekt {
         } if (input.contains("RIGHT") && getX() < gs.getCanvas().getWidth()-20) {
             setX(getX() + bevegelse);
 
-        } if (input.contains("ESCAPE")) {
-            gs.pause();
         }
-
-        }
+    }
 
 
     }

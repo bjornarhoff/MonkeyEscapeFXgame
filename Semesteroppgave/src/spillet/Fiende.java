@@ -10,7 +10,6 @@ public class Fiende extends SpillObjekt {
     private double alienHeight = 50;
     private double dx, dy, xMax, yMax, xMin, yMin;
 
-
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
      * posisjonen til objektet.
