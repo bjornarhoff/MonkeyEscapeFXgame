@@ -1,20 +1,15 @@
 package spillet;
 
 import Controller.MenuController;
-import com.sun.glass.ui.Menu;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
-import java.awt.*;
 import java.util.ArrayList;
 
 
@@ -74,10 +69,10 @@ public class GameSession {
                         ape.move(input, getGS());
                         fiende.bounce();
 
-                        //System.out.println("X: " + ape.getX());
-                        //System.out.println("Y: " + ape.getY());
-
                         timeLstFrm = System.nanoTime();
+
+                            //System.out.println("X: " + ape.getX());
+                            //System.out.println("Y: " + ape.getY());
                     }
                 }
             }
@@ -200,6 +195,9 @@ public class GameSession {
         gc.setFont(new Font(30));
         gc.setStroke(Color.WHITE);
     }
+
+
+
     /**
      * Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den
      */
@@ -230,13 +228,13 @@ public class GameSession {
     }
 
     /** Arraylist for å sjekke input */
+    /* Gå til meny med input "p" og "ESCPAE */
 
     public void handleGameStateInput(ArrayList<String> input) {
         for (String string:input) {
-            if (string.equals("p") || string.equals("P")) {
-                menu();
+            if ((string.equals("p") || string.equals("P") || string.equals("ESCAPE")) && gameState.equals("running")) {
                 pause();
-
+                menu();
             }
         }
     }
