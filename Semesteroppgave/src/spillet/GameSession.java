@@ -200,7 +200,6 @@ public class GameSession {
         gc.setFont(new Font(30));
         gc.setStroke(Color.WHITE);
     }
-
     /**
      * Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den
      */
