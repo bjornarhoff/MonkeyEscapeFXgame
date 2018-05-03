@@ -14,8 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
 
 
 public class GameSession {
@@ -35,6 +35,7 @@ public class GameSession {
     private Image tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
     private long timeLstFrm;
     ArrayList<String> input = new ArrayList<>();
+    private int score = 0;
 
 
     /**
@@ -69,6 +70,7 @@ public class GameSession {
                         if (gameState.equals("running")) {
 
                         renderVerden();
+                        drawScore(gc);
                         ape.move(input, getGS());
                         fiende.bounce();
 
@@ -148,35 +150,30 @@ public class GameSession {
         gc.drawImage(tre14, 400, 270, 10, 400);
         gc.drawImage(tre15, 575, 610, 10, 40);
 
-        gc.strokeText("Score: ", 450.0,50.0, 150);
-        gc.setFont(new Font(30));
-        gc.setStroke(Color.WHITE);
-
-
-
-
-
-
 
 
         // Tegner fiende og avatar
         ape.render(gc);
         fiende.render(gc);
 
-        // Kollisjon med frukt
-        if (ape.kollisjon(eple1)) {
+        // Kollisjon med frukt, legger til +10 på score
+        if (ape.kollisjon(eple1) && eple1.status()) {
             eple1.drep();
+            score+=10;
         }
-        if (ape.kollisjon(eple2)) {
+        if (ape.kollisjon(eple2) && eple2.status()) {
             eple2.drep();
+            score+=10;
         }
-        if (ape.kollisjon(eple3)) {
+        if (ape.kollisjon(eple3) && eple3.status()) {
             eple3.drep();
+            score+=10;
         }
 
         // Kollisjon med fiende
         if (ape.kollisjon(fiende)) {
             System.out.println("DØD");
+            score=0;
         }
 
         // Sjekker om boolean er sann, om objektet finnes
@@ -197,6 +194,12 @@ public class GameSession {
         }
     }
 
+    /** Metode som tegner score på brettet */
+    public void drawScore (GraphicsContext gc) {
+        gc.strokeText("Score: " + score, 450.0,50.0, 150);
+        gc.setFont(new Font(30));
+        gc.setStroke(Color.WHITE);
+    }
 
     /**
      * Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den
@@ -227,12 +230,14 @@ public class GameSession {
         );
     }
 
+    /** Arraylist for å sjekke input */
 
     public void handleGameStateInput(ArrayList<String> input) {
         for (String string:input) {
             if (string.equals("p") || string.equals("P")) {
-                pause();
                 menu();
+                pause();
+
             }
         }
     }
@@ -255,7 +260,7 @@ public class GameSession {
 
     }
 
-
+    /** Get metoder */
     public Canvas getCanvas(){
         return this.canvas;
     }

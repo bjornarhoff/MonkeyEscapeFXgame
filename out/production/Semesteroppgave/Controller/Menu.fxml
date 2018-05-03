@@ -50,7 +50,7 @@
             </VBox>
             <VBox fx:id="ingameMenuButtons" layoutX="10.0" layoutY="10.0" prefHeight="198.0" prefWidth="240.0" visible="false">
                <children>
-                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#resumeGame" prefHeight="54.0" prefWidth="318.0" styleClass="MenuButton" text="RESUME GAME" textFill="WHITE" textOverrun="CLIP">
+                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#resumeGame" prefHeight="63.0" prefWidth="318.0" styleClass="MenuButton" text="RESUME GAME" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="Herculanum" size="18.0" />
                      </font>
@@ -58,12 +58,12 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#saveGame" prefHeight="48.0" prefWidth="318.0" styleClass="MenuButton" text="SAVE GAME" textFill="WHITE" textOverrun="CLIP">
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#saveGame" prefHeight="62.0" prefWidth="318.0" styleClass="MenuButton" text="SAVE GAME" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="Herculanum" size="18.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="56.0" prefWidth="318.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="70.0" prefWidth="318.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
                      <font>
                         <Font name="Herculanum" size="18.0" />
                      </font>
