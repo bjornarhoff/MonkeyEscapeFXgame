@@ -34,7 +34,7 @@ public class GameSession {
     ArrayList<String> input = new ArrayList<>();
     private int score = 0;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
-    //private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
+    private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
 
 
     /**
@@ -163,14 +163,17 @@ public class GameSession {
         // Kollisjon med frukt, legger til +10 på score
         if (ape.kollisjon(eple1) && eple1.status()) {
             eple1.drep();
+            appleSound();
             score+=10;
         }
         if (ape.kollisjon(eple2) && eple2.status()) {
             eple2.drep();
+            appleSound();
             score+=10;
         }
         if (ape.kollisjon(eple3) && eple3.status()) {
             eple3.drep();
+            appleSound();
             score+=10;
         }
 
@@ -199,7 +202,7 @@ public class GameSession {
     }
 
     private void appleSound() {
-        //clip.play();
+        clip.play();
     }
 
 
