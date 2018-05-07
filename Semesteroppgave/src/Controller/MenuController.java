@@ -3,10 +3,8 @@ package Controller;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import spillet.GameSession;
 
 
@@ -21,15 +19,13 @@ public class MenuController {
 
     private GameSession gs;
 
+
     /** Start menu */
     @FXML
     public void newGame() {
-
         gs = new GameSession(rootPane, this);
         rootPane.getChildren().add(gs.getCanvas());
-
     }
-
 
     @FXML
     public void loadGame() {
@@ -39,6 +35,7 @@ public class MenuController {
 
     @FXML
     public void exitGame() {
+        System.out.println("Spillet er avsluttet");
         System.exit(0);
     }
 

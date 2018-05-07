@@ -8,9 +8,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import java.util.ArrayList;
+
+import static javafx.scene.paint.Color.WHITE;
 
 
 public class GameSession {
@@ -31,6 +33,8 @@ public class GameSession {
     private long timeLstFrm;
     ArrayList<String> input = new ArrayList<>();
     private int score = 0;
+    private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
+    //private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
 
 
     /**
@@ -41,6 +45,7 @@ public class GameSession {
         this.gameState = "running";
         this.controller = controller;
 
+        sound.play();
         setScene();
         Timer();
 
@@ -98,6 +103,7 @@ public class GameSession {
         fiende = new Fiende(20,440, 5,0,320,400);
 
 
+
         eple1 = new Frukt(400, 450);
         eple2 = new Frukt(450, 100);
         eple3 = new Frukt(50, 390);
@@ -147,6 +153,9 @@ public class GameSession {
 
 
 
+
+
+
         // Tegner fiende og avatar
         ape.render(gc);
         fiende.render(gc);
@@ -189,11 +198,16 @@ public class GameSession {
         }
     }
 
+    private void appleSound() {
+        //clip.play();
+    }
+
+
     /** Metode som tegner score på brettet */
     public void drawScore (GraphicsContext gc) {
         gc.strokeText("Score: " + score, 450.0,50.0, 150);
         gc.setFont(new Font(30));
-        gc.setStroke(Color.WHITE);
+        gc.setStroke(WHITE);
     }
 
 
@@ -227,6 +241,10 @@ public class GameSession {
         );
     }
 
+
+
+
+
     /** Arraylist for å sjekke input */
     /* Gå til meny med input "p" og "ESCPAE */
 
@@ -235,6 +253,7 @@ public class GameSession {
             if ((string.equals("p") || string.equals("P") || string.equals("ESCAPE")) && gameState.equals("running")) {
                 pause();
                 menu();
+
             }
         }
     }
@@ -251,11 +270,16 @@ public class GameSession {
     public void pause () {
         if (gameState.equals("running")) {
             gameState = "pause";
-        }else {
+            sound.stop();
+        } else {
             gameState = "running";
+            sound.play();
         }
 
     }
+
+
+
 
     /** Get metoder */
     public Canvas getCanvas(){
