@@ -27,13 +27,13 @@ public class GameSession {
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
     private Ape ape;
-    private Fiende fiende;
-    private Frukt eple1, eple2, eple3;
     private long timeLstFrm;
     private ArrayList<String> input = new ArrayList<>();
     private ArrayList<String> collision = new ArrayList<>();
+    private ArrayList<Fiende> fiende = new ArrayList<>();
     private LevelOne verden = new LevelOne();
     private ArrayList<Hinder> bane = new ArrayList<>();
+    private ArrayList<Frukt> fruktListe = new ArrayList<>();
     private int score = 0;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
@@ -73,8 +73,8 @@ public class GameSession {
 
                         renderVerden();
                         drawScore(gc);
-                            ape.move(input, getGS(), collision);
-                        fiende.bounce();
+                        ape.move(input, getGS(), collision);
+
 
                         timeLstFrm = System.nanoTime();
                             
@@ -99,13 +99,10 @@ public class GameSession {
         gc = canvas.getGraphicsContext2D();
 
         ape = new Ape(590, 590);
-        fiende = new Fiende(20,440, 5,0,320,400);
-
-        eple1 = new Frukt( 450, 450);
-        eple2 = new Frukt(420 ,100);
-        eple3 = new Frukt( 50, 300);
 
         bane = verden.getBane();
+        fiende = verden.getFiende();
+        fruktListe = verden.getFrukt();
 
 
     }
@@ -118,13 +115,17 @@ public class GameSession {
         gc.fillRect(0, 0, WIDTH, HEIGHT);
 
         bane.forEach(p -> p.render(gc));
+        fiende.forEach(p-> p.render(gc));
+        fruktListe.forEach(p-> p.render(gc));
 
-        // Tegner fiende og avatar
+        // Tegner avatar
         ape.render(gc);
-        fiende.render(gc);
+
+
 
         collision.clear();
 
+        // Itererer gjennom hinder
         Iterator<Hinder> hinderIterator = bane.iterator();
 
         while (hinderIterator.hasNext()) {
@@ -146,32 +147,44 @@ public class GameSession {
             if (ape.collisionTop(hinder)) {
                 collision.add("CollisionTop");
             }
+
         }
 
-        // Kollisjon med frukt, legger til +10 på score
-        if (ape.kollisjon(eple1) && eple1.status()) {
-            eple1.drep();
-            appleSound();
-            score+=10;
-        }
-        if (ape.kollisjon(eple2) && eple2.status()) {
-            eple2.drep();
-            appleSound();
-            score+=10;
-        }
-        if (ape.kollisjon(eple3) && eple3.status()) {
-            eple3.drep();
-            appleSound();
-            score+=10;
-        }
+        // Itererer gjennom fiende
+        Iterator<Fiende> fiendeIterator = fiende.iterator();
+            while (fiendeIterator.hasNext()) {
+                Fiende fiende = fiendeIterator.next();
+
+                fiende.bounce();
+
+                if (ape.kollisjon(fiende)) {
+                    System.out.println("DØD");
+                    score=0;
+                }
+            }
+
+            // Itererer gjennom frukt
+            Iterator<Frukt> fruktIterator = fruktListe.iterator();
+                while(fruktIterator.hasNext()) {
+                    Frukt frukt = fruktIterator.next();
+
+                    // Kollisjon med frukt, legger til +100 på score
+                    if (ape.kollisjon(frukt) && frukt.status()) {
+                        frukt.drep();
+                        appleSound();
+                        frukt.status();
+                        score+=100;
+                    }
+                }
+
 
         // Kollisjon med fiende
-        if (ape.kollisjon(fiende)) {
+     /*   if (ape.kollisjon(fiende)) {
             System.out.println("DØD");
             score=0;
-        }
+        } */
 
-        // Sjekker om boolean er sann, om objektet finnes
+       /** // Sjekker om boolean er sann, om objektet finnes
         if (eple1.status()) {
             eple1.render(gc);
         }
@@ -186,7 +199,7 @@ public class GameSession {
 
         if (ape.status()) {
             ape.render(gc);
-        }
+        } */
     }
 
     private void appleSound() {

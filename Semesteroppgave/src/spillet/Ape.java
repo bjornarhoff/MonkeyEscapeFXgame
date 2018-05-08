@@ -29,7 +29,7 @@ public class Ape extends SpillObjekt {
      */
     public Ape(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/ape.png");
+        Image bilde = new Image("spillet/Ape.png");
         setImage(bilde);
         setX(x);
         setY(y);

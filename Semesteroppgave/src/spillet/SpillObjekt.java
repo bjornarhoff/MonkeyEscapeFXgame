@@ -90,6 +90,7 @@ public class SpillObjekt {
 
     public void drep() {
         this.finnes = false;
+
     }
 
     public boolean status() {
@@ -103,7 +104,9 @@ public class SpillObjekt {
      */
     public void render(GraphicsContext gc)
     {
-        gc.drawImage(bilde, X, Y, W, H);
+        if (status()) {
+            gc.drawImage(bilde, X, Y, W, H);
+        }
     }
 
     public Rectangle2D objektGrense() {

@@ -23,6 +23,7 @@ public class MenuController {
     /** Start menu */
     @FXML
     public void newGame() {
+        gs = null;
         gs = new GameSession(rootPane, this);
         rootPane.getChildren().add(gs.getCanvas());
     }
