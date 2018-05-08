@@ -4,12 +4,12 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,12 +24,14 @@ public class GameSession {
     private Ape ape;
     private Frukt eple1, eple2, eple3;
     private long timeLstFrm;
-    private Hinder hinder1, hinder2, hinder3, hinder4, hinder5, hinder6, hinder7, hinder8, hinder9, hinder10, hinder11, hinder12, hinder13, hinder14, hinder15;
-    ArrayList<Hinder> bane = new ArrayList<>();
-    ArrayList<String> input = new ArrayList<>();
-    ArrayList<Boolean> collision = new ArrayList<>();
-    private Verden verden = new Verden();
+    private ArrayList<Hinder> bane = new ArrayList<>();
+    private ArrayList<String> input = new ArrayList<>();
+    private LevelOne verden = new LevelOne();
 
+    private ArrayList<Boolean> collisionLeft = new ArrayList<>();
+    private ArrayList<Boolean> collisionRight = new ArrayList<>();
+    private ArrayList<Boolean> collisionTop = new ArrayList<>();
+    private ArrayList<Boolean> collisionBottom = new ArrayList<>();
 
 
     /** Konstruktør */
@@ -51,8 +53,10 @@ public class GameSession {
 
                     renderVerden();
                     Input();
-                    ape.move(input, getGS(), ape.getCollisionRight(), ape.getCollisionLeft(), ape.getCollisionTop(), ape.getCollisionBottom());
+                    ape.move(input, getGS(), collisionLeft, collisionRight, collisionTop, collisionBottom);
                     timeLstFrm = System.nanoTime();
+
+
                 }
             }};
         timer.start();
@@ -68,7 +72,6 @@ public class GameSession {
         pane.setPrefSize(WIDTH, HEIGHT);
         this.canvas = new Canvas(WIDTH, HEIGHT);
 
-
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
@@ -78,42 +81,8 @@ public class GameSession {
         eple2 = new Frukt(420 ,100);
         eple3 = new Frukt( 50, 300);
 
-        bane = verden.minVerden();
+        bane = verden.getBane();
 
-
-       /* hinder1 = new Hinder(111, 500, 10, 150);
-        hinder2 = new Hinder(0, 396, 290, 10);
-        hinder3 = new Hinder(0, 0, 10, HEIGHT);
-        hinder4 = new Hinder(210, 550, 110, 10);
-        hinder5 = new Hinder(0, 0, WIDTH, 10);
-        hinder6 = new Hinder(WIDTH - 10, 0, 10, HEIGHT);
-        hinder7 = new Hinder(0, HEIGHT - 10, 575, 10);
-        hinder8 = new Hinder(200, 190, 10, 70);
-        hinder9 = new Hinder(103, 85, 10, 100);
-        hinder10 = new Hinder(280, 145, 220, 10);
-        hinder11 = new Hinder(570, 75, 10, 100);
-        hinder12 = new Hinder(510, 420, 50, 10);
-        hinder13 = new Hinder(550, 520, 100, 10);
-        hinder14 = new Hinder(400, 270, 10, 400);
-        hinder15= new Hinder(575, 610, 10, 40);
-
-        bane.add(hinder1);
-        bane.add(hinder2);
-        bane.add(hinder3);
-        bane.add(hinder4);
-        bane.add(hinder5);
-        bane.add(hinder6);
-        bane.add(hinder7);
-        bane.add(hinder8);
-        bane.add(hinder9);
-        bane.add(hinder10);
-        bane.add(hinder11);
-        bane.add(hinder12);
-        bane.add(hinder13);
-        bane.add(hinder14);
-        bane.add(hinder15);
-
-*/
     }
 
     /**
@@ -122,38 +91,49 @@ public class GameSession {
     public void renderVerden() {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
-        ape.render(gc);
         bane.forEach(p -> p.render(gc));
+        ape.render(gc);
 
+        collisionLeft.clear();
+        collisionRight.clear();
+        collisionTop.clear();
+        collisionBottom.clear();
+
+        int counter = 0;
 
         Iterator<Hinder> hinderIterator = bane.iterator();
+
         while (hinderIterator.hasNext()) {
+
             Hinder hinder = hinderIterator.next();
 
             if (ape.collisionLeft(hinder)) {
-                ape.setCollisionLeft(true);
+                collisionLeft.add(counter, true);
             } else {
-                ape.setCollisionLeft(false);
+                collisionLeft.add(counter, false);
             }
 
             if (ape.collisionRight(hinder)) {
-                ape.setCollisionRight(true);
+                collisionRight.add(counter, true);
             } else {
-                ape.setCollisionRight(false);
+                collisionRight.add(counter,false);
             }
 
             if (ape.collisionBottom(hinder)) {
-                ape.setCollisionBottom(true);
+                collisionBottom.add(counter,true);
             } else {
-                ape.setCollisionBottom(false);
+                collisionBottom.add(counter,false);
             }
 
             if (ape.collisionTop(hinder)) {
-                ape.setCollisionTop(true);
+                collisionTop.add(counter,true);
             } else {
-                ape.setCollisionTop(false);
+                collisionTop.add(counter,false);
             }
+
+            counter++;
         }
+
 
 
         if (ape.kollisjon(eple1)) {
@@ -175,6 +155,7 @@ public class GameSession {
         if (eple3.status()) {
             eple3.render(gc);
         }
+
 
     }
 
@@ -217,4 +198,5 @@ public class GameSession {
     public GameSession getGS() {
         return this;
     }
+
 }

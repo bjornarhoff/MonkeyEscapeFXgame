@@ -1,11 +1,10 @@
 package spillet;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * Dette er class for avataren til spilleren.
@@ -111,32 +110,36 @@ public class Ape extends SpillObjekt {
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
      *
      */
-    public void move(ArrayList<String> input, GameSession gs, boolean isCollisionRight, boolean isCollisionLeft, boolean isCollisionTop, boolean isCollisionBottom) {
+    public void move(ArrayList<String> input, GameSession gs, ArrayList<Boolean> collisionLeft, ArrayList<Boolean> collisionRight, ArrayList<Boolean> collisionTop, ArrayList<Boolean> collisionBottom ) {
+/*
+            for (HashMap.Entry<Hinder, List<String>> entry : collisionList.entrySet()) {
 
+                Hinder hinder = entry.getKey();
+                List<String> collisionValues = entry.getValue(); */
 
-            if (input.contains("UP") && !isCollisionTop) {
-                setY(getY() - bevegelse);
+                if (input.contains("UP") && !collisionTop.contains(true)) {
+                    setY(getY() - bevegelse);
+
+                }
+                if (input.contains("DOWN") && !collisionBottom.contains(true)) {
+                    setY(getY() + bevegelse);
+
+                }
+                if (input.contains("LEFT") && !collisionLeft.contains(true)) {
+                    setX(getX() - bevegelse);
+
+                }
+                if (input.contains("RIGHT") && !collisionRight.contains(true)) {
+                    setX(getX() + bevegelse);
+
+                }
+                if (input.contains("ESCAPE")) {
+                    gs.pause();
+                }
 
             }
-            if (input.contains("DOWN") && !isCollisionBottom) {
-                setY(getY() + bevegelse);
-
-            }
-            if (input.contains("LEFT") && !isCollisionLeft) {
-                setX(getX() - bevegelse);
-
-            }
-            if (input.contains("RIGHT") && !isCollisionRight) {
-                setX(getX() + bevegelse);
-
-            }
-            if (input.contains("ESCAPE")) {
-                gs.pause();
-            }
 
 
-
-        }
 
 
     }
