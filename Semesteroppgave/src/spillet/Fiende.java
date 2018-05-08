@@ -19,7 +19,7 @@ public class Fiende extends SpillObjekt {
      */
     public Fiende(double x, double y, double dx, double dy, double xMax, double yMax) {
         super(x, y);
-        bilde = new Image("/spillet/alien.png");
+        bilde = new Image("/IMG/alien.png");
         setImage(bilde);
         setX(x);
         setY(y);
