@@ -28,4 +28,5 @@ public class Frukt extends SpillObjekt {
 
 
 
+
 }

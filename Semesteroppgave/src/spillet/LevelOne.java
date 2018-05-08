@@ -26,8 +26,12 @@ public class LevelOne {
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
     private ArrayList<Hinder> bane;
+    private ArrayList<Fiende> fiende;
+    private ArrayList<Frukt> frukt;
 
     private Hinder tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
+    private Fiende fiende1, fiende2,fiende3;
+    private Frukt frukt1,frukt2,frukt3,frukt4,frukt5;
 
 
     public LevelOne() {
@@ -65,9 +69,40 @@ public class LevelOne {
         bane.add(tre14);
         bane.add(tre15);
 
+        fiende1 = new Fiende(20,440, 7,0,320,400);
+        fiende2 = new Fiende (320, 168, 0,6, 300,600);
+        fiende3 = new Fiende (200, 100, 0, 4, 200,500);
+
+        fiende = new ArrayList<>();
+        fiende.add(fiende1);
+        fiende.add(fiende2);
+        fiende.add(fiende3);
+
+
+        frukt1 = new Frukt(450, 450);
+        frukt2 = new Frukt(420 ,100);
+        frukt3 = new Frukt( 50, 300);
+        frukt4 = new Frukt(10,400);
+        frukt5 = new Frukt(100,500);
+
+        frukt = new ArrayList<>();
+        frukt.add(frukt1);
+        frukt.add(frukt2);
+        frukt.add(frukt3);
+        frukt.add(frukt4);
+        frukt.add(frukt5);
+
     }
 
     public ArrayList<Hinder> getBane() {
         return bane;
+    }
+
+    public ArrayList<Fiende> getFiende() {
+        return fiende;
+    }
+
+    public ArrayList<Frukt> getFrukt() {
+        return frukt;
     }
 }

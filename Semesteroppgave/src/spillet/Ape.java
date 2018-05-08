@@ -29,7 +29,11 @@ public class Ape extends SpillObjekt {
      */
     public Ape(double x, double y) {
         super(x, y);
+<<<<<<< HEAD
         Image bilde = new Image("IMG/ape.png");
+=======
+        Image bilde = new Image("spillet/Ape.png");
+>>>>>>> feature-hoff
         setImage(bilde);
         setX(x);
         setY(y);
