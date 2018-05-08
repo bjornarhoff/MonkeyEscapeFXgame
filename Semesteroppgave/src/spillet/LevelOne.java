@@ -1,21 +1,10 @@
 package spillet;
 
 
-import javafx.animation.AnimationTimer;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
- * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "main". Det skal etterhvert
+ * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "Launcher". Det skal etterhvert
  * opprettes en del spillerbrett og det vil være veldig bedre med en klasse som genererer disse.
  *
  * @Gaute, @Eirik, @Bjørnar
@@ -25,84 +14,84 @@ public class LevelOne {
 
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
-    private ArrayList<Hinder> bane;
-    private ArrayList<Fiende> fiende;
-    private ArrayList<Frukt> frukt;
+    private ArrayList<Wall> wallList;
+    private ArrayList<Enemy> enemyList;
+    private ArrayList<Fruit> fruitList;
 
-    private Hinder tre1, tre2, tre3, tre4, tre5, tre6, tre7, tre8, tre9, tre10, tre11, tre12, tre13, tre14, tre15;
-    private Fiende fiende1, fiende2,fiende3;
-    private Frukt frukt1,frukt2,frukt3,frukt4,frukt5;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
+    private Enemy enemy1, enemy2, enemy3;
+    private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
 
 
     public LevelOne() {
 
-        tre1 = new Hinder(111, 500, 10, 150);
-        tre2 = new Hinder(0, 396, 290, 10);
-        tre3 = new Hinder(0, 0, 10, HEIGHT);
-        tre4 = new Hinder(210, 550, 110, 10);
-        tre5 = new Hinder(0, 0, WIDTH, 10);
-        tre6 = new Hinder(WIDTH - 10, 0, 10, HEIGHT);
-        tre7 = new Hinder(0, HEIGHT - 10, 575, 10);
-        tre8 = new Hinder(200, 190, 10, 70);
-        tre9 = new Hinder(103, 85, 10, 100);
-        tre10 = new Hinder(280, 145, 220, 10);
-        tre11 = new Hinder(570, 75, 10, 100);
-        tre12 = new Hinder(510, 420, 50, 10);
-        tre13 = new Hinder(550, 520, 100, 10);
-        tre14 = new Hinder(400, 270, 10, 400);
-        tre15= new Hinder(575, 610, 10, 40);
+        wall1 = new Wall(111, 500, 10, 150);
+        wall2 = new Wall(0, 396, 290, 10);
+        wall3 = new Wall(0, 0, 10, HEIGHT);
+        wall4 = new Wall(210, 550, 110, 10);
+        wall5 = new Wall(0, 0, WIDTH, 10);
+        wall6 = new Wall(WIDTH - 10, 0, 10, HEIGHT);
+        wall7 = new Wall(0, HEIGHT - 10, 575, 10);
+        wall8 = new Wall(200, 190, 10, 70);
+        wall9 = new Wall(103, 85, 10, 100);
+        wall10 = new Wall(280, 145, 220, 10);
+        wall11 = new Wall(570, 75, 10, 100);
+        wall12 = new Wall(510, 420, 50, 10);
+        wall13 = new Wall(550, 520, 100, 10);
+        wall14 = new Wall(400, 270, 10, 400);
+        wall15 = new Wall(575, 610, 10, 40);
 
-        bane = new ArrayList<>();
-        bane.add(tre1);
-        bane.add(tre2);
-        bane.add(tre3);
-        bane.add(tre4);
-        bane.add(tre5);
-        bane.add(tre6);
-        bane.add(tre7);
-        bane.add(tre8);
-        bane.add(tre9);
-        bane.add(tre10);
-        bane.add(tre11);
-        bane.add(tre12);
-        bane.add(tre13);
-        bane.add(tre14);
-        bane.add(tre15);
+        wallList = new ArrayList<>();
+        wallList.add(wall1);
+        wallList.add(wall2);
+        wallList.add(wall3);
+        wallList.add(wall4);
+        wallList.add(wall5);
+        wallList.add(wall6);
+        wallList.add(wall7);
+        wallList.add(wall8);
+        wallList.add(wall9);
+        wallList.add(wall10);
+        wallList.add(wall11);
+        wallList.add(wall12);
+        wallList.add(wall13);
+        wallList.add(wall14);
+        wallList.add(wall15);
 
-        fiende1 = new Fiende(20,440, 7,0,320,400);
-        fiende2 = new Fiende (320, 168, 0,6, 300,600);
-        fiende3 = new Fiende (200, 100, 0, 4, 200,500);
+        enemy1 = new Enemy(20,440, 7,0,320,400);
+        enemy2 = new Enemy(320, 168, 0,6, 300,600);
+        enemy3 = new Enemy(200, 100, 0, 4, 200,500);
 
-        fiende = new ArrayList<>();
-        fiende.add(fiende1);
-        fiende.add(fiende2);
-        fiende.add(fiende3);
+        enemyList = new ArrayList<>();
+        enemyList.add(enemy1);
+        enemyList.add(enemy2);
+        enemyList.add(enemy3);
 
 
-        frukt1 = new Frukt(450, 450);
-        frukt2 = new Frukt(420 ,100);
-        frukt3 = new Frukt( 50, 300);
-        frukt4 = new Frukt(10,400);
-        frukt5 = new Frukt(100,500);
+        fruit1 = new Fruit(450, 450);
+        fruit2 = new Fruit(420 ,100);
+        fruit3 = new Fruit( 50, 300);
+        fruit4 = new Fruit(10,400);
+        fruit5 = new Fruit(100,500);
 
-        frukt = new ArrayList<>();
-        frukt.add(frukt1);
-        frukt.add(frukt2);
-        frukt.add(frukt3);
-        frukt.add(frukt4);
-        frukt.add(frukt5);
+        fruitList = new ArrayList<>();
+        fruitList.add(fruit1);
+        fruitList.add(fruit2);
+        fruitList.add(fruit3);
+        fruitList.add(fruit4);
+        fruitList.add(fruit5);
 
     }
 
-    public ArrayList<Hinder> getBane() {
-        return bane;
+    public ArrayList<Wall> getWallList() {
+        return wallList;
     }
 
-    public ArrayList<Fiende> getFiende() {
-        return fiende;
+    public ArrayList<Enemy> getEnemyList() {
+        return enemyList;
     }
 
-    public ArrayList<Frukt> getFrukt() {
-        return frukt;
+    public ArrayList<Fruit> getFruitList() {
+        return fruitList;
     }
 }

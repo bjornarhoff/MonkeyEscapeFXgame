@@ -26,14 +26,14 @@ public class GameSession {
     private GraphicsContext gc;
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
-    private Ape ape;
+    private Monkey player;
     private long timeLstFrm;
     private ArrayList<String> input = new ArrayList<>();
     private ArrayList<String> collision = new ArrayList<>();
-    private ArrayList<Fiende> fiende = new ArrayList<>();
-    private LevelOne verden = new LevelOne();
-    private ArrayList<Hinder> bane = new ArrayList<>();
-    private ArrayList<Frukt> fruktListe = new ArrayList<>();
+    private ArrayList<Enemy> enemy = new ArrayList<>();
+    private LevelOne levelOne = new LevelOne();
+    private ArrayList<Wall> wallList = new ArrayList<>();
+    private ArrayList<Fruit> fruitList = new ArrayList<>();
     private int score = 0;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
@@ -71,9 +71,9 @@ public class GameSession {
 
                     if (gameState.equals("running")) {
 
-                        renderVerden();
+                        renderLevel();
                         drawScore(gc);
-                        ape.move(input, getGS(), collision);
+                        player.move(input, getGS(), collision);
 
 
                         timeLstFrm = System.nanoTime();
@@ -98,11 +98,11 @@ public class GameSession {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        ape = new Ape(590, 590);
+        player = new Monkey(590, 590);
 
-        bane = verden.getBane();
-        fiende = verden.getFiende();
-        fruktListe = verden.getFrukt();
+        wallList = levelOne.getWallList();
+        enemy = levelOne.getEnemyList();
+        fruitList = levelOne.getFruitList();
 
 
     }
@@ -110,94 +110,94 @@ public class GameSession {
     /**
      * Metode som fjerner og reanimerer innholdet i scenen.
      */
-    public void renderVerden() {
+    public void renderLevel() {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
 
-        bane.forEach(p -> p.render(gc));
-        fiende.forEach(p -> p.render(gc));
-        fruktListe.forEach(p -> p.render(gc));
+        wallList.forEach(p -> p.render(gc));
+        enemy.forEach(p -> p.render(gc));
+        fruitList.forEach(p -> p.render(gc));
 
         // Tegner avatar
-        ape.render(gc);
+        player.render(gc);
 
 
         collision.clear();
 
         // Itererer gjennom hinder
-        Iterator<Hinder> hinderIterator = bane.iterator();
+        Iterator<Wall> hinderIterator = wallList.iterator();
 
         while (hinderIterator.hasNext()) {
 
-            Hinder hinder = hinderIterator.next();
+            Wall wall = hinderIterator.next();
 
-            if (ape.collisionLeft(hinder)) {
+            if (player.collisionLeft(wall)) {
                 collision.add("CollisionLeft");
             }
 
-            if (ape.collisionRight(hinder)) {
+            if (player.collisionRight(wall)) {
                 collision.add("CollisionRight");
             }
 
-            if (ape.collisionBottom(hinder)) {
+            if (player.collisionBottom(wall)) {
                 collision.add("CollisionBottom");
             }
 
-            if (ape.collisionTop(hinder)) {
+            if (player.collisionTop(wall)) {
                 collision.add("CollisionTop");
             }
 
         }
 
-        // Itererer gjennom fiende
-        Iterator<Fiende> fiendeIterator = fiende.iterator();
+        // Itererer gjennom enemy
+        Iterator<Enemy> fiendeIterator = enemy.iterator();
         while (fiendeIterator.hasNext()) {
-            Fiende fiende = fiendeIterator.next();
+            Enemy enemy = fiendeIterator.next();
 
-            fiende.bounce();
+            enemy.bounce();
 
-            if (ape.kollisjon(fiende)) {
+            if (player.kollisjon(enemy)) {
                 System.out.println("DØD");
                 score = 0;
             }
         }
 
         // Itererer gjennom frukt
-        Iterator<Frukt> fruktIterator = fruktListe.iterator();
+        Iterator<Fruit> fruktIterator = fruitList.iterator();
         while (fruktIterator.hasNext()) {
-            Frukt frukt = fruktIterator.next();
+            Fruit fruit = fruktIterator.next();
 
-            // Kollisjon med frukt, legger til +100 på score
-            if (ape.kollisjon(frukt) && frukt.status()) {
-                frukt.drep();
+            // Kollisjon med fruit, legger til +100 på score
+            if (player.kollisjon(fruit) && fruit.exists()) {
+                fruit.kill();
                 appleSound();
-                frukt.status();
+                fruit.exists();
                 score += 100;
             }
         }
 
 
-        // Kollisjon med fiende
-     /*   if (ape.kollisjon(fiende)) {
+        // Kollisjon med enemy
+     /*   if (player.kollisjon(enemy)) {
             System.out.println("DØD");
             score=0;
         } */
 
         /** // Sjekker om boolean er sann, om objektet finnes
-         if (eple1.status()) {
+         if (eple1.exists()) {
          eple1.render(gc);
          }
 
-         if (eple2.status()) {
+         if (eple2.exists()) {
          eple2.render(gc);
          }
 
-         if (eple3.status()) {
+         if (eple3.exists()) {
          eple3.render(gc);
          }
 
-         if (ape.status()) {
-         ape.render(gc);
+         if (player.exists()) {
+         player.render(gc);
          } */
     }
 
