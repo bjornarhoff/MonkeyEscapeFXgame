@@ -5,16 +5,15 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static javafx.scene.paint.Color.WHITE;
-
 
 public class GameSession {
 
@@ -64,20 +63,20 @@ public class GameSession {
             public void handle(long now) {
 
 
-                    if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
+                if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
 
-                        Input();
-                        handleGameStateInput(input);
+                    Input();
+                    handleGameStateInput(input);
 
-                        if (gameState.equals("running")) {
+                    if (gameState.equals("running")) {
 
                         renderVerden();
                         drawScore(gc);
-                            ape.move(input, getGS(), collision);
+                        ape.move(input, getGS(), collision);
                         fiende.bounce();
 
                         timeLstFrm = System.nanoTime();
-                            
+
                     }
                 }
             }
@@ -99,11 +98,11 @@ public class GameSession {
         gc = canvas.getGraphicsContext2D();
 
         ape = new Ape(590, 590);
-        fiende = new Fiende(20,440, 5,0,320,400);
+        fiende = new Fiende(20, 440, 5, 0, 320, 400);
 
-        eple1 = new Frukt( 450, 450);
-        eple2 = new Frukt(420 ,100);
-        eple3 = new Frukt( 50, 300);
+        eple1 = new Frukt(450, 450);
+        eple2 = new Frukt(420, 100);
+        eple3 = new Frukt(50, 300);
 
         bane = verden.getBane();
 
@@ -152,23 +151,23 @@ public class GameSession {
         if (ape.kollisjon(eple1) && eple1.status()) {
             eple1.drep();
             appleSound();
-            score+=10;
+            score += 10;
         }
         if (ape.kollisjon(eple2) && eple2.status()) {
             eple2.drep();
             appleSound();
-            score+=10;
+            score += 10;
         }
         if (ape.kollisjon(eple3) && eple3.status()) {
             eple3.drep();
             appleSound();
-            score+=10;
+            score += 10;
         }
 
         // Kollisjon med fiende
         if (ape.kollisjon(fiende)) {
             System.out.println("DØD");
-            score=0;
+            score = 0;
         }
 
         // Sjekker om boolean er sann, om objektet finnes
@@ -194,13 +193,14 @@ public class GameSession {
     }
 
 
-    /** Metode som tegner score på brettet */
-    public void drawScore (GraphicsContext gc) {
-        gc.strokeText("Score: " + score, 450.0,50.0, 150);
+    /**
+     * Metode som tegner score på brettet
+     */
+    public void drawScore(GraphicsContext gc) {
+        gc.strokeText("Score: " + score, 450.0, 50.0, 150);
         gc.setFont(new Font(30));
         gc.setStroke(WHITE);
     }
-
 
 
     /**
@@ -233,11 +233,12 @@ public class GameSession {
     }
 
 
-    /** Arraylist for å sjekke input */
+    /**
+     * Arraylist for å sjekke input
+     */
     /* Gå til meny med input "p" og "ESCPAE */
-
     public void handleGameStateInput(ArrayList<String> input) {
-        for (String string:input) {
+        for (String string : input) {
             if ((string.equals("p") || string.equals("P") || string.equals("ESCAPE")) && gameState.equals("running")) {
                 pause();
                 menu();
@@ -255,7 +256,7 @@ public class GameSession {
         controller.setMenuPage("ingameMenuButtons");
     }
 
-    public void pause () {
+    public void pause() {
         if (gameState.equals("running")) {
             gameState = "pause";
             sound.stop();
@@ -267,10 +268,10 @@ public class GameSession {
     }
 
 
-
-
-    /** Get metoder */
-    public Canvas getCanvas(){
+    /**
+     * Get metoder
+     */
+    public Canvas getCanvas() {
         return this.canvas;
     }
 

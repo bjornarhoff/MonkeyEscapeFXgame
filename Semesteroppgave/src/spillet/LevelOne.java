@@ -1,18 +1,6 @@
 package spillet;
 
-
-import javafx.animation.AnimationTimer;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "main". Det skal etterhvert
@@ -46,7 +34,7 @@ public class LevelOne {
         tre12 = new Hinder(510, 420, 50, 10);
         tre13 = new Hinder(550, 520, 100, 10);
         tre14 = new Hinder(400, 270, 10, 400);
-        tre15= new Hinder(575, 610, 10, 40);
+        tre15 = new Hinder(575, 610, 10, 40);
 
         bane = new ArrayList<>();
         bane.add(tre1);
