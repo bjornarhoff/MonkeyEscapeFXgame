@@ -29,7 +29,6 @@ public class MenuController {
 
     @FXML
     public void loadGame() {
-
         System.out.println("Load game");
     }
 
