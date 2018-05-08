@@ -15,7 +15,6 @@ import java.util.Iterator;
 
 import static javafx.scene.paint.Color.WHITE;
 
-
 public class GameSession {
 
     private MenuController controller;
@@ -38,7 +37,6 @@ public class GameSession {
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
 
-
     /**
      * Konstruktør
      */
@@ -52,7 +50,6 @@ public class GameSession {
         Timer();
 
     }
-
 
     /**
      * Animation timer
@@ -120,7 +117,6 @@ public class GameSession {
 
         // Tegner avatar
         player.render(gc);
-
 
         collision.clear();
 
@@ -205,7 +201,6 @@ public class GameSession {
         clip.play();
     }
 
-
     /**
      * Metode som tegner score på brettet
      */
@@ -214,8 +209,7 @@ public class GameSession {
         gc.setFont(new Font(30));
         gc.setStroke(WHITE);
     }
-
-
+    
     /**
      * Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den
      */
