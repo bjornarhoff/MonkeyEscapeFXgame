@@ -10,15 +10,13 @@ import javafx.scene.canvas.GraphicsContext;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class SpillObjekt {
-    protected Image bilde;
-    private double dX;
-    private double dY;
+public class GameObject {
+    protected Image image;
     private double Y;
     private double X;
     private double W;
     private double H;
-    private boolean finnes = true;
+    private boolean exists = true;
 
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
@@ -27,7 +25,7 @@ public class SpillObjekt {
      * @param x
      * @param y
      */
-    public SpillObjekt(double x, double y) {
+    public GameObject(double x, double y) {
 
     }
 
@@ -37,7 +35,7 @@ public class SpillObjekt {
      * @param i
      */
     public void setImage(Image i) {
-        this.bilde = i;
+        this.image = i;
     }
 
     /**
@@ -92,13 +90,13 @@ public class SpillObjekt {
         return H;
     }
 
-    public void drep() {
-        this.finnes = false;
+    public void kill() {
+        this.exists = false;
 
     }
 
-    public boolean status() {
-        return finnes;
+    public boolean exists() {
+        return exists;
     }
 
     /**
@@ -107,8 +105,8 @@ public class SpillObjekt {
      * @param gc
      */
     public void render(GraphicsContext gc) {
-        if (status()) {
-            gc.drawImage(bilde, X, Y, W, H);
+        if (exists()) {
+            gc.drawImage(image, X, Y, W, H);
         }
     }
 
@@ -116,7 +114,7 @@ public class SpillObjekt {
         return new Rectangle2D(X, Y, W, H);
     }
 
-    public boolean kollisjon(SpillObjekt s) {
+    public boolean kollisjon(GameObject s) {
         return s.objektGrense().intersects(this.objektGrense());
     }
 

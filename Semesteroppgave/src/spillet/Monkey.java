@@ -11,26 +11,27 @@ import java.util.*;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class Ape extends SpillObjekt {
+public class Monkey extends GameObject {
 
-    private double bevegelse = 5;
-    private double apebredde = 50;
-    private double apehøyde = 50;
+    private double dx = 5;
+    private double dy = 5;
+    private double playerWidth = 50;
+    private double playerHeight = 50;
 
     /**
-     * Constructor for Ape, denne overrider konstruktøren til spillobjekt.
+     * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
      *
      * @param x
      * @param y
      */
-    public Ape(double x, double y) {
+    public Monkey(double x, double y) {
         super(x, y);
         Image bilde = new Image("IMG/ape.png");
         setImage(bilde);
         setX(x);
         setY(y);
-        setH(apehøyde);
-        setW(apebredde);
+        setH(playerHeight);
+        setW(playerWidth);
     }
 
     public Rectangle2D boundaryLeft() {
@@ -49,19 +50,19 @@ public class Ape extends SpillObjekt {
         return new Rectangle2D(getX() + 5, getY() + getH() - 5, getW() - 10, 5);
     }
 
-    public boolean collisionLeft(SpillObjekt s) {
+    public boolean collisionLeft(GameObject s) {
         return s.objektGrense().intersects(this.boundaryLeft());
     }
 
-    public boolean collisionRight(SpillObjekt s) {
+    public boolean collisionRight(GameObject s) {
         return s.objektGrense().intersects(this.boundaryRight());
     }
 
-    public boolean collisionTop(SpillObjekt s) {
+    public boolean collisionTop(GameObject s) {
         return s.objektGrense().intersects(this.boundaryTop());
     }
 
-    public boolean collisionBottom(SpillObjekt s) {
+    public boolean collisionBottom(GameObject s) {
         return s.objektGrense().intersects(this.boundaryBottom());
     }
 
@@ -73,19 +74,19 @@ public class Ape extends SpillObjekt {
     public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
         if (input.contains("UP") && !collision.contains("CollisionTop")) {
-            setY(getY() - bevegelse);
+            setY(getY() - dy);
 
         }
         if (input.contains("DOWN") && !collision.contains("CollisionBottom")) {
-            setY(getY() + bevegelse);
+            setY(getY() + dy);
 
         }
         if (input.contains("LEFT") && !collision.contains("CollisionLeft")) {
-            setX(getX() - bevegelse);
+            setX(getX() - dx);
 
         }
         if (input.contains("RIGHT") && !collision.contains("CollisionRight")) {
-            setX(getX() + bevegelse);
+            setX(getX() + dx);
 
         }
         if (input.contains("ESCAPE")) {
