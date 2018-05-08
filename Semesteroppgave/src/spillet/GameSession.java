@@ -6,12 +6,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 public class GameSession {
 
@@ -28,10 +24,8 @@ public class GameSession {
     private ArrayList<String> input = new ArrayList<>();
     private LevelOne verden = new LevelOne();
 
-    private ArrayList<Boolean> collisionLeft = new ArrayList<>();
-    private ArrayList<Boolean> collisionRight = new ArrayList<>();
-    private ArrayList<Boolean> collisionTop = new ArrayList<>();
-    private ArrayList<Boolean> collisionBottom = new ArrayList<>();
+    private ArrayList<String> collision = new ArrayList<>();
+
 
 
     /** Konstruktør */
@@ -53,7 +47,7 @@ public class GameSession {
 
                     renderVerden();
                     Input();
-                    ape.move(input, getGS(), collisionLeft, collisionRight, collisionTop, collisionBottom);
+                    ape.move(input, getGS(), collision);
                     timeLstFrm = System.nanoTime();
 
 
@@ -94,12 +88,7 @@ public class GameSession {
         bane.forEach(p -> p.render(gc));
         ape.render(gc);
 
-        collisionLeft.clear();
-        collisionRight.clear();
-        collisionTop.clear();
-        collisionBottom.clear();
-
-        int counter = 0;
+        collision.clear();
 
         Iterator<Hinder> hinderIterator = bane.iterator();
 
@@ -108,30 +97,20 @@ public class GameSession {
             Hinder hinder = hinderIterator.next();
 
             if (ape.collisionLeft(hinder)) {
-                collisionLeft.add(counter, true);
-            } else {
-                collisionLeft.add(counter, false);
+                collision.add("CollisionLeft");
             }
 
             if (ape.collisionRight(hinder)) {
-                collisionRight.add(counter, true);
-            } else {
-                collisionRight.add(counter,false);
+                collision.add("CollisionRight");
             }
 
             if (ape.collisionBottom(hinder)) {
-                collisionBottom.add(counter,true);
-            } else {
-                collisionBottom.add(counter,false);
+                collision.add("CollisionBottom");
             }
 
             if (ape.collisionTop(hinder)) {
-                collisionTop.add(counter,true);
-            } else {
-                collisionTop.add(counter,false);
+                collision.add("CollisionTop");
             }
-
-            counter++;
         }
 
 

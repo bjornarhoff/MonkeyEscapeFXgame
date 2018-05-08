@@ -110,26 +110,26 @@ public class Ape extends SpillObjekt {
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
      *
      */
-    public void move(ArrayList<String> input, GameSession gs, ArrayList<Boolean> collisionLeft, ArrayList<Boolean> collisionRight, ArrayList<Boolean> collisionTop, ArrayList<Boolean> collisionBottom ) {
+    public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 /*
             for (HashMap.Entry<Hinder, List<String>> entry : collisionList.entrySet()) {
 
                 Hinder hinder = entry.getKey();
                 List<String> collisionValues = entry.getValue(); */
 
-                if (input.contains("UP") && !collisionTop.contains(true)) {
+                if (input.contains("UP") && !collision.contains("CollisionTop")) {
                     setY(getY() - bevegelse);
 
                 }
-                if (input.contains("DOWN") && !collisionBottom.contains(true)) {
+                if (input.contains("DOWN") && !collision.contains("CollisionBottom")) {
                     setY(getY() + bevegelse);
 
                 }
-                if (input.contains("LEFT") && !collisionLeft.contains(true)) {
+                if (input.contains("LEFT") && !collision.contains("CollisionLeft")) {
                     setX(getX() - bevegelse);
 
                 }
-                if (input.contains("RIGHT") && !collisionRight.contains(true)) {
+                if (input.contains("RIGHT") && !collision.contains("CollisionRight")) {
                     setX(getX() + bevegelse);
 
                 }
