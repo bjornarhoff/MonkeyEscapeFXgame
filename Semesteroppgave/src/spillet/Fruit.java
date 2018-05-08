@@ -8,25 +8,23 @@ import javafx.scene.image.Image;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class Frukt extends SpillObjekt {
+public class Fruit extends GameObject {
 
     /**
-     * Constructor for Frukt, denne overrider konstruktøren til avatar.
-
+     * Constructor for Fruit, denne overrider konstruktøren til avatar.
+     *
      * @param x
      * @param y
      */
-    public Frukt(double x, double y) {
+    public Fruit(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/eple.png");
+        Image bilde = new Image("/IMG/eple.png");
         setImage(bilde);
         setX(x);
         setY(y);
         setW(20);
         setH(20);
     }
-
-
 
 
 }

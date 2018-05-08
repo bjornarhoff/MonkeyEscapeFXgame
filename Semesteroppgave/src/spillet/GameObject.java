@@ -3,61 +3,62 @@ package spillet;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
+
 /**
  * Dette er superclass for spillobjekter skal arve fra. Dette inkluderer Apen, Zookeepers, power-ups osv.
  *
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class SpillObjekt {
-    protected Image bilde;
-    private double dX;
-    private double dY;
+public class GameObject {
+    protected Image image;
     private double Y;
     private double X;
     private double W;
     private double H;
-    private boolean finnes = true;
+    private boolean exists = true;
 
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
      * posisjonen til objektet.
+     *
      * @param x
      * @param y
      */
-    public SpillObjekt(double x, double y) {
+    public GameObject(double x, double y) {
 
     }
 
     /**
      * Setter image.
+     *
      * @param i
      */
-    public void setImage(Image i)
-    {
-        this.bilde = i;
+    public void setImage(Image i) {
+        this.image = i;
     }
 
     /**
      * Setter x-posisjonen til avataren
+     *
      * @param x
      */
-    public void setX(double x)
-    {
+    public void setX(double x) {
         X = x;
     }
 
     /**
      * Setter y-posisjon til avataren
+     *
      * @param y
      */
-    public void setY(double y)
-    {
+    public void setY(double y) {
         Y = y;
     }
 
     /**
      * Getter x-posisjonen til avataren
+     *
      * @return positionX
      */
     public double getX() {
@@ -66,6 +67,7 @@ public class SpillObjekt {
 
     /**
      * Getter y-posisjon til avataren
+     *
      * @return positionY
      */
     public double getY() {
@@ -88,57 +90,32 @@ public class SpillObjekt {
         return H;
     }
 
-    public void drep() {
-        this.finnes = false;
+    public void kill() {
+        this.exists = false;
 
     }
 
-    public boolean status() {
-        return finnes;
+    public boolean exists() {
+        return exists;
     }
 
     /**
      * Metode for å rendere avataren med image, positionX, positionY samt tar bredde w og høyde h som parametere
+     *
      * @param gc
-
      */
-    public void render(GraphicsContext gc)
-    {
-        if (status()) {
-            gc.drawImage(bilde, X, Y, W, H);
+    public void render(GraphicsContext gc) {
+        if (exists()) {
+            gc.drawImage(image, X, Y, W, H);
         }
     }
 
     public Rectangle2D objektGrense() {
-        return new Rectangle2D(X,Y,W,H);
+        return new Rectangle2D(X, Y, W, H);
     }
 
-    public boolean kollisjon(SpillObjekt s) {
+    public boolean kollisjon(GameObject s) {
         return s.objektGrense().intersects(this.objektGrense());
     }
-
-
-
-/*
-    public void setDeltaXY(double x, double y)
-    {
-        dX = x;
-        dY = y;
-    }
-
-    public void addDeltaXY(double x, double y)
-    {
-        dX += x;
-        dY += y;
-    }
-
-    public void oppdater(double tid)
-    {
-        X += dX * tid;
-        Y += dY * tid;
-        setX(X);
-        setY(Y);
-    } */
-
 
 }
