@@ -22,8 +22,8 @@ public class Frukt extends SpillObjekt {
         setImage(bilde);
         setX(x);
         setY(y);
-        setW(50);
-        setH(50);
+        setW(20);
+        setH(20);
     }
 
 
