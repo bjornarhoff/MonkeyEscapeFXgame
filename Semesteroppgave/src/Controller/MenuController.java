@@ -2,21 +2,25 @@ package Controller;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import spillet.GameSession;
+import spillet.Input;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
 public class MenuController {
-
 
     @FXML
     private AnchorPane rootPane;
     @FXML
     private StackPane buttonPane;
 
-    private GameSession gs;
+    private static GameSession gs;
 
 
     /**
