@@ -1,6 +1,7 @@
 package filbehandling;
 
 import java.io.Serializable;
+import spillet.GameSession.*;
 
 public class SaveData implements Serializable {
 
@@ -14,6 +15,16 @@ public class SaveData implements Serializable {
         this.name2 = name2;
         this.hp = hp;
     }
+
+    /*
+    *  public SaveData(){
+    *   private Ape ape;
+    *   private Fiende fiende;
+    *   private Frukt frukt1, frukt2, frukt3;
+    *   private int score;
+    *
+    *  }
+    **/
 
     public String getName1 (){
         return name1;
