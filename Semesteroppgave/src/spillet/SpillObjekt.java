@@ -107,12 +107,14 @@ public class SpillObjekt {
     }
 
     public Rectangle2D objektGrense() {
-        return new Rectangle2D(X+5,Y+5,W-5,H-5);
+        return new Rectangle2D(X,Y,W,H);
     }
 
     public boolean kollisjon(SpillObjekt s) {
         return s.objektGrense().intersects(this.objektGrense());
     }
+
+
 
 /*
     public void setDeltaXY(double x, double y)
