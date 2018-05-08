@@ -17,7 +17,7 @@
             <Font name="Herculanum" size="64.0" />
          </font>
       </Label>
-      <ImageView fitHeight="108.0" fitWidth="187.0" layoutX="282.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" style="visibility: TRUE;" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="237.0">
+      <ImageView fitHeight="95.0" fitWidth="84.0" layoutX="282.0" layoutY="237.0" pickOnBounds="false" preserveRatio="true" style="visibility: TRUE;" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="284.0" AnchorPane.topAnchor="237.0">
          <image>
             <Image url="@../spillet/ape.png" />
          </image></ImageView>
