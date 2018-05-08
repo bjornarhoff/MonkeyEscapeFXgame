@@ -10,15 +10,13 @@ import javafx.scene.canvas.GraphicsContext;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class SpillObjekt {
-    protected Image bilde;
-    private double dX;
-    private double dY;
+public class GameObject {
+    protected Image image;
     private double Y;
     private double X;
     private double W;
     private double H;
-    private boolean finnes = true;
+    private boolean exists = true;
 
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
@@ -27,7 +25,7 @@ public class SpillObjekt {
      * @param x
      * @param y
      */
-    public SpillObjekt(double x, double y) {
+    public GameObject(double x, double y) {
 
     }
 
@@ -37,7 +35,11 @@ public class SpillObjekt {
      * @param i
      */
     public void setImage(Image i) {
+<<<<<<< HEAD:Semesteroppgave/src/spillet/SpillObjekt.java
         this.bilde = i;
+=======
+        this.image = i;
+>>>>>>> master:Semesteroppgave/src/spillet/GameObject.java
     }
 
     /**
@@ -92,12 +94,13 @@ public class SpillObjekt {
         return H;
     }
 
-    public void drep() {
-        this.finnes = false;
+    public void kill() {
+        this.exists = false;
+
     }
 
-    public boolean status() {
-        return finnes;
+    public boolean exists() {
+        return exists;
     }
 
     /**
@@ -106,39 +109,21 @@ public class SpillObjekt {
      * @param gc
      */
     public void render(GraphicsContext gc) {
+<<<<<<< HEAD:Semesteroppgave/src/spillet/SpillObjekt.java
         gc.drawImage(bilde, X, Y, W, H);
+=======
+        if (exists()) {
+            gc.drawImage(image, X, Y, W, H);
+        }
+>>>>>>> master:Semesteroppgave/src/spillet/GameObject.java
     }
 
     public Rectangle2D objektGrense() {
         return new Rectangle2D(X, Y, W, H);
     }
 
-    public boolean kollisjon(SpillObjekt s) {
+    public boolean kollisjon(GameObject s) {
         return s.objektGrense().intersects(this.objektGrense());
     }
-
-
-
-/*
-    public void setDeltaXY(double x, double y)
-    {
-        dX = x;
-        dY = y;
-    }
-
-    public void addDeltaXY(double x, double y)
-    {
-        dX += x;
-        dY += y;
-    }
-
-    public void oppdater(double tid)
-    {
-        X += dX * tid;
-        Y += dY * tid;
-        setX(X);
-        setY(Y);
-    } */
-
 
 }
