@@ -17,6 +17,7 @@ public class SpillObjekt {
     private double X;
     private double W;
     private double H;
+    private boolean finnes = true;
 
     /**
      * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
@@ -87,6 +88,14 @@ public class SpillObjekt {
         return H;
     }
 
+    public void drep() {
+        this.finnes = false;
+    }
+
+    public boolean status() {
+        return finnes;
+    }
+
     /**
      * Metode for å rendere avataren med image, positionX, positionY samt tar bredde w og høyde h som parametere
      * @param gc
@@ -98,12 +107,14 @@ public class SpillObjekt {
     }
 
     public Rectangle2D objektGrense() {
-        return new Rectangle2D(X+5,Y+5,W-5,H-5);
+        return new Rectangle2D(X,Y,W,H);
     }
 
     public boolean kollisjon(SpillObjekt s) {
         return s.objektGrense().intersects(this.objektGrense());
     }
+
+
 
 /*
     public void setDeltaXY(double x, double y)

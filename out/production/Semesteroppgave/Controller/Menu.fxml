@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -20,27 +21,61 @@
          <image>
             <Image url="@../spillet/ape.png" />
          </image></ImageView>
-      <VBox layoutX="216.0" layoutY="404.0" prefHeight="198.0" prefWidth="240.0">
+      <StackPane fx:id="buttonPane" layoutX="191.0" layoutY="368.0" prefHeight="268.0" prefWidth="290.0">
          <children>
-            <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#newGame" prefHeight="72.0" prefWidth="245.0" styleClass="MenuButton" text="NEW GAME" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Herculanum" size="24.0" />
-               </font>
-               <VBox.margin>
+            <VBox fx:id="startMenuButtons" prefHeight="266.0" prefWidth="431.0">
+               <children>
+                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#newGame" prefHeight="62.0" prefWidth="409.0" styleClass="MenuButton" text="NEW GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#loadGame" prefHeight="64.0" prefWidth="410.0" styleClass="MenuButton" text="LOAD GAME " textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="67.0" prefWidth="405.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+               <StackPane.margin>
                   <Insets />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#loadGame" prefHeight="72.0" prefWidth="245.0" styleClass="MenuButton" text="LOAD GAME " textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Herculanum" size="24.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="75.0" prefWidth="251.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
-               <font>
-                  <Font name="Herculanum" size="24.0" />
-               </font>
-            </Button>
+               </StackPane.margin>
+            </VBox>
+            <VBox fx:id="ingameMenuButtons" layoutX="10.0" layoutY="10.0" prefHeight="198.0" prefWidth="240.0" visible="false">
+               <children>
+                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#resumeGame" prefHeight="63.0" prefWidth="408.0" styleClass="MenuButton" text="RESUME GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#newGame" prefHeight="62.0" prefWidth="411.0" styleClass="MenuButton" text="NEW GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#saveGame" prefHeight="62.0" prefWidth="418.0" styleClass="MenuButton" text="SAVE GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="68.0" prefWidth="405.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </StackPane>
    </children>
 </AnchorPane>

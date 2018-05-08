@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 
 public class Frukt extends SpillObjekt {
 
-    private boolean finnes = true;
     /**
      * Constructor for Frukt, denne overrider konstruktøren til avatar.
 
@@ -23,17 +22,10 @@ public class Frukt extends SpillObjekt {
         setImage(bilde);
         setX(x);
         setY(y);
-        setW(50);
-        setH(50);
+        setW(20);
+        setH(20);
     }
 
-    public void drep() {
-        this.finnes = false;
-    }
-
-    public boolean status() {
-        return finnes;
-    }
 
 
 }
