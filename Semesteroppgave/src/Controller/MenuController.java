@@ -39,7 +39,6 @@ public class MenuController {
         System.exit(0);
     }
 
-
     /**
      * Pause menu
      */
