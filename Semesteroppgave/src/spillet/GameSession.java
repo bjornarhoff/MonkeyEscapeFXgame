@@ -2,10 +2,8 @@ package spillet;
 
 import Controller.MenuController;
 import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
@@ -30,9 +28,10 @@ public class GameSession {
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
     private ArrayList<Enemy> enemy = new ArrayList<>();
-    private LevelOne levelOne = new LevelOne();
     private ArrayList<Wall> wallList = new ArrayList<>();
     private ArrayList<Fruit> fruitList = new ArrayList<>();
+    private LevelOne levelOne = new LevelOne();
+    private LevelTwo levelTwo = new LevelTwo();
     private int score = 0;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
@@ -99,9 +98,14 @@ public class GameSession {
 
         player = new Monkey(590, 590);
 
-        wallList = levelOne.getWallList();
+       /** wallList = levelOne.getWallList();
         enemy = levelOne.getEnemyList();
-        fruitList = levelOne.getFruitList();
+        fruitList = levelOne.getFruitList(); */
+
+       wallList = levelTwo.getWallList();
+       enemy = levelTwo.getEnemyList();
+       fruitList = levelTwo.getFruitList();
+
 
 
     }
