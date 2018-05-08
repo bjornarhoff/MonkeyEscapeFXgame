@@ -1,6 +1,5 @@
 package spillet;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
