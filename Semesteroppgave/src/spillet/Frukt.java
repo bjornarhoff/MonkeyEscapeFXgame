@@ -18,7 +18,7 @@ public class Frukt extends SpillObjekt {
      */
     public Frukt(double x, double y) {
         super(x, y);
-        Image bilde = new Image("spillet/eple.png");
+        Image bilde = new Image("IMG/eple.png");
         setImage(bilde);
         setX(x);
         setY(y);
