@@ -131,22 +131,21 @@ public class Ape extends SpillObjekt {
                 if (input.contains("RIGHT") && !collision.contains("CollisionRight")) {
                     setX(getX() + bevegelse);
 
-<<<<<<< HEAD
-        }
-    }
-=======
                 }
-                if (input.contains("ESCAPE")) {
-                    gs.pause();
+              if (input.contains("ESCAPE")) {
+                gs.pause();
+                   }
+
                 }
+
 
             }
 
 
->>>>>>> feature-gaute
 
 
-    }
+
+
 
 
 
