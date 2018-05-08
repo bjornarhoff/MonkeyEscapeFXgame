@@ -8,7 +8,6 @@ import javafx.application.Application;
 import javafx.stage.*;
 
 
-
 /**
  * Launcherklasse som inneholder main-metoden og start-metoden for å danne scenen, samt animere innholdet.
  *
@@ -61,19 +60,24 @@ public class main extends Application {
 }
 
 
-    /**
-     * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
-     * @return root
-     */
+/**
+ * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
+ *
+ * @return root
+ * <p>
+ * Metode som fjerner og reanimerer innholdet i scenen.
+ * <p>
+ * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
+ */
 
 
-    /**
-     * Metode som fjerner og reanimerer innholdet i scenen.
-     */
+/**
+ * Metode som fjerner og reanimerer innholdet i scenen.
+ */
 
 
-    /**
-     * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
-     */
+/**
+ * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
+ */
 
 

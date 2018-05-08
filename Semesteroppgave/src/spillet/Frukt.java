@@ -12,7 +12,7 @@ public class Frukt extends SpillObjekt {
 
     /**
      * Constructor for Frukt, denne overrider konstruktøren til avatar.
-
+     *
      * @param x
      * @param y
      */
@@ -25,8 +25,6 @@ public class Frukt extends SpillObjekt {
         setW(20);
         setH(20);
     }
-
-
 
 
 }
