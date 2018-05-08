@@ -3,7 +3,7 @@ package spillet;
 import javafx.scene.image.Image;
 
 
-public class Enemy extends GameObject {
+public class Fiende extends SpillObjekt {
 
 
     private double alienWidth =50;
@@ -17,10 +17,10 @@ public class Enemy extends GameObject {
      * @param x
      * @param y
      */
-    public Enemy(double x, double y, double dx, double dy, double xMax, double yMax) {
+    public Fiende(double x, double y, double dx, double dy, double xMax, double yMax) {
         super(x, y);
-        image = new Image("/IMG/alien.png");
-        setImage(image);
+        bilde = new Image("/spillet/alien.png");
+        setImage(bilde);
         setX(x);
         setY(y);
         setH(alienHeight);

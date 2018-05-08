@@ -9,11 +9,11 @@ import javafx.stage.*;
 
 
 /**
- * Launcherklasse som inneholder Launcher-metoden og start-metoden for å danne scenen, samt animere innholdet.
+ * Launcherklasse som inneholder main-metoden og start-metoden for å danne scenen, samt animere innholdet.
  *
  * @Gaute, @Eirik og @Bjørnar
  */
-public class Launcher extends Application {
+public class main extends Application {
 
     private Scene scene;
     private Parent parent;
