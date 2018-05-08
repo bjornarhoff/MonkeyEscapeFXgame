@@ -6,7 +6,7 @@ public class Hinder extends SpillObjekt {
 
     public Hinder(double x, double y, double w, double h) {
         super(x, y);
-        Image bilde = new Image("spillet/tre.png");
+        Image bilde = new Image("IMG/tre.png");
         setImage(bilde);
         setX(x);
         setY(y);

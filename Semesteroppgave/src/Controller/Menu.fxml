@@ -19,7 +19,7 @@
       </Label>
       <ImageView fitHeight="108.0" fitWidth="187.0" layoutX="282.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" style="visibility: TRUE;" AnchorPane.bottomAnchor="305.0" AnchorPane.leftAnchor="282.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="237.0">
          <image>
-            <Image url="@../spillet/ape.png" />
+            <Image url="@../../Resource/IMG/ape.png" />
          </image></ImageView>
       <StackPane fx:id="buttonPane" layoutX="191.0" layoutY="368.0" prefHeight="268.0" prefWidth="290.0">
          <children>
