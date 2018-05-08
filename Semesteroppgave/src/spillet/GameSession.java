@@ -28,7 +28,6 @@ public class GameSession {
     private final int HEIGHT = 650;
     private Ape ape;
     private long timeLstFrm;
-    private ArrayList<String> input = new ArrayList<>();
     private ArrayList<String> collision = new ArrayList<>();
     private ArrayList<Fiende> fiende = new ArrayList<>();
     private LevelOne verden = new LevelOne();
@@ -66,14 +65,14 @@ public class GameSession {
 
                     if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
 
-                        Input();
-                        handleGameStateInput(input);
+                        Input.Input(gameView.getScene());
+                        handleGameStateInput(Input.getInput());
 
                         if (gameState.equals("running")) {
 
                         renderVerden();
                         drawScore(gc);
-                        ape.move(input, getGS(), collision);
+                        ape.move(Input.getInput(), getGS(), collision);
 
 
                         timeLstFrm = System.nanoTime();
@@ -216,34 +215,6 @@ public class GameSession {
 
 
 
-    /**
-     * Metode som tar key-input fra brukeren. Legger den til i arraylist og fjerner den
-     */
-    public void Input() {
-        this.gameView.getScene().setOnKeyPressed(
-                new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent e) {
-                        String keyCode = e.getCode().toString();
-
-                        if (!input.contains(keyCode)) {
-                            input.add(keyCode);
-                        }
-                    }
-                }
-        );
-
-        this.gameView.getScene().setOnKeyReleased(
-                new EventHandler<KeyEvent>() {
-                    @Override
-                    public void handle(KeyEvent e) {
-                        String keyCode = e.getCode().toString();
-
-                        input.remove(keyCode);
-                    }
-                }
-        );
-    }
 
 
     /** Arraylist for å sjekke input */
