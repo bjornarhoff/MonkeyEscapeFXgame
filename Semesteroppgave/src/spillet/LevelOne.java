@@ -26,7 +26,7 @@ public class LevelOne {
     public LevelOne() {
 
         // MAP
-        gate = new Gate(590,640,50,10);
+        gate = new Gate(590,300,50,10);
 
         wall1 = new Wall(111, 500, 10, 150);
         wall2 = new Wall(0, 396, 290, 10);

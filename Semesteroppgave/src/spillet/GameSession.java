@@ -31,6 +31,7 @@ public class GameSession {
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
+    private LevelTwo levelTwo = new LevelTwo();
     private int score = 0;
     private int currentLevel = 1;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
@@ -106,46 +107,33 @@ public class GameSession {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
 
-        // Renderer hinder, frukter og fiender
-        levelOne.getWallList().forEach(p -> p.render(gc));
-        levelOne.getEnemyList().forEach(p -> p.render(gc));
-        levelOne.getFruitList().forEach(p -> p.render(gc));
 
-        // Itererer gjennom hinder
-        collisionIterator(levelOne.getWallList());
-        fruitIterator(levelOne.getFruitList());
-        enemyIterator(levelOne.getEnemyList());
+        if (getCurrentLevel() == 1) {
+            // Renderer hinder, frukter og fiender
+            levelOne.getWallList().forEach(p -> p.render(gc));
+            levelOne.getEnemyList().forEach(p -> p.render(gc));
+            levelOne.getFruitList().forEach(p -> p.render(gc));
 
-        levelOne.getGate().render(gc);
+            // Itererer gjennom hinder
+            collisionIterator(levelOne.getWallList());
+            fruitIterator(levelOne.getFruitList());
+            enemyIterator(levelOne.getEnemyList());
+
+            levelOne.getGate().render(gc);
+        } else if (getCurrentLevel() == 2) {
+            levelTwo.getWallList().forEach(p -> p.render(gc));
+            levelTwo.getEnemyList().forEach(p -> p.render(gc));
+            levelTwo.getFruitList().forEach(p -> p.render(gc));
+
+            // Itererer gjennom hinder
+            collisionIterator(levelTwo.getWallList());
+            fruitIterator(levelTwo.getFruitList());
+            enemyIterator(levelTwo.getEnemyList());
+        }
 
         if (player.collide(levelOne.getGate())) {
             setCurrentLevel(2);
         }
-
-/*        switch (getCurrentLevel()) {
-            case 1:
-                // Renderer hinder, frukter og fiender
-                levelOne.getWallList().forEach(p -> p.render(gc));
-                levelOne.getEnemyList().forEach(p -> p.render(gc));
-                levelOne.getFruitList().forEach(p -> p.render(gc));
-
-                // Itererer gjennom hinder
-                collisionIterator(levelOne.getWallList());
-                fruitIterator(levelOne.getFruitList());
-                enemyIterator(levelOne.getEnemyList());
-            case 2:
-                // Renderer hinder, frukter og fiender
-                levelOne.getWallList().forEach(p -> p.render(gc));
-                levelOne.getEnemyList().forEach(p -> p.render(gc));
-                levelOne.getFruitList().forEach(p -> p.render(gc));
-
-                // Itererer gjennom hinder
-                collisionIterator(levelOne.getWallList());
-                fruitIterator(levelOne.getFruitList());
-                enemyIterator(levelOne.getEnemyList());
-            default:
-                break;
-        } */
 
         // Tegner avatar
         player.render(gc);
@@ -179,25 +167,6 @@ public class GameSession {
 
         }
 
-        // Itererer gjennom enemy
-        Iterator<Enemy> fiendeIterator = levelOne.getEnemyList().iterator();
-        while (fiendeIterator.hasNext()) {
-            Enemy enemy = fiendeIterator.next();
-
-            enemy.bounce();
-
-            if (player.collide(enemy)) {
-                score = 0;
-
-                for (Node node : nodeList) {
-                    if (("gameOver").equals(node.getId())) {
-                        node.setVisible(true);
-                        canvas.setVisible(false);
-                    }
-                }
-            }
-        }
-
     }
 
     public void fruitIterator(ArrayList<Fruit> fruitList) {
@@ -223,8 +192,14 @@ public class GameSession {
             enemy.bounce();
 
             if (player.collide(enemy)) {
-                System.out.println("DØD");
                 score = 0;
+
+                for (Node node : nodeList) {
+                    if (("gameOver").equals(node.getId())) {
+                        node.setVisible(true);
+                        canvas.setVisible(false);
+                    }
+                }
             }
         }
     }
