@@ -2,6 +2,9 @@ package spillet;
 
 import Controller.MenuController;
 import javafx.animation.AnimationTimer;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
@@ -19,6 +22,7 @@ public class GameSession {
     private MenuController controller;
     private String gameState;
     private Pane gameView;
+    private ObservableList<Node> nodeList;
     public Canvas canvas;
     public AnimationTimer timer;
     private GraphicsContext gc;
@@ -42,6 +46,7 @@ public class GameSession {
      */
     public GameSession(Pane gameView, MenuController controller) {
         this.gameView = gameView;
+        this.nodeList = gameView.getChildren();
         this.gameState = "running";
         this.controller = controller;
 
@@ -98,11 +103,11 @@ public class GameSession {
 
         player = new Monkey(590, 590);
 
-       /** wallList = levelOne.getWallList();
-        enemy = levelOne.getEnemyList();
-        fruitList = levelOne.getFruitList(); */
+        //wallList = levelOne.getWallList();
+        //enemy = levelOne.getEnemyList();
+        //fruitList = levelOne.getFruitList();
 
-       wallList = levelTwo.getWallList();
+        wallList = levelTwo.getWallList();
        enemy = levelTwo.getEnemyList();
        fruitList = levelTwo.getFruitList();
 
@@ -126,6 +131,8 @@ public class GameSession {
 
 
         collision.clear();
+
+
 
         // Itererer gjennom hinder
         Iterator<Wall> hinderIterator = wallList.iterator();
@@ -160,8 +167,14 @@ public class GameSession {
             enemy.bounce();
 
             if (player.kollisjon(enemy)) {
-                System.out.println("DØD");
                 score = 0;
+                
+                for (Node node:nodeList) {
+                    if(("gameOver").equals(node.getId())) {
+                        node.setVisible(true);
+                        canvas.setVisible(false);
+                    }
+                }
             }
         }
 
@@ -180,28 +193,7 @@ public class GameSession {
         }
 
 
-        // Kollisjon med enemy
-     /*   if (player.kollisjon(enemy)) {
-            System.out.println("DØD");
-            score=0;
-        } */
 
-        /** // Sjekker om boolean er sann, om objektet finnes
-         if (eple1.exists()) {
-         eple1.render(gc);
-         }
-
-         if (eple2.exists()) {
-         eple2.render(gc);
-         }
-
-         if (eple3.exists()) {
-         eple3.render(gc);
-         }
-
-         if (player.exists()) {
-         player.render(gc);
-         } */
     }
 
     private void appleSound() {
@@ -244,6 +236,8 @@ public class GameSession {
         canvas.setVisible(false);
         controller.setMenuPage("ingameMenuButtons");
     }
+
+
 
     public void pause() {
         if (gameState.equals("running")) {

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import spillet.GameSession;
 import spillet.Input;
@@ -19,6 +20,8 @@ public class MenuController {
     private AnchorPane rootPane;
     @FXML
     private StackPane buttonPane;
+    @FXML
+    private Pane gameOver;
 
     private static GameSession gs;
 
@@ -43,6 +46,11 @@ public class MenuController {
         System.exit(0);
     }
 
+    @FXML
+    public void gameOver() {
+        
+    }
+
     /**
      * Pause menu
      */
@@ -56,6 +64,7 @@ public class MenuController {
     public void saveGame() {
         System.out.println("Game saved");
     }
+
 
 
     /**
@@ -72,6 +81,7 @@ public class MenuController {
             }
         }
     }
+
 
 
 }

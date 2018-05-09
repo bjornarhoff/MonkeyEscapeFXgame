@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -77,5 +78,14 @@
             </VBox>
          </children>
       </StackPane>
+      <Pane fx:id="gameOver" layoutX="58.0" layoutY="44.0" prefHeight="316.0" prefWidth="532.0" visible="false">
+         <children>
+            <ImageView fitHeight="334.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/IMG/gameover.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

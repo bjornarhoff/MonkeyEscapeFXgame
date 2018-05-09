@@ -25,6 +25,7 @@ public class LevelOne {
 
     public LevelOne() {
 
+        // MAP
         wall1 = new Wall(111, 500, 10, 150);
         wall2 = new Wall(0, 396, 290, 10);
         wall3 = new Wall(0, 0, 10, HEIGHT);
@@ -58,6 +59,7 @@ public class LevelOne {
         wallList.add(wall14);
         wallList.add(wall15);
 
+        // ENEMY
         enemy1 = new Enemy(20,440, 7,0,320,400);
         enemy2 = new Enemy(320, 168, 0,6, 300,600);
         enemy3 = new Enemy(200, 100, 0, 4, 200,500);
@@ -68,6 +70,7 @@ public class LevelOne {
         enemyList.add(enemy3);
 
 
+        // FRUIT
         fruit1 = new Fruit(450, 450);
         fruit2 = new Fruit(420 ,100);
         fruit3 = new Fruit( 50, 300);
