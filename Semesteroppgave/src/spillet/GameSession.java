@@ -30,7 +30,8 @@ public class GameSession {
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
     private ArrayList<Enemy> enemy = new ArrayList<>();
-    private LevelOne levelOne = new LevelOne();
+   // private LevelOne levelOne = new LevelOne();
+    private LevelThree levelThree = new LevelThree();
     private ArrayList<Wall> wallList = new ArrayList<>();
     private ArrayList<Fruit> fruitList = new ArrayList<>();
     private int score = 0;
@@ -99,9 +100,13 @@ public class GameSession {
 
         player = new Monkey(590, 590);
 
-        wallList = levelOne.getWallList();
+        /* wallList = levelOne.getWallList();
         enemy = levelOne.getEnemyList();
-        fruitList = levelOne.getFruitList();
+        fruitList = levelOne.getFruitList(); */
+
+        wallList = levelThree.getWallList();
+        enemy = levelThree.getEnemyList();
+        fruitList = levelThree.getFruitList();
 
 
     }
