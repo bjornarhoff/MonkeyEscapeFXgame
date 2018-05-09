@@ -19,27 +19,27 @@ public class LevelThree {
     private ArrayList<Fruit> fruitList;
 
     private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
-    private Enemy enemy1, enemy2, enemy3;
+    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
 
 
     public LevelThree() {
-        wall1 = new Wall(0, 0, WIDTH, 10); // TOP
+        wall1 = new Wall(85, 0, WIDTH, 10); // TOP
         wall2 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
         wall3 = new Wall(0, 0, 10, HEIGHT); // Left wall
         wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
 
-        wall5 = new Wall(111, 500, 10, 150);
-        wall6 = new Wall(0, 396, 290, 10);
-        wall7 = new Wall(210, 550, 110, 10);
-        wall8 = new Wall(200, 190, 10, 70);
-        wall9 = new Wall(103, 85, 10, 100);
-        wall10 = new Wall(280, 145, 220, 10);
-        wall11 = new Wall(570, 75, 10, 100);
-        wall12 = new Wall(510, 420, 50, 10);
-        wall13 = new Wall(550, 520, 100, 10);
-        wall14 = new Wall(400, 270, 10, 400);
-        wall15 = new Wall(575, 610, 10, 40);
+        wall5 = new Wall(75, 500, 10, 250);  // Left bottom corner
+        wall6 = new Wall(150, 425, 10, 250); // Second left bottom corner
+        wall7 = new Wall(0, 425, 75, 10); // Short one, left bottom corner
+        wall8 = new Wall(85, 0, 10, 150); // Top left corner
+        wall9 = new Wall(385, 315, 10, 250); // Vertical right side of the bottom box
+        wall10 = new Wall(225, 425, 160, 10); // Horizontal top of the bottom box
+        wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
+        wall12 = new Wall(170, 200, 225, 115); // Big box
+        wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
+        wall14 = new Wall(0, 0, 85, 10); // Finish line
+
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -56,23 +56,27 @@ public class LevelThree {
         wallList.add(wall12);
         wallList.add(wall13);
         wallList.add(wall14);
-        wallList.add(wall15);
 
-        enemy1 = new Enemy(20,440, 7,0,320,400);
-        enemy2 = new Enemy(320, 168, 0,6, 300,600);
-        enemy3 = new Enemy(200, 100, 0, 4, 200,500);
+
+        enemy1 = new Enemy(20,360, 7,0,320,400);  // Horizontal left
+        enemy2 = new Enemy(165, 450, 2,7, 325,575); // Zig Zag in the box
+        enemy3 = new Enemy(415, 135, 0, 5, 200,500); // Vertical middle lane
+        enemy4 = new Enemy(500, 100, 4, 5, 575, 500); // Right side
+        enemy5 = new Enemy(215, 20, 0, 4, 300, 135); // Top one
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
         enemyList.add(enemy2);
         enemyList.add(enemy3);
+        enemyList.add(enemy4);
+        enemyList.add(enemy5);
 
 
-        fruit1 = new Fruit(450, 450);
-        fruit2 = new Fruit(420 ,100);
-        fruit3 = new Fruit( 50, 300);
-        fruit4 = new Fruit(10,400);
-        fruit5 = new Fruit(100,500);
+        fruit1 = new Fruit(175, 600); // Middle bottom box
+        fruit2 = new Fruit(425 ,350); // Right middle vertical lane
+        fruit3 = new Fruit( 550, 150); // Right side
+        fruit4 = new Fruit(15,400); // Left middle
+        fruit5 = new Fruit(35,600); // left bottom corner
 
         fruitList = new ArrayList<>();
         fruitList.add(fruit1);
