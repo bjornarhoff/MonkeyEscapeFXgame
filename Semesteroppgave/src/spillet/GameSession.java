@@ -96,7 +96,7 @@ public class GameSession {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        player = new Monkey(590, 590);
+        player = new Monkey(300, 100);
 
     }
 
@@ -109,35 +109,37 @@ public class GameSession {
 
 
         if (getCurrentLevel() == 1) {
-            // Renderer hinder, frukter og fiender
-            levelOne.getWallList().forEach(p -> p.render(gc));
-            levelOne.getEnemyList().forEach(p -> p.render(gc));
-            levelOne.getFruitList().forEach(p -> p.render(gc));
-
-            // Itererer gjennom hinder
-            collisionIterator(levelOne.getWallList());
-            fruitIterator(levelOne.getFruitList());
-            enemyIterator(levelOne.getEnemyList());
-
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList());
             levelOne.getGate().render(gc);
         } else if (getCurrentLevel() == 2) {
-            levelTwo.getWallList().forEach(p -> p.render(gc));
-            levelTwo.getEnemyList().forEach(p -> p.render(gc));
-            levelTwo.getFruitList().forEach(p -> p.render(gc));
-
-            // Itererer gjennom hinder
-            collisionIterator(levelTwo.getWallList());
-            fruitIterator(levelTwo.getFruitList());
-            enemyIterator(levelTwo.getEnemyList());
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList());
+            levelTwo.getGate().render(gc);
         }
 
         if (player.collide(levelOne.getGate())) {
             setCurrentLevel(2);
+            player.setX(10);
+            player.setY(10);
         }
+
+        if (player.collide(levelTwo.getGate())) {
+            setCurrentLevel(1);
+        }
+
 
         // Tegner avatar
         player.render(gc);
 
+    }
+
+    public void levelIterator(ArrayList<Wall> wallArrayList, ArrayList<Fruit> fruitArrayList, ArrayList<Enemy> enemyArrayList) {
+        wallArrayList.forEach(p -> p.render(gc));
+        fruitArrayList.forEach(p -> p.render(gc));
+        enemyArrayList.forEach(p -> p.render(gc));
+
+        collisionIterator(wallArrayList);
+        fruitIterator(fruitArrayList);
+        enemyIterator(enemyArrayList);
     }
 
     public void collisionIterator(ArrayList<Wall> wallList) {

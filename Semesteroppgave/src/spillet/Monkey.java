@@ -1,5 +1,6 @@
 package spillet;
 
+import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
@@ -15,8 +16,12 @@ public class Monkey extends GameObject {
 
     private double dx = 5;
     private double dy = 5;
+
+    private double EX;
+    private double EY;
     private double playerWidth = 50;
     private double playerHeight = 50;
+    private Point2D velocity = new Point2D(0, 0);
 
 
 
@@ -69,14 +74,17 @@ public class Monkey extends GameObject {
     }
 
 
+
+
     /**
      * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
      */
+    /*
     public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
         if (input.contains("UP") && !collision.contains("CollisionTop")) {
-            setY(getY() - dy);
+            // setY(getY() - dy);
 
         }
         if (input.contains("DOWN") && !collision.contains("CollisionBottom")) {
@@ -102,7 +110,7 @@ public class Monkey extends GameObject {
         }
 
     }
-
+*/
 
 }
 

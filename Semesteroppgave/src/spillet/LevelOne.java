@@ -26,7 +26,7 @@ public class LevelOne {
     public LevelOne() {
 
         // MAP
-        gate = new Gate(590,300,50,10);
+        gate = new Gate(590,640,50,10);
 
         wall1 = new Wall(111, 500, 10, 150);
         wall2 = new Wall(0, 396, 290, 10);
@@ -65,9 +65,7 @@ public class LevelOne {
         enemy1 = new Enemy(20,440, 7,0,320,400);
         enemy2 = new Enemy(320, 168, 0,6, 300,600);
         enemy3 = new Enemy(200, 100, 0, 4, 200,500);
-        enemy1 = new Enemy(20, 440, 7, 0, 320, 400);
-        enemy2 = new Enemy(320, 168, 0, 6, 300, 600);
-        enemy3 = new Enemy(200, 100, 0, 4, 200, 500);
+
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
