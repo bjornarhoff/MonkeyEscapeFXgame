@@ -8,20 +8,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import spillet.GameSession;
-import spillet.Input;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class MenuController {
+public class MenuController implements Initializable{
 
     @FXML
     private AnchorPane rootPane;
-    @FXML
-    private StackPane buttonPane;
-    @FXML
-    private Pane gameOver;
 
     private static GameSession gs;
 
@@ -32,7 +27,7 @@ public class MenuController {
     @FXML
     public void newGame() {
         gs = new GameSession(rootPane, this);
-        rootPane.getChildren().add(gs.getCanvas());
+        //rootPane.getChildren().add(gs.getCanvas());
     }
 
     @FXML
@@ -56,7 +51,8 @@ public class MenuController {
      */
     @FXML
     public void resumeGame() {
-        gs.getCanvas().setVisible(true);
+        //gs.getCanvas().setVisible(true);
+        setMenuPage("gameCanvas");
         gs.pause();
     }
 
@@ -71,7 +67,7 @@ public class MenuController {
      * Pause menu
      */
     public void setMenuPage(String nodeID) {
-        ObservableList<Node> list = buttonPane.getChildren();
+        ObservableList<Node> list = rootPane.getChildren();
 
         for (Node node : list) {
             if (nodeID.equals(node.getId())) {
@@ -83,6 +79,9 @@ public class MenuController {
     }
 
 
-
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setMenuPage("startMenuButtons");
+    }
 }
 

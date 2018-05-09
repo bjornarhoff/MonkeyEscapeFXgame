@@ -96,8 +96,13 @@ public class GameSession {
     public void setScene() {
         Pane pane = new Pane();
         pane.setPrefSize(WIDTH, HEIGHT);
-        this.canvas = new Canvas(WIDTH, HEIGHT);
-
+        //this.canvas = new Canvas(WIDTH, HEIGHT);
+        for (Node node : nodeList) {
+               if (("gameCanvas").equals(node.getId())) {
+                   this.canvas = (Canvas) node;
+               }
+               setNodeVisible("gameCanvas");
+        }
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
@@ -113,6 +118,20 @@ public class GameSession {
 
 
 
+    }
+
+    /**
+     * This method iterates through the nodelist and sets the selected node to visible
+     * @param nodeID the fxID of the node to be set visible
+     */
+    private void setNodeVisible(String nodeID) {
+        for (Node node : nodeList) {
+            if (nodeID.equals(node.getId())) {
+                node.setVisible(true);
+            }else {
+                node.setVisible(false);
+            }
+        }
     }
 
     /**
@@ -168,13 +187,10 @@ public class GameSession {
 
             if (player.kollisjon(enemy)) {
                 score = 0;
-                
-                for (Node node:nodeList) {
-                    if(("gameOver").equals(node.getId())) {
-                        node.setVisible(true);
-                        canvas.setVisible(false);
-                    }
-                }
+                timer.stop();
+                setNodeVisible("gameOver");
+                sound.stop();
+
             }
         }
 
@@ -222,8 +238,7 @@ public class GameSession {
         for (String string : input) {
             if ((string.equals("p") || string.equals("P") || string.equals("ESCAPE")) && gameState.equals("running")) {
                 pause();
-                menu();
-
+                setNodeVisible("ingameMenuButtons");
             }
         }
     }
