@@ -180,23 +180,25 @@ public class GameSession {
         }
 
         // Itererer gjennom enemy
-        Iterator<Enemy> fiendeIterator = enemy.iterator();
+        Iterator<Enemy> fiendeIterator = levelOne.getEnemyList().iterator();
         while (fiendeIterator.hasNext()) {
             Enemy enemy = fiendeIterator.next();
 
             enemy.bounce();
 
-            if (player.kollisjon(enemy)) {
+            if (player.collide(enemy)) {
                 score = 0;
 
-                for (Node node:nodeList) {
-                    if(("gameOver").equals(node.getId())) {
+                for (Node node : nodeList) {
+                    if (("gameOver").equals(node.getId())) {
                         node.setVisible(true);
                         canvas.setVisible(false);
                     }
                 }
             }
         }
+
+    }
 
     public void fruitIterator(ArrayList<Fruit> fruitList) {
         Iterator<Fruit> fruktIterator = fruitList.iterator();
@@ -270,7 +272,6 @@ public class GameSession {
         canvas.setVisible(false);
         controller.setMenuPage("ingameMenuButtons");
     }
-
 
 
     public void pause() {
