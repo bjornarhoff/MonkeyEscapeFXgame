@@ -21,11 +21,13 @@ public class LevelOne {
     private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
     private Enemy enemy1, enemy2, enemy3;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
-
+    private Gate gate;
 
     public LevelOne() {
 
         // MAP
+        gate = new Gate(590,640,50,10);
+
         wall1 = new Wall(111, 500, 10, 150);
         wall2 = new Wall(0, 396, 290, 10);
         wall3 = new Wall(0, 0, 10, HEIGHT);
@@ -63,6 +65,9 @@ public class LevelOne {
         enemy1 = new Enemy(20,440, 7,0,320,400);
         enemy2 = new Enemy(320, 168, 0,6, 300,600);
         enemy3 = new Enemy(200, 100, 0, 4, 200,500);
+        enemy1 = new Enemy(20, 440, 7, 0, 320, 400);
+        enemy2 = new Enemy(320, 168, 0, 6, 300, 600);
+        enemy3 = new Enemy(200, 100, 0, 4, 200, 500);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
@@ -72,10 +77,10 @@ public class LevelOne {
 
         // FRUIT
         fruit1 = new Fruit(450, 450);
-        fruit2 = new Fruit(420 ,100);
-        fruit3 = new Fruit( 50, 300);
-        fruit4 = new Fruit(10,400);
-        fruit5 = new Fruit(100,500);
+        fruit2 = new Fruit(420, 100);
+        fruit3 = new Fruit(50, 300);
+        fruit4 = new Fruit(10, 400);
+        fruit5 = new Fruit(100, 500);
 
         fruitList = new ArrayList<>();
         fruitList.add(fruit1);
@@ -96,5 +101,9 @@ public class LevelOne {
 
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
+    }
+
+    public Gate getGate() {
+        return gate;
     }
 }
