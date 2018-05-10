@@ -18,9 +18,13 @@ public class Launcher extends Application {
     private Scene scene;
     private Parent parent;
 
+
+
     public static void main(String[] args) {
         launch(args);
     }
+
+
 
     /**
      * Metoden overrider start-metoden i Application og starter vinduet og legger til innholdet.
@@ -58,26 +62,5 @@ public class Launcher extends Application {
         primaryStage.show();
     }
 }
-
-
-/**
- * Denne metoden danner layoyt-pane som man legger canvas og dermed animasjonene på.
- *
- * @return root
- * <p>
- * Metode som fjerner og reanimerer innholdet i scenen.
- * <p>
- * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
- */
-
-
-/**
- * Metode som fjerner og reanimerer innholdet i scenen.
- */
-
-
-/**
- * Metode som oppdaterer posisjonen til spilleren i x- og y-retning basert på tastetrykk med piltastene.
- */
 
 

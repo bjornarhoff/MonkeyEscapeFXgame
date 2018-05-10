@@ -30,10 +30,10 @@ public class GameSession {
     private GraphicsContext gc;
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
-    private Monkey player;
+    private Monkey monkey;
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
-    private ArrayList<Enemy> enemy = new ArrayList<>();
+    private ArrayList<Enemy> enemyList = new ArrayList<>();
     private ArrayList<Wall> wallList = new ArrayList<>();
     private ArrayList<Fruit> fruitList = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
@@ -78,7 +78,7 @@ public class GameSession {
 
                         renderLevel();
                         drawScore(gc);
-                        player.move(Input.getInput(), getGS(), collision);
+                        monkey.move(Input.getInput(), getGS(), collision);
 
                         //System.out.println(player.getX());
                         //System.out.println(player.getY());
@@ -113,10 +113,10 @@ public class GameSession {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        player = new Monkey(590, 590);
+        monkey = new Monkey(590, 590);
 
         wallList = levelOne.getWallList();
-        enemy = levelOne.getEnemyList();
+        enemyList = levelOne.getEnemyList();
         fruitList = levelOne.getFruitList();
 
        // wallList = levelTwo.getWallList();
@@ -150,11 +150,11 @@ public class GameSession {
         gc.setFill(Color.BLACK);
 
         wallList.forEach(p -> p.render(gc));
-        enemy.forEach(p -> p.render(gc));
+        enemyList.forEach(p -> p.render(gc));
         fruitList.forEach(p -> p.render(gc));
 
         // Tegner avatar
-        player.render(gc);
+        monkey.render(gc);
 
 
         collision.clear();
@@ -168,32 +168,32 @@ public class GameSession {
 
             Wall wall = hinderIterator.next();
 
-            if (player.collisionLeft(wall)) {
+            if (monkey.collisionLeft(wall)) {
                 collision.add("CollisionLeft");
             }
 
-            if (player.collisionRight(wall)) {
+            if (monkey.collisionRight(wall)) {
                 collision.add("CollisionRight");
             }
 
-            if (player.collisionBottom(wall)) {
+            if (monkey.collisionBottom(wall)) {
                 collision.add("CollisionBottom");
             }
 
-            if (player.collisionTop(wall)) {
+            if (monkey.collisionTop(wall)) {
                 collision.add("CollisionTop");
             }
 
         }
 
         // Itererer gjennom enemy
-        Iterator<Enemy> fiendeIterator = enemy.iterator();
+        Iterator<Enemy> fiendeIterator = enemyList.iterator();
         while (fiendeIterator.hasNext()) {
             Enemy enemy = fiendeIterator.next();
 
             enemy.bounce();
 
-            if (player.kollisjon(enemy)) {
+            if (monkey.kollisjon(enemy)) {
                 score = 0;
                 timer.stop();
                 setNodeVisible("gameOver");
@@ -208,9 +208,9 @@ public class GameSession {
             Fruit fruit = fruktIterator.next();
 
             // Kollisjon med fruit, legger til +100 på score
-            if (player.kollisjon(fruit) && fruit.exists()) {
+            if (monkey.kollisjon(fruit) && fruit.exists()) {
                 fruit.kill();
-                appleSound();
+                bananaSound();
                 fruit.exists();
                 score += 100;
             }
@@ -220,7 +220,7 @@ public class GameSession {
 
     }
 
-    private void appleSound() {
+    private void bananaSound() {
         clip.play();
     }
 
@@ -251,6 +251,8 @@ public class GameSession {
         }
     }
 
+
+
     /**
      * Pause method
      */
@@ -267,13 +269,8 @@ public class GameSession {
 
 
     /**
-     * Get methods
+     * Get method
      */
-    public Canvas getCanvas() {
-        return this.canvas;
-    }
-
-
     public GameSession getGS() {
         return this;
     }
