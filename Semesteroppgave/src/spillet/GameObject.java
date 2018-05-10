@@ -18,9 +18,8 @@ public class GameObject {
     private double X;
     private double W;
     private double H;
-    private double DX = 10;
-    private double DY = 10;
-    private double z = 3 / 2;
+    private double DX = 7;
+    private double DY = 7;
     private boolean exists = true;
 
     /**
@@ -97,7 +96,6 @@ public class GameObject {
 
     public void kill() {
         this.exists = false;
-
     }
 
     public boolean exists() {
@@ -128,54 +126,55 @@ public class GameObject {
         return s.boundary().intersects(this.boundary());
     }
 
+    /**
+     * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
+     * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
+     */
     public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
+        // Move Up
         if (input.contains("UP") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionTop")) {
-
             moveAngled((Math.PI) * 3 / 2);
-
         }
 
+        // Move Down
         if (input.contains("DOWN") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionBottom")) {
-
             moveAngled(Math.PI / 2);
         }
+
+        // Move Left
         if (input.contains("LEFT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionLeft")) {
-
             moveAngled(Math.PI);
-
         }
-        if (input.contains("RIGHT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionRight")) {
 
+        // Move Right
+        if (input.contains("RIGHT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionRight")) {
             moveAngled(0);
         }
 
+        // Move Up-Right
         if (input.contains("UP") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
-
             moveAngled(Math.PI * 7 / 4);
-
         }
 
+        // Move Down-Right
         if (input.contains("DOWN") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionBottom")) {
-
             moveAngled(Math.PI / 4);
-
         }
 
+        // Move Down-Left
         if (input.contains("DOWN") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionBottom")) {
-
             moveAngled(Math.PI * 3 / 4);
         }
 
+        // Move Up-left
         if (input.contains("UP") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionTop")) {
-
             moveAngled(Math.PI * 5 / 4);
         }
 
+        // Menu
         if (input.contains("ESCAPE")) {
             gs.pause();
         }
-
     }
-
 }

@@ -76,41 +76,7 @@ public class Monkey extends GameObject {
 
 
 
-    /**
-     * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
-     * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
-     */
-    /*
-    public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
-        if (input.contains("UP") && !collision.contains("CollisionTop")) {
-            // setY(getY() - dy);
-
-        }
-        if (input.contains("DOWN") && !collision.contains("CollisionBottom")) {
-            setY(getY() + dy);
-
-        }
-        if (input.contains("LEFT") && !collision.contains("CollisionLeft")) {
-            setX(getX() - dx);
-
-        }
-        if (input.contains("RIGHT") && !collision.contains("CollisionRight")) {
-            setX(getX() + dx);
-
-        }
-
-        if (input.contains("UP") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
-            setX(getX() + Math.sqrt(dx/2));
-            setY(getY() + Math.sqrt(dy/2));
-        }
-
-        if (input.contains("ESCAPE")) {
-            gs.pause();
-        }
-
-    }
-*/
 
 }
 
