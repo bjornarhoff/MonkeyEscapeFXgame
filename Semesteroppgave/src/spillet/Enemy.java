@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 public class Enemy extends GameObject {
 
 
-    private double alienWidth =40;
+    private double alienWidth =35;
     private double alienHeight = 50;
     private double dx, dy, xMax, yMax, xMin, yMin;
 
