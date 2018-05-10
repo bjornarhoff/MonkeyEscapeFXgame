@@ -96,13 +96,15 @@ public class GameSession {
     public void setScene() {
         Pane pane = new Pane();
         pane.setPrefSize(WIDTH, HEIGHT);
-        //this.canvas = new Canvas(WIDTH, HEIGHT);
+
         for (Node node : nodeList) {
                if (("gameCanvas").equals(node.getId())) {
                    this.canvas = (Canvas) node;
                }
                setNodeVisible("gameCanvas");
         }
+
+
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
@@ -221,7 +223,7 @@ public class GameSession {
      * Metode som tegner score på brettet
      */
     public void drawScore(GraphicsContext gc) {
-        gc.strokeText("Score: " + score, 450.0, 50.0, 150);
+        gc.strokeText("Score: " + score + "/ 500", 450.0, 50.0, 150);
         gc.setFont(new Font(30));
         gc.setStroke(WHITE);
     }
@@ -231,7 +233,7 @@ public class GameSession {
 
 
     /**
-     * Arraylist for å sjekke input
+     * Arraylist for å sjekke input. Setter spillet på pause (går til menyen)
      */
     /* Gå til meny med input "p" og "ESCPAE */
     public void handleGameStateInput(ArrayList<String> input) {
@@ -244,16 +246,8 @@ public class GameSession {
     }
 
     /**
-     * Setter spillet på pause (går til menyen)
+     * Pause method
      */
-
-    public void menu() {
-        canvas.setVisible(false);
-        controller.setMenuPage("ingameMenuButtons");
-    }
-
-
-
     public void pause() {
         if (gameState.equals("running")) {
             gameState = "pause";
@@ -267,7 +261,7 @@ public class GameSession {
 
 
     /**
-     * Get metoder
+     * Get methods
      */
     public Canvas getCanvas() {
         return this.canvas;

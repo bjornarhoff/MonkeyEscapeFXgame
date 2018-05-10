@@ -48,6 +48,21 @@
                   <Image url="@/IMG/ape.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="165.0" fitWidth="143.0" layoutX="465.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/IMG/keys.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="59.0" layoutY="607.0" text="= 100 points" textFill="WHITE">
+               <font>
+                  <Font name="Herculanum" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="28.0" fitWidth="20.0" layoutX="25.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/IMG/eple.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane fx:id="ingameMenuButtons" layoutX="201.0" layoutY="374.0" prefHeight="266.0" prefWidth="290.0" visible="false">
