@@ -110,12 +110,12 @@ public class GameObject {
         }
     }
 
-    public Rectangle2D objektGrense() {
+    public Rectangle2D boundary() {
         return new Rectangle2D(X, Y, W, H);
     }
 
-    public boolean kollisjon(GameObject s) {
-        return s.objektGrense().intersects(this.objektGrense());
+    public boolean collide(GameObject s) {
+        return s.boundary().intersects(this.boundary());
     }
 
 }
