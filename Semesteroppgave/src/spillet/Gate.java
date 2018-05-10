@@ -2,9 +2,9 @@ package spillet;
 
 import javafx.scene.image.Image;
 
-public class Wall extends GameObject {
+public class Gate extends GameObject {
 
-    public Wall(double x, double y, double w, double h) {
+    public Gate(double x, double y, double w, double h) {
         super(x, y);
         Image bilde = new Image("IMG/wall.png");
         setImage(bilde);
@@ -12,6 +12,6 @@ public class Wall extends GameObject {
         setY(y);
         setH(h);
         setW(w);
-
     }
+
 }

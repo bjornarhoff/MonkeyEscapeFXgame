@@ -15,8 +15,10 @@ public class Monkey extends GameObject {
 
     private double dx = 5;
     private double dy = 5;
-    private double playerWidth = 50;
-    private double playerHeight = 50;
+    private double playerWidth = 35;
+    private double playerHeight = 40;
+
+
 
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
@@ -51,19 +53,19 @@ public class Monkey extends GameObject {
     }
 
     public boolean collisionLeft(GameObject s) {
-        return s.objektGrense().intersects(this.boundaryLeft());
+        return s.boundary().intersects(this.boundaryLeft());
     }
 
     public boolean collisionRight(GameObject s) {
-        return s.objektGrense().intersects(this.boundaryRight());
+        return s.boundary().intersects(this.boundaryRight());
     }
 
     public boolean collisionTop(GameObject s) {
-        return s.objektGrense().intersects(this.boundaryTop());
+        return s.boundary().intersects(this.boundaryTop());
     }
 
     public boolean collisionBottom(GameObject s) {
-        return s.objektGrense().intersects(this.boundaryBottom());
+        return s.boundary().intersects(this.boundaryBottom());
     }
 
 
@@ -89,6 +91,12 @@ public class Monkey extends GameObject {
             setX(getX() + dx);
 
         }
+
+        if (input.contains("UP") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
+            setX(getX() + Math.sqrt(dx/2));
+            setY(getY() + Math.sqrt(dy/2));
+        }
+
         if (input.contains("ESCAPE")) {
             gs.pause();
         }
