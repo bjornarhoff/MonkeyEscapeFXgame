@@ -1,5 +1,9 @@
-package spillet;
+package spillet.Levels;
 
+
+import spillet.Enemy;
+import spillet.Fruit;
+import spillet.Wall;
 
 import java.util.ArrayList;
 
@@ -19,7 +23,7 @@ public class LevelOne {
     private ArrayList<Fruit> fruitList;
 
     private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
-    private Enemy enemy1, enemy2, enemy3;
+    private Enemy enemy1, enemy2, enemy3,enemy4,enemy5;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
 
 
@@ -38,7 +42,7 @@ public class LevelOne {
         wall10 = new Wall(280, 145, 220, 10);
         wall11 = new Wall(570, 75, 10, 100);
         wall12 = new Wall(510, 420, 50, 10);
-        wall13 = new Wall(550, 520, 100, 10);
+        wall13 = new Wall(500, 550, 150, 10);
         wall14 = new Wall(400, 270, 10, 400);
         wall15 = new Wall(575, 610, 10, 40);
 
@@ -61,19 +65,23 @@ public class LevelOne {
 
         // ENEMY
         enemy1 = new Enemy(20,440, 7,0,320,400);
-        enemy2 = new Enemy(320, 168, 0,6, 300,600);
+        enemy2 = new Enemy(500, 168, 0,5, 300,350);
         enemy3 = new Enemy(200, 100, 0, 4, 200,500);
+        enemy4 = new Enemy(430, 400,0,8,300,580);
+        enemy5 = new Enemy(140,30,6,0,500,200); // Enemy TOP
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
         enemyList.add(enemy2);
         enemyList.add(enemy3);
+        enemyList.add(enemy4);
+        enemyList.add(enemy5);
 
 
         // FRUIT
-        fruit1 = new Fruit(450, 450);
-        fruit2 = new Fruit(420 ,100);
-        fruit3 = new Fruit( 50, 300);
+        fruit1 = new Fruit(590, 460);
+        fruit2 = new Fruit(430 ,305);
+        fruit3 = new Fruit( 595, 95);
         fruit4 = new Fruit(10,400);
         fruit5 = new Fruit(100,500);
 

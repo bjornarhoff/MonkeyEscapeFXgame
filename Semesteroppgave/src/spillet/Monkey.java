@@ -15,8 +15,8 @@ public class Monkey extends GameObject {
 
     private double dx = 5;
     private double dy = 5;
-    private double playerWidth = 50;
-    private double playerHeight = 50;
+    private double playerWidth = 35;
+    private double playerHeight = 40;
 
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.

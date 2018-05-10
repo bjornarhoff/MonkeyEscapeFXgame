@@ -18,12 +18,12 @@ public class Fruit extends GameObject {
      */
     public Fruit(double x, double y) {
         super(x, y);
-        Image bilde = new Image("/IMG/eple.png");
+        Image bilde = new Image("/IMG/banana.png");
         setImage(bilde);
         setX(x);
         setY(y);
-        setW(20);
-        setH(20);
+        setW(50);
+        setH(50);
     }
 
 

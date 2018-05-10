@@ -1,4 +1,8 @@
-package spillet;
+package spillet.Levels;
+
+import spillet.Enemy;
+import spillet.Fruit;
+import spillet.Wall;
 
 import java.util.ArrayList;
 

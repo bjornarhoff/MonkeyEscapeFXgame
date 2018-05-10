@@ -53,16 +53,21 @@
                   <Image url="@/IMG/keys.png" />
                </image>
             </ImageView>
-            <Label layoutX="59.0" layoutY="607.0" text="= 100 points" textFill="WHITE">
+            <Label layoutX="85.0" layoutY="570.0" prefHeight="20.0" prefWidth="116.0" text="= 100 points" textFill="WHITE">
                <font>
-                  <Font name="Herculanum" size="15.0" />
+                  <Font name="Herculanum" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="28.0" fitWidth="20.0" layoutX="25.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="69.0" fitWidth="76.0" layoutX="9.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/IMG/eple.png" />
+                  <Image url="@/IMG/banana.png" />
                </image>
             </ImageView>
+            <Label layoutX="85.0" layoutY="611.0" prefHeight="20.0" prefWidth="116.0" text="= Game Over" textFill="WHITE">
+               <font>
+                  <Font name="Herculanum" size="16.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="ingameMenuButtons" layoutX="201.0" layoutY="374.0" prefHeight="266.0" prefWidth="290.0" visible="false">

@@ -4,12 +4,14 @@ import Controller.MenuController;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import spillet.Levels.LevelOne;
+import spillet.Levels.LevelTwo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -78,6 +80,9 @@ public class GameSession {
                         drawScore(gc);
                         player.move(Input.getInput(), getGS(), collision);
 
+                        //System.out.println(player.getX());
+                        //System.out.println(player.getY());
+
 
                         timeLstFrm = System.nanoTime();
 
@@ -110,13 +115,13 @@ public class GameSession {
 
         player = new Monkey(590, 590);
 
-        //wallList = levelOne.getWallList();
-        //enemy = levelOne.getEnemyList();
-        //fruitList = levelOne.getFruitList();
+        wallList = levelOne.getWallList();
+        enemy = levelOne.getEnemyList();
+        fruitList = levelOne.getFruitList();
 
-        wallList = levelTwo.getWallList();
-       enemy = levelTwo.getEnemyList();
-       fruitList = levelTwo.getFruitList();
+       // wallList = levelTwo.getWallList();
+       //enemy = levelTwo.getEnemyList();
+       //fruitList = levelTwo.getFruitList();
 
 
 
@@ -142,6 +147,7 @@ public class GameSession {
     public void renderLevel() {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
+        gc.setFill(Color.BLACK);
 
         wallList.forEach(p -> p.render(gc));
         enemy.forEach(p -> p.render(gc));
