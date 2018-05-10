@@ -18,7 +18,7 @@ public class LevelThree {
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
 
-    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14;
     private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
 
@@ -38,7 +38,7 @@ public class LevelThree {
         wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
         wall12 = new Wall(170, 200, 225, 115); // Big box
         wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
-        wall14 = new Wall(0, 0, 85, 10); // Finish line
+        // wall14 = new Wall(0, 0, 85, 10); // Finish line
 
 
         wallList = new ArrayList<>();
@@ -55,7 +55,7 @@ public class LevelThree {
         wallList.add(wall11);
         wallList.add(wall12);
         wallList.add(wall13);
-        wallList.add(wall14);
+        //wallList.add(wall14);
 
 
         enemy1 = new Enemy(20,360, 7,0,320,400);  // Horizontal left
