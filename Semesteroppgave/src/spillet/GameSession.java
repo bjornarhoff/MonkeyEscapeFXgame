@@ -249,7 +249,6 @@ public class GameSession {
             enemy.bounce();
 
             if (monkey.collide(enemy)) {
-                System.out.println("DØD");
                 score = 0;
             }
 
