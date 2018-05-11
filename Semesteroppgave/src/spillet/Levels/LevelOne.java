@@ -36,19 +36,19 @@ public class LevelOne implements Serializable {
 
         wall1 = new Wall(111, 500, 10, 150);
         wall2 = new Wall(0, 396, 290, 10);
-        wall3 = new Wall(0, 0, 10, HEIGHT);
+        wall3 = new Wall(0, 0, 10, HEIGHT);  // Left wall
         wall4 = new Wall(210, 550, 110, 10);
         wall5 = new Wall(0, 0, WIDTH, 10);
         wall6 = new Wall(WIDTH - 10, 0, 10, HEIGHT);
         wall7 = new Wall(0, HEIGHT - 10, 575, 10);
         wall8 = new Wall(200, 190, 10, 70);
-        wall9 = new Wall(103, 85, 10, 100);
+        wall9 = new Wall(85, 0, 10, 185);
         wall10 = new Wall(280, 145, 220, 10);
         wall11 = new Wall(570, 75, 10, 100);
         wall12 = new Wall(510, 420, 50, 10);
         wall13 = new Wall(500, 550, 150, 10);
         wall14 = new Wall(400, 270, 10, 400);
-        wall15 = new Wall(575, 610, 10, 40);
+        //wall15 = new Wall(565, 610, 10, 40);
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -65,7 +65,7 @@ public class LevelOne implements Serializable {
         wallList.add(wall12);
         wallList.add(wall13);
         wallList.add(wall14);
-        wallList.add(wall15);
+        //wallList.add(wall15);
 
         // ENEMY
         enemy1 = new Enemy(20,440, 6,0,320,400);

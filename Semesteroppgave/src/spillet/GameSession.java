@@ -11,9 +11,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import spillet.Levels.LevelFour;
 import spillet.Levels.LevelOne;
-import spillet.Levels.LevelThree;
+import spillet.Levels.LevelFour;
 import spillet.Levels.LevelTwo;
+import spillet.Levels.LevelThree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class GameSession implements Serializable {
     private ArrayList<String> collision = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
     private LevelTwo levelTwo = new LevelTwo();
+    private LevelFour levelFour = new LevelFour();
     private LevelThree levelThree = new LevelThree();
     private int currentLevel = 1;
     private int score = 0;
@@ -114,7 +117,7 @@ public class GameSession implements Serializable {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        monkey = new Monkey(590, 590);
+        monkey = new Monkey(10, 10);
 
 
     }
@@ -149,17 +152,37 @@ public class GameSession implements Serializable {
         } else if (getCurrentLevel() == 2) {
             levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 1, 590, 590);
             levelTwo.getGate().render(gc);
+        } else if (getCurrentLevel() == 3) {
+            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList());
+            levelThree.getGate().render(gc);
+        }else if (getCurrentLevel() == 4) {
+            levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList());
+            levelFour.getGate().render(gc);
         }
-/*
+
+
         if (monkey.collide(levelOne.getGate())) {
             setCurrentLevel(2);
+            monkey.setX(585);
+            monkey.setY(10);
+        }
+
+        else if (monkey.collide(levelTwo.getGate())) {
+            setCurrentLevel(3);
+            monkey.setX(575);
+            monkey.setY(550);
+        }
+        else if (monkey.collide(levelThree.getGate())){
+            setCurrentLevel(4);
+            monkey.setX(580);
+            monkey.setY(595);
+        }
+        else if (monkey.collide(levelFour.getGate())){
+            setCurrentLevel(1);
             monkey.setX(10);
             monkey.setY(10);
         }
 
-        if (monkey.collide(levelTwo.getGate())) {
-            setCurrentLevel(1);
-        } */
 
 
         // Tegner avatar
@@ -250,6 +273,7 @@ public class GameSession implements Serializable {
 
             if (monkey.collide(enemy)) {
                 score = 0;
+                timer.stop();
 
                 for (Node node : nodeList) {
                     if (("gameOver").equals(node.getId())) {
