@@ -52,6 +52,7 @@ public class GameSession {
         this.gameState = "running";
         this.controller = controller;
 
+        sound.setCycleCount(AudioClip.INDEFINITE);
         sound.play();
         setScene();
         Timer();
@@ -274,7 +275,7 @@ public class GameSession {
         }
 
 
-        public void setCurrentLevel ( int currentLevel){
+        public void setCurrentLevel (int currentLevel){
             this.currentLevel = currentLevel;
         }
 
