@@ -67,11 +67,11 @@ public class LevelOne {
         wallList.add(wall15);
 
         // ENEMY
-        enemy1 = new Enemy(20,440, 7,0,320,400);
+        enemy1 = new Enemy(20,440, 6,0,320,400);
         enemy2 = new Enemy(500, 168, 0,5, 300,350);
         enemy3 = new Enemy(200, 100, 0, 4, 200,500);
         enemy4 = new Enemy(430, 400,0,6,300,580);
-        enemy5 = new Enemy(140,30,6,0,500,200); // Enemy TOP
+        enemy5 = new Enemy(140,30,5,0,500,200); // Enemy TOP */
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);

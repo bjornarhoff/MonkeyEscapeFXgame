@@ -11,6 +11,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import spillet.Levels.LevelOne;
+import spillet.Levels.LevelThree;
 import spillet.Levels.LevelTwo;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class GameSession {
     private ArrayList<Fruit> fruitList = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
     private LevelTwo levelTwo = new LevelTwo();
+    private LevelThree levelThree = new LevelThree();
     private int currentLevel = 1;
     private int score = 0;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
@@ -72,8 +74,8 @@ public class GameSession {
 
                 if (System.nanoTime() - timeLstFrm > 1E9 / 60) {
 
-                        Input.Input(gameView.getScene());
-                        handleGameStateInput(Input.getInput());
+                    Input.Input(gameView.getScene());
+                    handleGameStateInput(Input.getInput());
 
                     if (gameState.equals("running")) {
 
@@ -104,10 +106,10 @@ public class GameSession {
         pane.setPrefSize(WIDTH, HEIGHT);
 
         for (Node node : nodeList) {
-               if (("gameCanvas").equals(node.getId())) {
-                   this.canvas = (Canvas) node;
-               }
-               setNodeVisible("gameCanvas");
+            if (("gameCanvas").equals(node.getId())) {
+                this.canvas = (Canvas) node;
+            }
+            setNodeVisible("gameCanvas");
         }
 
 
@@ -116,27 +118,19 @@ public class GameSession {
 
         monkey = new Monkey(590, 590);
 
-        wallList = levelOne.getWallList();
-        enemyList = levelOne.getEnemyList();
-        fruitList = levelOne.getFruitList();
-
-       // wallList = levelTwo.getWallList();
-       //enemy = levelTwo.getEnemyList();
-       //fruitList = levelTwo.getFruitList();
-
-
 
     }
 
     /**
      * This method iterates through the nodelist and sets the selected node to visible
+     *
      * @param nodeID the fxID of the node to be set visible
      */
     private void setNodeVisible(String nodeID) {
         for (Node node : nodeList) {
             if (nodeID.equals(node.getId())) {
                 node.setVisible(true);
-            }else {
+            } else {
                 node.setVisible(false);
             }
         }
@@ -150,157 +144,151 @@ public class GameSession {
         gc.fillRect(0, 0, WIDTH, HEIGHT);
         gc.setFill(Color.BLACK);
 
-        wallList.forEach(p -> p.render(gc));
-        enemyList.forEach(p -> p.render(gc));
-        fruitList.forEach(p -> p.render(gc));
-        // Renderer hinder, frukter og fiender
-        levelOne.getWallList().forEach(p -> p.render(gc));
-        levelOne.getEnemyList().forEach(p -> p.render(gc));
-        levelOne.getFruitList().forEach(p -> p.render(gc));
 
-        // Itererer gjennom hinder
-        collisionIterator(levelOne.getWallList());
-        fruitIterator(levelOne.getFruitList());
-        enemyIterator(levelOne.getEnemyList());
-
-        levelOne.getGate().render(gc);
+        if (getCurrentLevel() == 1) {
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList());
+            levelOne.getGate().render(gc);
+        } else if (getCurrentLevel() == 2) {
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList());
+            levelTwo.getGate().render(gc);
+        }
 
         if (monkey.collide(levelOne.getGate())) {
             setCurrentLevel(2);
+            monkey.setX(10);
+            monkey.setY(10);
         }
 
-/*        switch (getCurrentLevel()) {
-            case 1:
-                // Renderer hinder, frukter og fiender
-                levelOne.getWallList().forEach(p -> p.render(gc));
-                levelOne.getEnemyList().forEach(p -> p.render(gc));
-                levelOne.getFruitList().forEach(p -> p.render(gc));
+        if (monkey.collide(levelTwo.getGate())) {
+            setCurrentLevel(1);
+        }
 
-                // Itererer gjennom hinder
-                collisionIterator(levelOne.getWallList());
-                fruitIterator(levelOne.getFruitList());
-                enemyIterator(levelOne.getEnemyList());
-            case 2:
-                // Renderer hinder, frukter og fiender
-                levelOne.getWallList().forEach(p -> p.render(gc));
-                levelOne.getEnemyList().forEach(p -> p.render(gc));
-                levelOne.getFruitList().forEach(p -> p.render(gc));
-
-                // Itererer gjennom hinder
-                collisionIterator(levelOne.getWallList());
-                fruitIterator(levelOne.getFruitList());
-                enemyIterator(levelOne.getEnemyList());
-            default:
-                break;
-        } */
 
         // Tegner avatar
         monkey.render(gc);
 
-        }
+    }
 
-        public void collisionIterator (ArrayList < Wall > wallList) {
-            collision.clear();
+    public void levelIterator(ArrayList<Wall> wallArrayList, ArrayList<Fruit> fruitArrayList, ArrayList<Enemy> enemyArrayList) {
+        wallArrayList.forEach(p -> p.render(gc));
+        fruitArrayList.forEach(p -> p.render(gc));
+        enemyArrayList.forEach(p -> p.render(gc));
 
-            Iterator<Wall> hinderIterator = wallList.iterator();
+        collisionIterator(wallArrayList);
+        fruitIterator(fruitArrayList);
+        enemyIterator(enemyArrayList);
+    }
 
-            while (hinderIterator.hasNext()) {
+    public void collisionIterator(ArrayList<Wall> wallList) {
+        collision.clear();
 
-                Wall wall = hinderIterator.next();
+        Iterator<Wall> hinderIterator = wallList.iterator();
 
-                if (monkey.collisionLeft(wall)) {
-                    collision.add("CollisionLeft");
-                }
+        while (hinderIterator.hasNext()) {
 
-                if (monkey.collisionRight(wall)) {
-                    collision.add("CollisionRight");
-                }
+            Wall wall = hinderIterator.next();
 
-                if (monkey.collisionBottom(wall)) {
-                    collision.add("CollisionBottom");
-                }
-
-                if (monkey.collisionTop(wall)) {
-                    collision.add("CollisionTop");
-                }
-
+            if (monkey.collisionLeft(wall)) {
+                collision.add("CollisionLeft");
             }
 
-            // Itererer gjennom enemy
-            //Iterator<Enemy> fiendeIterator = enemyList.iterator();
-            Iterator<Enemy> fiendeIterator = levelOne.getEnemyList().iterator();
-            while (fiendeIterator.hasNext()) {
-                Enemy enemy = fiendeIterator.next();
+            if (monkey.collisionRight(wall)) {
+                collision.add("CollisionRight");
+            }
 
-                enemy.bounce();
+            if (monkey.collisionBottom(wall)) {
+                collision.add("CollisionBottom");
+            }
 
-                if (monkey.collide(enemy)) {
-                    score = 0;
-                    timer.stop();
-                    setNodeVisible("gameOver");
-                    sound.stop();
-
-                }
+            if (monkey.collisionTop(wall)) {
+                collision.add("CollisionTop");
             }
 
         }
-        public void fruitIterator (ArrayList < Fruit > fruitList) {
-            Iterator<Fruit> fruktIterator = fruitList.iterator();
-            while (fruktIterator.hasNext()) {
-                Fruit fruit = fruktIterator.next();
 
-                // Kollisjon med fruit, legger til +100 på score
-                if (monkey.collide(fruit) && fruit.exists()) {
-                    fruit.kill();
-                    bananaSound();
-                    fruit.exists();
-                    score += 100;
+        // Itererer gjennom enemy
+        //Iterator<Enemy> fiendeIterator = enemyList.iterator();
+        Iterator<Enemy> fiendeIterator = levelOne.getEnemyList().iterator();
+        while (fiendeIterator.hasNext()) {
+            Enemy enemy = fiendeIterator.next();
+
+            enemy.bounce();
+
+            if (monkey.collide(enemy)) {
+                score = 0;
+                timer.stop();
+                setNodeVisible("gameOver");
+                sound.stop();
+
+            }
+        }
+
+    }
+
+    public void fruitIterator(ArrayList<Fruit> fruitList) {
+        Iterator<Fruit> fruktIterator = fruitList.iterator();
+        while (fruktIterator.hasNext()) {
+            Fruit fruit = fruktIterator.next();
+
+            // Kollisjon med fruit, legger til +100 på score
+            if (monkey.collide(fruit) && fruit.exists()) {
+                fruit.kill();
+                bananaSound();
+                fruit.exists();
+                score += 100;
+            }
+        }
+    }
+
+
+    public void enemyIterator(ArrayList<Enemy> enemyList) {
+        Iterator<Enemy> fiendeIterator = enemyList.iterator();
+        while (fiendeIterator.hasNext()) {
+            Enemy enemy = fiendeIterator.next();
+
+            enemy.bounce();
+
+            if (monkey.collide(enemy)) {
+                System.out.println("DØD");
+                score = 0;
+            }
+
+
+            if (monkey.collide(enemy)) {
+                score = 0;
+
+                for (Node node : nodeList) {
+                    if (("gameOver").equals(node.getId())) {
+                        node.setVisible(true);
+                        canvas.setVisible(false);
+                    }
                 }
             }
         }
 
-
-        public void enemyIterator (ArrayList < Enemy > enemyList) {
-            Iterator<Enemy> fiendeIterator = enemyList.iterator();
-            while (fiendeIterator.hasNext()) {
-                Enemy enemy = fiendeIterator.next();
-
-                enemy.bounce();
-
-                if (monkey.collide(enemy)) {
-                    System.out.println("DØD");
-                    score = 0;
-                }
-            }
-        }
+    }
 
 
-        public void setCurrentLevel (int currentLevel){
-            this.currentLevel = currentLevel;
-        }
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 
-        public int getCurrentLevel () {
-            return this.currentLevel;
-        }
+    public int getCurrentLevel() {
+        return this.currentLevel;
+    }
 
-        private void bananaSound () {
-            clip.play();
-        }
-
-
+    private void bananaSound() {
+        clip.play();
+    }
 
     /**
      * Metode som tegner score på brettet
      */
-    public void drawScore (GraphicsContext gc) {
+    public void drawScore(GraphicsContext gc) {
         gc.strokeText("Score: " + score + "/ 500", 450.0, 50.0, 150);
         gc.setFont(new Font(30));
         gc.setStroke(WHITE);
     }
-
-
-
-
 
     /**
      * Arraylist for å sjekke input. Setter spillet på pause (går til menyen)
@@ -315,6 +303,7 @@ public class GameSession {
         }
     }
 
+    /
 
 
     /**
