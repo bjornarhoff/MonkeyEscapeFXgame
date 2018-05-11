@@ -243,6 +243,7 @@ public class GameSession {
                     if (("gameOver").equals(node.getId())) {
                         node.setVisible(true);
                         canvas.setVisible(false);
+                        timer.stop();
                     }
                 }
             }
