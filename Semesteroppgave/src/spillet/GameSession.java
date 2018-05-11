@@ -54,6 +54,7 @@ public class GameSession {
         this.gameState = "running";
         this.controller = controller;
 
+        sound.setCycleCount(AudioClip.INDEFINITE);
         sound.play();
         setScene();
         Timer();
@@ -205,23 +206,6 @@ public class GameSession {
 
         }
 
-        // Itererer gjennom enemy
-        //Iterator<Enemy> fiendeIterator = enemyList.iterator();
-        Iterator<Enemy> fiendeIterator = levelOne.getEnemyList().iterator();
-        while (fiendeIterator.hasNext()) {
-            Enemy enemy = fiendeIterator.next();
-
-            enemy.bounce();
-
-            if (monkey.collide(enemy)) {
-                score = 0;
-                timer.stop();
-                setNodeVisible("gameOver");
-                sound.stop();
-
-            }
-        }
-
     }
 
     public void fruitIterator(ArrayList<Fruit> fruitList) {
@@ -302,14 +286,7 @@ public class GameSession {
         }
     }
 
-    /**
-     * Setter spillet på pause (går til menyen)
-     */
 
-    public void menu() {
-        canvas.setVisible(false);
-        controller.setMenuPage("ingameMenuButtons");
-    }
 
     /**
      * Pause method

@@ -22,8 +22,8 @@ public class Fruit extends GameObject {
         setImage(bilde);
         setX(x);
         setY(y);
-        setW(50);
-        setH(50);
+        setW(32);
+        setH(20);
     }
 
 
