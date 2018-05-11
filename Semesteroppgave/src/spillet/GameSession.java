@@ -33,9 +33,6 @@ public class GameSession {
     private Monkey monkey;
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
-    private ArrayList<Enemy> enemyList = new ArrayList<>();
-    private ArrayList<Wall> wallList = new ArrayList<>();
-    private ArrayList<Fruit> fruitList = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
     private LevelTwo levelTwo = new LevelTwo();
     private int currentLevel = 1;
@@ -149,57 +146,47 @@ public class GameSession {
         gc.fillRect(0, 0, WIDTH, HEIGHT);
         gc.setFill(Color.BLACK);
 
-        wallList.forEach(p -> p.render(gc));
-        enemyList.forEach(p -> p.render(gc));
-        fruitList.forEach(p -> p.render(gc));
         // Renderer hinder, frukter og fiender
         levelOne.getWallList().forEach(p -> p.render(gc));
         levelOne.getEnemyList().forEach(p -> p.render(gc));
         levelOne.getFruitList().forEach(p -> p.render(gc));
 
-        // Itererer gjennom hinder
-        collisionIterator(levelOne.getWallList());
-        fruitIterator(levelOne.getFruitList());
-        enemyIterator(levelOne.getEnemyList());
-
-        levelOne.getGate().render(gc);
+        if (getCurrentLevel() == 1) {
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList());
+            levelOne.getGate().render(gc);
+        } else if (getCurrentLevel() == 2) {
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList());
+            levelTwo.getGate().render(gc);
+        }
 
         if (monkey.collide(levelOne.getGate())) {
             setCurrentLevel(2);
+            player.setX(10);
+            player.setY(10);
         }
 
-/*        switch (getCurrentLevel()) {
-            case 1:
-                // Renderer hinder, frukter og fiender
-                levelOne.getWallList().forEach(p -> p.render(gc));
-                levelOne.getEnemyList().forEach(p -> p.render(gc));
-                levelOne.getFruitList().forEach(p -> p.render(gc));
+        if (player.collide(levelTwo.getGate())) {
+            setCurrentLevel(1);
+        }
 
-                // Itererer gjennom hinder
-                collisionIterator(levelOne.getWallList());
-                fruitIterator(levelOne.getFruitList());
-                enemyIterator(levelOne.getEnemyList());
-            case 2:
-                // Renderer hinder, frukter og fiender
-                levelOne.getWallList().forEach(p -> p.render(gc));
-                levelOne.getEnemyList().forEach(p -> p.render(gc));
-                levelOne.getFruitList().forEach(p -> p.render(gc));
-
-                // Itererer gjennom hinder
-                collisionIterator(levelOne.getWallList());
-                fruitIterator(levelOne.getFruitList());
-                enemyIterator(levelOne.getEnemyList());
-            default:
-                break;
-        } */
 
         // Tegner avatar
         monkey.render(gc);
 
         }
 
-        public void collisionIterator (ArrayList < Wall > wallList) {
-            collision.clear();
+    public void levelIterator(ArrayList<Wall> wallArrayList, ArrayList<Fruit> fruitArrayList, ArrayList<Enemy> enemyArrayList) {
+        wallArrayList.forEach(p -> p.render(gc));
+        fruitArrayList.forEach(p -> p.render(gc));
+        enemyArrayList.forEach(p -> p.render(gc));
+
+        collisionIterator(wallArrayList);
+        fruitIterator(fruitArrayList);
+        enemyIterator(enemyArrayList);
+    }
+
+    public void collisionIterator(ArrayList<Wall> wallList) {
+        collision.clear();
 
             Iterator<Wall> hinderIterator = wallList.iterator();
 
@@ -272,6 +259,18 @@ public class GameSession {
                 }
             }
         }
+            if (player.collide(enemy)) {
+                score = 0;
+
+                for (Node node : nodeList) {
+                    if (("gameOver").equals(node.getId())) {
+                        node.setVisible(true);
+                        canvas.setVisible(false);
+                    }
+                }
+            }
+        }
+    }
 
 
         public void setCurrentLevel ( int currentLevel){
@@ -286,8 +285,6 @@ public class GameSession {
             clip.play();
         }
 
-
-
     /**
      * Metode som tegner score på brettet
      */
@@ -296,10 +293,6 @@ public class GameSession {
         gc.setFont(new Font(30));
         gc.setStroke(WHITE);
     }
-
-
-
-
 
     /**
      * Arraylist for å sjekke input. Setter spillet på pause (går til menyen)
@@ -314,7 +307,14 @@ public class GameSession {
         }
     }
 
+    /**
+     * Setter spillet på pause (går til menyen)
+     */
 
+    public void menu() {
+        canvas.setVisible(false);
+        controller.setMenuPage("ingameMenuButtons");
+    }
 
     /**
      * Pause method

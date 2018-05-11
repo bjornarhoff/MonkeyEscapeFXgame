@@ -4,6 +4,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.ArrayList;
+
 /**
  * Dette er superclass for spillobjekter skal arve fra. Dette inkluderer Apen, Zookeepers, power-ups osv.
  *
@@ -16,6 +18,8 @@ public class GameObject {
     private double X;
     private double W;
     private double H;
+    private double DX = 7;
+    private double DY = 7;
     private boolean exists = true;
 
     /**
@@ -92,7 +96,6 @@ public class GameObject {
 
     public void kill() {
         this.exists = false;
-
     }
 
     public boolean exists() {
@@ -110,6 +113,11 @@ public class GameObject {
         }
     }
 
+    public void moveAngled(double angle) {
+        X += DX * Math.cos(angle);
+        Y += DY * Math.sin(angle);
+    }
+
     public Rectangle2D boundary() {
         return new Rectangle2D(X, Y, W, H);
     }
@@ -117,5 +125,4 @@ public class GameObject {
     public boolean collide(GameObject s) {
         return s.boundary().intersects(this.boundary());
     }
-
 }

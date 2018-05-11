@@ -13,12 +13,12 @@ import java.util.*;
 
 public class Monkey extends GameObject {
 
-    private double dx = 5;
-    private double dy = 5;
-    private double playerWidth = 35;
-    private double playerHeight = 40;
-
-
+    private double playerWidth = 50;
+    private double playerHeight = 50;
+    Image apeLeft = new Image("IMG/apeLeft.png");
+    Image apeDown = new Image("IMG/apeDown.png");
+    Image apeRight = new Image("IMG/apeRight.png");
+    Image apeUp = new Image("IMG/apeUp.png");
 
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
@@ -29,6 +29,7 @@ public class Monkey extends GameObject {
     public Monkey(double x, double y) {
         super(x, y);
         Image bilde = new Image("IMG/ape.png");
+
         setImage(bilde);
         setX(x);
         setY(y);
@@ -68,42 +69,62 @@ public class Monkey extends GameObject {
         return s.boundary().intersects(this.boundaryBottom());
     }
 
-
     /**
      * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
      * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
      */
     public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
-        if (input.contains("UP") && !collision.contains("CollisionTop")) {
-            setY(getY() - dy);
-
-        }
-        if (input.contains("DOWN") && !collision.contains("CollisionBottom")) {
-            setY(getY() + dy);
-
-        }
-        if (input.contains("LEFT") && !collision.contains("CollisionLeft")) {
-            setX(getX() - dx);
-
-        }
-        if (input.contains("RIGHT") && !collision.contains("CollisionRight")) {
-            setX(getX() + dx);
+        // Move Up
+        if (input.contains("UP") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionTop")) {
+            moveAngled((Math.PI) * 3 / 2);
+            setImage(apeUp);
 
         }
 
+        // Move Down
+        if (input.contains("DOWN") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionBottom")) {
+            moveAngled(Math.PI / 2);
+            setImage(apeDown);
+        }
+
+        // Move Left
+        if (input.contains("LEFT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionLeft")) {
+            moveAngled(Math.PI);
+            setImage(apeLeft);
+        }
+
+        // Move Right
+        if (input.contains("RIGHT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionRight")) {
+            moveAngled(0);
+            setImage(apeRight);
+        }
+
+        // Move Up-Right
         if (input.contains("UP") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
-            setX(getX() + Math.sqrt(dx/2));
-            setY(getY() + Math.sqrt(dy/2));
+            moveAngled(Math.PI * 7 / 4);
         }
 
+        // Move Down-Right
+        if (input.contains("DOWN") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionBottom")) {
+            moveAngled(Math.PI / 4);
+        }
+
+        // Move Down-Left
+        if (input.contains("DOWN") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionBottom")) {
+            moveAngled(Math.PI * 3 / 4);
+        }
+
+        // Move Up-left
+        if (input.contains("UP") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionTop")) {
+            moveAngled(Math.PI * 5 / 4);
+        }
+
+        // Menu
         if (input.contains("ESCAPE")) {
             gs.pause();
         }
-
     }
-
-
 }
 
 
