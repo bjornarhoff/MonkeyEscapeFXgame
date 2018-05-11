@@ -29,8 +29,8 @@ public class GameSession {
     public Canvas canvas;
     public AnimationTimer timer;
     private GraphicsContext gc;
-    private final int WIDTH = 650;
-    private final int HEIGHT = 650;
+    private final int WIDTH = 850;
+    private final int HEIGHT = 850;
     private Monkey monkey;
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
@@ -244,6 +244,7 @@ public class GameSession {
                         node.setVisible(true);
                         canvas.setVisible(false);
                         timer.stop();
+                        sound.stop();
                     }
                 }
             }
