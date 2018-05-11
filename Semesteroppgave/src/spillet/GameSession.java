@@ -147,10 +147,10 @@ public class GameSession implements Serializable {
 
 
         if (getCurrentLevel() == 1) {
-            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 10, 10);
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 585, 10);
             levelOne.getGate().render(gc);
         } else if (getCurrentLevel() == 2) {
-            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 1, 590, 590);
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 575, 550);
             levelTwo.getGate().render(gc);
         } else if (getCurrentLevel() == 3) {
             levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 580, 595);
