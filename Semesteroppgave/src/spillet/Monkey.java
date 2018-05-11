@@ -15,11 +15,14 @@ public class Monkey extends GameObject {
 
     private double playerWidth = 50;
     private double playerHeight = 50;
-    Image apeLeft = new Image("IMG/apeLeft.png");
-    Image apeDown = new Image("IMG/apeDown.png");
-    Image apeRight = new Image("IMG/apeRight.png");
-    Image apeUp = new Image("IMG/apeUp.png");
-
+    Image monkeyDown = new Image("IMG/monkeyDown.png");
+    Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
+    Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");
+    Image monkeyLeft = new Image("IMG/monkeyLeft.png");
+    Image monkeyRight = new Image("IMG/monkeyRight.png");
+    Image monkeyUp = new Image("IMG/monkeyUp.png");
+    Image monkeyUpLeft = new Image("IMG/monkeyUpLeft.png");
+    Image monkeyUpRight = new Image("IMG/monkeyUpRight.png");
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
      *
@@ -28,7 +31,7 @@ public class Monkey extends GameObject {
      */
     public Monkey(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/ape.png");
+        Image bilde = new Image("IMG/monkeyUp.png");
 
         setImage(bilde);
         setX(x);
@@ -78,46 +81,50 @@ public class Monkey extends GameObject {
         // Move Up
         if (input.contains("UP") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionTop")) {
             moveAngled((Math.PI) * 3 / 2);
-            setImage(apeUp);
+            setImage(monkeyUp);
 
         }
 
         // Move Down
         if (input.contains("DOWN") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionBottom")) {
             moveAngled(Math.PI / 2);
-            setImage(apeDown);
+            setImage(monkeyDown);
         }
 
         // Move Left
         if (input.contains("LEFT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionLeft")) {
             moveAngled(Math.PI);
-            setImage(apeLeft);
+            setImage(monkeyLeft);
         }
 
         // Move Right
         if (input.contains("RIGHT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionRight")) {
             moveAngled(0);
-            setImage(apeRight);
+            setImage(monkeyRight);
         }
 
         // Move Up-Right
         if (input.contains("UP") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
             moveAngled(Math.PI * 7 / 4);
+            setImage(monkeyUpRight);
         }
 
         // Move Down-Right
         if (input.contains("DOWN") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionBottom")) {
             moveAngled(Math.PI / 4);
+            setImage(monkeyDownRight);
         }
 
         // Move Down-Left
         if (input.contains("DOWN") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionBottom")) {
             moveAngled(Math.PI * 3 / 4);
+            setImage(monkeyDownLeft);
         }
 
         // Move Up-left
         if (input.contains("UP") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionTop")) {
             moveAngled(Math.PI * 5 / 4);
+            setImage(monkeyUpLeft);
         }
 
         // Menu
