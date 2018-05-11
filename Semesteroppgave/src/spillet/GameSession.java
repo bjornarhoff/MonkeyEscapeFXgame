@@ -11,6 +11,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import spillet.Levels.LevelOne;
+import spillet.Levels.LevelThree;
 import spillet.Levels.LevelTwo;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class GameSession {
     private ArrayList<Fruit> fruitList = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
     private LevelTwo levelTwo = new LevelTwo();
+    private LevelThree levelThree = new LevelThree();
     private int currentLevel = 1;
     private int score = 0;
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
@@ -123,6 +125,12 @@ public class GameSession {
        //enemy = levelTwo.getEnemyList();
        //fruitList = levelTwo.getFruitList();
 
+         /*wallList = levelThree.getWallList();
+         enemyList = levelThree.getEnemyList();
+         fruitList = levelThree.getFruitList();*/
+
+
+
 
 
     }
@@ -157,6 +165,8 @@ public class GameSession {
         levelOne.getEnemyList().forEach(p -> p.render(gc));
         levelOne.getFruitList().forEach(p -> p.render(gc));
 
+
+
         // Itererer gjennom hinder
         collisionIterator(levelOne.getWallList());
         fruitIterator(levelOne.getFruitList());
@@ -167,6 +177,8 @@ public class GameSession {
         if (monkey.collide(levelOne.getGate())) {
             setCurrentLevel(2);
         }
+
+
 
 /*        switch (getCurrentLevel()) {
             case 1:
