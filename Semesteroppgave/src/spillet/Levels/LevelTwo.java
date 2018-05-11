@@ -23,12 +23,12 @@ public class LevelTwo {
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(590,640,50,10);
+        gate = new Gate(0,530,10,100);
 
-        wall1 = new Wall(0, 0, 10, HEIGHT); // LEFT WALL
+        wall1 = new Wall(0, 0, 10, HEIGHT-100); // LEFT WALL
         wall2 = new Wall(80, 0, WIDTH, 10); // TOP WALL
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // RIGHT WALL
-        wall4 = new Wall(0, HEIGHT - 10, 575, 10); // BOTTOM WAll
+        wall4 = new Wall(0, 640, WIDTH, 10); // BOTTOM WAll
 
         wall5 = new Wall(80, 0, 10, 200);
         wall6 = new Wall(80, 510, 10, 70);
@@ -36,7 +36,7 @@ public class LevelTwo {
         wall8 = new Wall(155, 370, 10, 120);
         wall9 = new Wall(190, 80, 10, 190);
         wall10 = new Wall(315, 180, 10, 200);
-        wall11 = new Wall(540, 80, 10, 200);
+        wall11 = new Wall(570, 0, 10, 100);
         wall12 = new Wall(440, 130, 10, 100);
         wall13 = new Wall(283, 520, 200, 10);
         wall14 = new Wall(283, 450, 10, 130);
@@ -67,7 +67,7 @@ public class LevelTwo {
 
         // ENEMY
         enemy1 = new Enemy(20,440, 7,0,320,400);
-        enemy2 = new Enemy(320, 168, 0,6, 300,600);
+        enemy2 = new Enemy(320, 168, 0,2, 300,600);
         enemy3 = new Enemy(200, 100, 0, 4, 200,500);
 
         enemyList = new ArrayList<>();

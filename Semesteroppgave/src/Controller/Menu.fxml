@@ -45,7 +45,7 @@
             </VBox>
             <ImageView fitHeight="69.0" fitWidth="126.0" layoutX="271.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/IMG/ape.png" />
+                  <Image url="@/IMG/monkeydown.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="165.0" fitWidth="143.0" layoutX="465.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">

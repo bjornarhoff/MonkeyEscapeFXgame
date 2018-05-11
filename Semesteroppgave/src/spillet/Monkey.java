@@ -31,7 +31,7 @@ public class Monkey extends GameObject {
      */
     public Monkey(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/monkeyUp.png");
+        Image bilde = new Image("IMG/monkeydown.png");
 
         setImage(bilde);
         setX(x);
