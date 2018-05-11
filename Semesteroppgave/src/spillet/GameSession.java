@@ -153,14 +153,14 @@ public class GameSession implements Serializable {
             levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 1, 590, 590);
             levelTwo.getGate().render(gc);
         } else if (getCurrentLevel() == 3) {
-            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList());
+            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 580, 595);
             levelThree.getGate().render(gc);
         }else if (getCurrentLevel() == 4) {
-            levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList());
+            levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList(), levelFour.getGate(), 1, 10, 10);
             levelFour.getGate().render(gc);
         }
 
-
+/*
         if (monkey.collide(levelOne.getGate())) {
             setCurrentLevel(2);
             monkey.setX(585);
@@ -184,7 +184,7 @@ public class GameSession implements Serializable {
         }
 
 
-
+*/
         // Tegner avatar
         monkey.render(gc);
 
