@@ -2,6 +2,7 @@ package spillet.Levels;
 
 import spillet.Enemy;
 import spillet.Fruit;
+import spillet.Gate;
 import spillet.Wall;
 
 import java.util.ArrayList;
@@ -17,10 +18,13 @@ public class LevelTwo {
     private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15,wall16,wall17;
     private Enemy enemy1, enemy2, enemy3;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
+    private Gate gate;
 
     public LevelTwo () {
 
         // MAP
+        gate = new Gate(590,100,50,10);
+
         wall1 = new Wall(0, 0, 10, HEIGHT); // LEFT WALL
         wall2 = new Wall(80, 0, WIDTH, 10); // TOP WALL
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // RIGHT WALL
@@ -97,6 +101,10 @@ public class LevelTwo {
 
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
+    }
+
+    public Gate getGate() {
+        return gate;
     }
 }
 
