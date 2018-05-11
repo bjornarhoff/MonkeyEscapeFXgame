@@ -2,6 +2,7 @@ package spillet.Levels;
 
 import spillet.Enemy;
 import spillet.Fruit;
+import spillet.Gate;
 import spillet.Wall;
 
 import java.util.ArrayList;
