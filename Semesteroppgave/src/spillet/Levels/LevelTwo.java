@@ -23,7 +23,7 @@ public class LevelTwo {
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(590,100,50,10);
+        gate = new Gate(590,640,50,10);
 
         wall1 = new Wall(0, 0, 10, HEIGHT); // LEFT WALL
         wall2 = new Wall(80, 0, WIDTH, 10); // TOP WALL
@@ -43,6 +43,7 @@ public class LevelTwo {
         wall15 = new Wall(540, 410, 100, 10);
         wall16 = new Wall (565,550,10,90 );
         wall17 = new Wall (400,350,80,10);
+
 
         wallList = new ArrayList<>();
         wallList.add(wall1);

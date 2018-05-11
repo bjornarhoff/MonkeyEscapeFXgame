@@ -151,6 +151,7 @@ public class GameSession {
         } else if (getCurrentLevel() == 2) {
             levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList());
             levelTwo.getGate().render(gc);
+
         }
 
         if (monkey.collide(levelOne.getGate())) {
@@ -161,6 +162,8 @@ public class GameSession {
 
         if (monkey.collide(levelTwo.getGate())) {
             setCurrentLevel(1);
+            monkey.setX(575);
+            monkey.setY(550);
         }
 
 
