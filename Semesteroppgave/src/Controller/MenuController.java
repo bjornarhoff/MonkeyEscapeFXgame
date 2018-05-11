@@ -36,6 +36,7 @@ public class MenuController implements Initializable{
     public void loadGame() {
         System.out.println("Load game");
 
+
     }
 
     @FXML
@@ -62,8 +63,8 @@ public class MenuController implements Initializable{
     @FXML
     public void saveGame() {
         System.out.println("Game saved");
-
-
+        gs.saveGame();
+        gs.loadGame();
 
     }
 
