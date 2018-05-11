@@ -5,6 +5,7 @@ import spillet.Enemy;
 import spillet.Fruit;
 import spillet.Wall;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * @Gaute, @Eirik, @Bjørnar
  */
 
-public class LevelThree {
+public class LevelThree implements Serializable {
 
     private final int WIDTH = 650;
     private final int HEIGHT = 650;

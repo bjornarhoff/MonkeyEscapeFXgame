@@ -1,7 +1,7 @@
 package filbehandling;
 import java.io.*;
 
-public class Filbehandling {
+public class  Filbehandling {
 
     public static final String filename = "TestOutput.sav";
 

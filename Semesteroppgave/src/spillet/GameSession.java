@@ -1,6 +1,7 @@
 package spillet;
 
 import Controller.MenuController;
+import filbehandling.Filbehandling;
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -14,13 +15,14 @@ import spillet.Levels.LevelOne;
 import spillet.Levels.LevelThree;
 import spillet.Levels.LevelTwo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static javafx.scene.paint.Color.WHITE;
 
 
-public class GameSession {
+public class GameSession implements Serializable {
 
     private MenuController controller;
     private String gameState;
@@ -34,14 +36,13 @@ public class GameSession {
     private Monkey monkey;
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
-    private ArrayList<Enemy> enemyList = new ArrayList<>();
-    private ArrayList<Wall> wallList = new ArrayList<>();
-    private ArrayList<Fruit> fruitList = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
     private LevelTwo levelTwo = new LevelTwo();
     private LevelThree levelThree = new LevelThree();
     private int currentLevel = 1;
     private int score = 0;
+    Filbehandling save = new Filbehandling();
+    private ArrayList<Filbehandling> saveArrayList = new ArrayList<>();
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
 
@@ -82,10 +83,6 @@ public class GameSession {
                         renderLevel();
                         drawScore(gc);
                         monkey.move(Input.getInput(), getGS(), collision);
-
-                        //System.out.println(player.getX());
-                        //System.out.println(player.getY());
-
 
                         timeLstFrm = System.nanoTime();
 
@@ -286,7 +283,9 @@ public class GameSession {
         }
     }
 
+    public void loadGame() {
 
+    }
 
     /**
      * Pause method

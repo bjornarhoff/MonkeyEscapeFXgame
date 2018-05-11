@@ -32,7 +32,6 @@ public class Monkey extends GameObject {
     public Monkey(double x, double y) {
         super(x, y);
         Image bilde = new Image("IMG/monkeyUp.png");
-
         setImage(bilde);
         setX(x);
         setY(y);

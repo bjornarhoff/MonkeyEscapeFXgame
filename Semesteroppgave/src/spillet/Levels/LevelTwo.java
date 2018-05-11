@@ -5,9 +5,10 @@ import spillet.Fruit;
 import spillet.Gate;
 import spillet.Wall;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LevelTwo {
+public class LevelTwo implements Serializable {
 
     private final int WIDTH = 650;
     private final int HEIGHT = 650;

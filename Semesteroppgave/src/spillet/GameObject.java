@@ -4,6 +4,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * @Gaute, @Eirik og @Bjørnar
  */
 
-public class GameObject {
+public class GameObject implements Serializable {
     protected Image image;
     private double Y;
     private double X;

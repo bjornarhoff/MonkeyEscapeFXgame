@@ -1,5 +1,6 @@
 package Controller;
 
+import filbehandling.Filbehandling;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ public class MenuController implements Initializable{
     private static GameSession gs;
 
 
+
     /**
      * Start menu
      */
@@ -33,6 +35,7 @@ public class MenuController implements Initializable{
     @FXML
     public void loadGame() {
         System.out.println("Load game");
+
     }
 
     @FXML
@@ -59,6 +62,9 @@ public class MenuController implements Initializable{
     @FXML
     public void saveGame() {
         System.out.println("Game saved");
+
+
+
     }
 
 
