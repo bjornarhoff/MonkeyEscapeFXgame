@@ -160,31 +160,6 @@ public class GameSession implements Serializable {
             levelFour.getGate().render(gc);
         }
 
-/*
-        if (monkey.collide(levelOne.getGate())) {
-            setCurrentLevel(2);
-            monkey.setX(585);
-            monkey.setY(10);
-        }
-
-        else if (monkey.collide(levelTwo.getGate())) {
-            setCurrentLevel(3);
-            monkey.setX(575);
-            monkey.setY(550);
-        }
-        else if (monkey.collide(levelThree.getGate())){
-            setCurrentLevel(4);
-            monkey.setX(580);
-            monkey.setY(595);
-        }
-        else if (monkey.collide(levelFour.getGate())){
-            setCurrentLevel(1);
-            monkey.setX(10);
-            monkey.setY(10);
-        }
-
-
-*/
         // Tegner avatar
         monkey.render(gc);
 
@@ -223,18 +198,26 @@ public class GameSession implements Serializable {
 
             if (monkey.collisionLeft(wall)) {
                 collision.add("CollisionLeft");
+                gc.strokeText("CollisionLeft", 150, 50);
+                gc.setStroke(Color.WHITE);
             }
 
             if (monkey.collisionRight(wall)) {
                 collision.add("CollisionRight");
+                gc.strokeText("CollisionRight", 150, 100);
+                gc.setStroke(Color.WHITE);
             }
 
             if (monkey.collisionBottom(wall)) {
                 collision.add("CollisionBottom");
+                gc.strokeText("CollisionBottom", 150, 150);
+                gc.setStroke(Color.WHITE);
             }
 
             if (monkey.collisionTop(wall)) {
                 collision.add("CollisionTop");
+                gc.strokeText("CollisionTop", 150, 200);
+                gc.setStroke(Color.WHITE);
             }
 
         }
@@ -252,6 +235,8 @@ public class GameSession implements Serializable {
                 fruit.kill();
                 bananaSound();
                 fruit.exists();
+                System.out.println(fruit.toString() + fruit.exists());
+
                 score += 100;
             }
         }
@@ -270,7 +255,7 @@ public class GameSession implements Serializable {
                 score = 0;
             }
 
-
+/*
             if (monkey.collide(enemy)) {
                 score = 0;
                 timer.stop();
@@ -281,7 +266,7 @@ public class GameSession implements Serializable {
                         canvas.setVisible(false);
                     }
                 }
-            }
+            } */
         }
     }
 
@@ -352,6 +337,7 @@ public class GameSession implements Serializable {
 
     public void loadGame() {
         save.getGameState();
+        System.out.println("Current score: " + save.getScore() + " Current Level: " + save.getCurrentLevel());
     }
 
 

@@ -63,7 +63,6 @@ public class MenuController implements Initializable{
     @FXML
     public void saveGame() {
         System.out.println("Game saved");
-        gs.saveGame();
         gs.loadGame();
 
     }

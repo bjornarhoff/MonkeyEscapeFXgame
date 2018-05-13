@@ -1,6 +1,7 @@
 package spillet;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class GameState {
 
@@ -59,9 +60,12 @@ public class GameState {
                 // use comma as separator
                 String[] gameState = line.split(",");
 
-                System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
+              //  System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
 
                 setScore(Integer.parseInt(gameState[1]));
+                setCurrentLevel(Integer.parseInt(gameState[2]));
+                setMonkeyX(Double.parseDouble(gameState[3]));
+                setMonkeyY(Double.parseDouble(gameState[4]));
 
             }
         } catch (IOException e) {
@@ -75,6 +79,10 @@ public class GameState {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void setFruit(Fruit fruit) {
+
     }
 
     public int getScore() {
