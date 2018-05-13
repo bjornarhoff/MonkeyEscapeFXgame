@@ -5,8 +5,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import spillet.GameSession;
 
 import java.net.URL;
@@ -66,7 +64,6 @@ public class MenuController implements Initializable{
      */
     @FXML
     public void resumeGame() {
-        //gs.getCanvas().setVisible(true);
         setMenuPage("gameCanvas");
         gs.pause();
     }
