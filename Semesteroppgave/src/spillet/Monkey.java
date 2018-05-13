@@ -13,8 +13,8 @@ import java.util.*;
 
 public class Monkey extends GameObject {
 
-    private double playerWidth = 50;
-    private double playerHeight = 50;
+    private double playerWidth = 40;
+    private double playerHeight = 40;
     Image monkeyDown = new Image("IMG/monkeyDown.png");
     Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
     Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");

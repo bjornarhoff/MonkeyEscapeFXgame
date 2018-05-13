@@ -24,7 +24,7 @@ public class LevelOne implements Serializable {
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
 
-    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15, wall16, wall17, wall18, wall19;
     private Enemy enemy1, enemy2, enemy3,enemy4,enemy5;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
@@ -32,23 +32,26 @@ public class LevelOne implements Serializable {
     public LevelOne() {
 
         // MAP
-        gate = new Gate(575,640,70,10);
+        gate = new Gate(570,640,70,10);
 
-        wall1 = new Wall(111, 500, 10, 150);
-        wall2 = new Wall(0, 396, 290, 10);
-        wall3 = new Wall(0, 0, 10, HEIGHT);  // Left wall
-        wall4 = new Wall(210, 550, 110, 10);
-        wall5 = new Wall(0, 0, WIDTH, 10);
-        wall6 = new Wall(WIDTH - 10, 0, 10, HEIGHT);
-        wall7 = new Wall(0, HEIGHT - 10, 575, 10);
-        wall8 = new Wall(200, 190, 10, 70);
-        wall9 = new Wall(85, 0, 10, 185);
-        wall10 = new Wall(280, 145, 220, 10);
-        wall11 = new Wall(570, 75, 10, 100);
-        wall12 = new Wall(510, 420, 50, 10);
-        wall13 = new Wall(500, 550, 150, 10);
-        wall14 = new Wall(400, 270, 10, 400);
-        //wall15 = new Wall(565, 610, 10, 40);
+        wall1 = new Wall(0, 0, 10, HEIGHT);  // Left wall
+        wall2 = new Wall(0, 0, WIDTH, 10); // Top wall
+        wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
+        wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
+
+        wall5 = new Wall(60, 0, 10, 185); // Entry vertical wall
+        wall6 = new Wall(60, 235, 10, 150); // Vertical left side
+        wall7 = new Wall(0, 435, 150, 10); // horizontal left side
+        wall8 = new Wall(200, 435, 140, 10); // Horizontal down middle
+        wall9 = new Wall(0, 500, 115, 10); // Horizontal down left
+        wall10 = new Wall(165, 500, 115, 10); // horizontal downdown middle
+        wall11 = new Wall(330, 435, 10, 155); // Vertical down middle
+        wall12 = new Wall(165, 500, 10, 140); // Vertical down left
+        wall13 = new Wall(480, 200, 10, 450); // Vertical right side of box
+        wall14 = new Wall(330, 200, 10, 185); // Left side of box
+        wall15 = new Wall(330, 200, 150, 10); // Top of box
+        wall16 = new Wall(120, 130, 160, 255); // Big box
+
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -65,21 +68,24 @@ public class LevelOne implements Serializable {
         wallList.add(wall12);
         wallList.add(wall13);
         wallList.add(wall14);
-        //wallList.add(wall15);
+        wallList.add(wall15);
+        wallList.add(wall16);
+
+
+
+
 
         // ENEMY
-        enemy1 = new Enemy(20,440, 6,0,320,400);
-        enemy2 = new Enemy(500, 168, 0,5, 300,350);
-        enemy3 = new Enemy(200, 100, 0, 4, 200,500);
-        enemy4 = new Enemy(430, 400,0,6,300,580);
-        enemy5 = new Enemy(140,30,5,0,500,200); // Enemy TOP */
+        enemy1 = new Enemy(20,450, 6,0,290,400);
+        enemy2 = new Enemy(290, 10, 0, 5, 290, 380);
+        enemy3 = new Enemy(350, 210, 5, 3, 440, 590);
+
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
         enemyList.add(enemy2);
         enemyList.add(enemy3);
-        enemyList.add(enemy4);
-        enemyList.add(enemy5);
+
 
 
         // FRUIT

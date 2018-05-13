@@ -117,7 +117,7 @@ public class GameSession implements Serializable {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        monkey = new Monkey(10, 10);
+        monkey = new Monkey(15, 10);
 
 
     }

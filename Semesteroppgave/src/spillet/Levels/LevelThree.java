@@ -31,21 +31,15 @@ public class LevelThree implements Serializable {
 
 
     public LevelThree() {
-        wall1 = new Wall(0, 0, WIDTH-75, 10); // TOP
-        wall2 = new Wall(WIDTH - 10, 0, 10, HEIGHT-85); // Right wall
+        wall1 = new Wall(0, 0, WIDTH-80, 10); // TOP
+        wall2 = new Wall( 640, 0, 10, HEIGHT); // Right wall
         wall3 = new Wall(0, 0, 10, HEIGHT); // Left wall
         wall4 = new Wall(0, 640, WIDTH, 10); // Bottom wall
 
-        wall5 = new Wall(75, 500, 10, 250);  // Left bottom corner
-        wall6 = new Wall(150, 425, 10, 250); // Second left bottom corner
-        wall7 = new Wall(0, 425, 75, 10); // Short one, left bottom corner
-        wall8 = new Wall(85, 0, 10, 150); // Top left corner
-        wall9 = new Wall(385, 315, 10, 250); // Vertical right side of the bottom box
-        wall10 = new Wall(225, 425, 160, 10); // Horizontal top of the bottom box
-        wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
-        wall12 = new Wall(170, 200, 225, 115); // Big box
-        wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
-        gate = new Gate(575, 0, 85, 10); // Finish line
+        wall5 = new Wall(540, 580, 100, 10); // Entry horizontal bottom right
+
+
+        gate = new Gate(570, 0, 70, 10); // Finish line
 
 
         wallList = new ArrayList<>();
@@ -54,15 +48,7 @@ public class LevelThree implements Serializable {
         wallList.add(wall3);
         wallList.add(wall4);
         wallList.add(wall5);
-        wallList.add(wall6);
-        wallList.add(wall7);
-        wallList.add(wall8);
-        wallList.add(wall9);
-        wallList.add(wall10);
-        wallList.add(wall11);
-        wallList.add(wall12);
-        wallList.add(wall13);
-        //wallList.add(wall14);
+
 
 
         enemy1 = new Enemy(20,360, 7,0,320,400);  // Horizontal left
