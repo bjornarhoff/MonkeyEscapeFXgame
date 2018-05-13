@@ -61,7 +61,6 @@ public class GameSession implements Serializable {
         sound.play();
         setScene();
         Timer();
-
     }
 
     /**
@@ -89,7 +88,6 @@ public class GameSession implements Serializable {
 
                         setGameState(score, currentLevel, monkey.getX(), monkey.getY());
 
-
                     }
                 }
             }
@@ -113,13 +111,10 @@ public class GameSession implements Serializable {
             setNodeVisible("gameCanvas");
         }
 
-
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
         monkey = new Monkey(10, 10);
-
-
     }
 
     /**
@@ -155,7 +150,7 @@ public class GameSession implements Serializable {
         } else if (getCurrentLevel() == 3) {
             levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 580, 595);
             levelThree.getGate().render(gc);
-        }else if (getCurrentLevel() == 4) {
+        } else if (getCurrentLevel() == 4) {
             levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList(), levelFour.getGate(), 1, 10, 10);
             levelFour.getGate().render(gc);
         }
@@ -219,11 +214,8 @@ public class GameSession implements Serializable {
                 gc.strokeText("CollisionTop", 150, 200);
                 gc.setStroke(Color.WHITE);
             }
-
         }
-
     }
-
 
     public void fruitIterator(ArrayList<Fruit> fruitList) {
         Iterator<Fruit> fruktIterator = fruitList.iterator();
@@ -251,12 +243,6 @@ public class GameSession implements Serializable {
             enemy.bounce();
 
             if (monkey.collide(enemy)) {
-                System.out.println("DØD");
-                score = 0;
-            }
-
-/*
-            if (monkey.collide(enemy)) {
                 score = 0;
                 timer.stop();
 
@@ -266,11 +252,9 @@ public class GameSession implements Serializable {
                         canvas.setVisible(false);
                     }
                 }
-            } */
+            }
         }
     }
-
-
 
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
@@ -293,8 +277,6 @@ public class GameSession implements Serializable {
         gc.setStroke(WHITE);
     }
 
-
-
     /**
      * Arraylist for å sjekke input. Setter spillet på pause (går til menyen)
      */
@@ -316,7 +298,6 @@ public class GameSession implements Serializable {
         save.setMonkeyY(monkeyY);
     }
 
-
     /**
      * Pause method
      */
@@ -332,12 +313,14 @@ public class GameSession implements Serializable {
     }
 
     public void saveGame() {
-        save.setGameState("Save1", score, currentLevel, monkey.getX(), monkey.getY());
+        save.setGameState("Save1", score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList());
     }
 
     public void loadGame() {
+        save.setGameState("Save1", score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList());
         save.getGameState();
         System.out.println("Current score: " + save.getScore() + " Current Level: " + save.getCurrentLevel());
+     //   save.getFruitArrayList();
     }
 
 

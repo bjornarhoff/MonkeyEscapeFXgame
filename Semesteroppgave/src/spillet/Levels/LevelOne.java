@@ -6,7 +6,7 @@ import spillet.Fruit;
 import spillet.Gate;
 import spillet.Wall;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +23,9 @@ public class LevelOne implements Serializable {
     private ArrayList<Wall> wallList;
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
+    private ArrayList<Fruit> fruitSrList;
+
+    private String filePathSr = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/outbox.ser";
 
     private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
     private Enemy enemy1, enemy2, enemy3,enemy4,enemy5;
@@ -112,5 +115,38 @@ public class LevelOne implements Serializable {
 
     public Gate getGate() {
         return gate;
+    }
+
+    public void serializeArray() {
+
+        try {
+            FileOutputStream fo = new FileOutputStream(filePathSr);
+            ObjectOutputStream oo = new ObjectOutputStream(fo);
+
+            oo.writeObject(fruitList);
+            System.out.println("a message serializd into outbox");
+            //p.println(text);
+            oo.close();
+            fo.close();
+        } catch (IOException e) {
+            System.err.println("error writing to file");
+        }
+    }
+
+    public ArrayList<Fruit> getFruitArrayList() {
+        try {
+            FileInputStream fi = new FileInputStream(filePathSr);
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            this.fruitSrList = (ArrayList<Fruit>) oi.readObject();
+
+            oi.close();
+        } catch (IOException e) {
+            System.out.println("IUN");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return this.fruitSrList;
+
     }
 }

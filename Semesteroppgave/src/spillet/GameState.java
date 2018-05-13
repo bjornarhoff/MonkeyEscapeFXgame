@@ -1,48 +1,68 @@
 package spillet;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class GameState {
+public class GameState implements Serializable {
 
     private File file;
-    private PrintWriter pw;
-    private StringBuilder sb;
+    private PrintWriter pwOne;
+
+    private StringBuilder sbOne;
     private int score;
     private int currentLevel;
     private double monkeyX;
     private double monkeyY;
-    private BufferedReader br;
-    private String filePath = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/gameState.csv";
+    private BufferedReader brOne;
+    private ArrayList<Fruit> fruitArrayList;
+    private ArrayList<Fruit> fruitArrayList2;
+    private String filePathCsv = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/gameState.csv";
+    private String filePathSr = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/outbox.ser";
+    private String filePathTxt = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/file.txt";
 
-    public GameState()  {
+    public GameState() {
 
-        file = new File (filePath);;
+        file = new File(filePathTxt);
 
 
 
     }
 
-    public void setGameState(String save, int score, int currentLevel, double monkeyX, double monkeyY){
+    public void setGameState(String save, int score, int currentLevel, double monkeyX, double monkeyY, ArrayList<Fruit> fruitList) {
 
         try {
-            pw = new PrintWriter(file);
+            pwOne = new PrintWriter(file);
 
-            sb = new StringBuilder();
+            sbOne = new StringBuilder();
 
-            sb.append(save + ",");
-            sb.append(score + ",");
-            sb.append(currentLevel + ",");
-            sb.append(monkeyX + ",");
-            sb.append(monkeyY + ",");
-            sb.append("\n");
+            sbOne.append(save + ",");
+            sbOne.append(score + ",");
+            sbOne.append(currentLevel + ",");
+            sbOne.append(monkeyX + ",");
+            sbOne.append(monkeyY + ",");
 
-            pw.write(sb.toString());
-            pw.close();
+            Iterator<Fruit> fruktIterator = fruitList.iterator();
+            while (fruktIterator.hasNext()) {
+                Fruit fruit = fruktIterator.next();
+
+                String fruitString = String.valueOf(fruit.exists());
+                sbOne.append(fruitString + ",");
+            }
+
+            sbOne.append("\n");
+            sbOne.append("HEYY");
+
+            pwOne.write(sbOne.toString());
 
 
-        }
-        catch (FileNotFoundException e) {
+            pwOne.close();
+
+
+
+        } catch (FileNotFoundException e) {
             System.err.println("File not found! Make sure that pathname of file is correct");
         }
 
@@ -51,30 +71,34 @@ public class GameState {
     public void getGameState() {
 
         try {
-            br = new BufferedReader(new FileReader(filePath));
+            brOne = new BufferedReader(new FileReader(filePathCsv));
 
             String line;
 
-            while ((line = br.readLine()) != null) {
 
-                // use comma as separator
+            while ((line = brOne.readLine()) != null) {
+
+     /*           // use comma as separator
                 String[] gameState = line.split(",");
 
-              //  System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
+                //  System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
 
                 setScore(Integer.parseInt(gameState[1]));
                 setCurrentLevel(Integer.parseInt(gameState[2]));
                 setMonkeyX(Double.parseDouble(gameState[3]));
-                setMonkeyY(Double.parseDouble(gameState[4]));
+                setMonkeyY(Double.parseDouble(gameState[4])); */
+
+                System.out.println(line);
 
             }
+
+
         } catch (IOException e) {
             System.out.println("IOException in getGameState");
             System.out.println(e.getMessage());
 
         }
     }
-
 
 
     public void setScore(int score) {
@@ -112,4 +136,23 @@ public class GameState {
     public void setMonkeyY(double monkeyY) {
         this.monkeyY = monkeyY;
     }
+
+
+/*
+    public ArrayList<Fruit> getFruitArrayList() {
+        try {
+            FileInputStream fi = new FileInputStream(filePathSr);
+            ObjectInputStream oi = new ObjectInputStream(fi);
+            fruitArrayList2 = (ArrayList<Fruit>) oi.readObject();
+
+            oi.close();
+        } catch (IOException e) {
+            System.out.println("IUN");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return fruitArrayList2;
+
+    } */
 }

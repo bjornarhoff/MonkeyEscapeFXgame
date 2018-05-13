@@ -104,7 +104,7 @@ public class GameObject implements Serializable {
     }
 
     public void setDX(double DX) {
-        this.DX=DX;
+        this.DX = DX;
     }
 
     public void setDY(double DY) {

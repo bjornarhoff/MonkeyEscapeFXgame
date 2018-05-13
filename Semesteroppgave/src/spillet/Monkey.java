@@ -15,14 +15,14 @@ public class Monkey extends GameObject {
 
     private double playerWidth = 50;
     private double playerHeight = 50;
-    Image monkeyDown = new Image("IMG/monkeyDown.png");
-    Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
-    Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");
-    Image monkeyLeft = new Image("IMG/monkeyLeft.png");
-    Image monkeyRight = new Image("IMG/monkeyRight.png");
-    Image monkeyUp = new Image("IMG/monkeyUp.png");
-    Image monkeyUpLeft = new Image("IMG/monkeyUpLeft.png");
-    Image monkeyUpRight = new Image("IMG/monkeyUpRight.png");
+    private Image monkeyDown = new Image("IMG/monkeyDown.png");
+    private Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
+    private Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");
+    private Image monkeyLeft = new Image("IMG/monkeyLeft.png");
+    private Image monkeyRight = new Image("IMG/monkeyRight.png");
+    private Image monkeyUp = new Image("IMG/monkeyUp.png");
+    private Image monkeyUpLeft = new Image("IMG/monkeyUpLeft.png");
+    private Image monkeyUpRight = new Image("IMG/monkeyUpRight.png");
 
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
