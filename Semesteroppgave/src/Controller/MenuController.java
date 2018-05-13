@@ -27,19 +27,34 @@ public class MenuController implements Initializable{
     @FXML
     public void newGame() {
         gs = new GameSession(rootPane, this);
-        //rootPane.getChildren().add(gs.getCanvas());
     }
 
-    @FXML
-    public void loadGame() {
-        System.out.println("Load game");
-    }
-
-    @FXML
     public void exitGame() {
         System.out.println("Spillet er avsluttet");
         System.exit(0);
     }
+
+    // Load game menu
+    @FXML
+    public void loadGame() {
+        setMenuPage("loadSlot");
+        System.out.println("Load game");
+    }
+
+    @FXML
+    public void loadSlot1 () {
+        System.out.println("slot 1 loaded");
+    }
+    @FXML
+    public void loadSlot2 () {
+        System.out.println("slot 2 loaded");
+    }
+
+    @FXML
+    public void loadSlot3 () {
+        System.out.println("slot 3 loaded");
+    }
+
 
     @FXML
     public void gameOver() {
@@ -56,9 +71,40 @@ public class MenuController implements Initializable{
         gs.pause();
     }
 
+
+    // Save game menu
     @FXML
     public void saveGame() {
+        setMenuPage("saveSlot");
         System.out.println("Game saved");
+    }
+
+    @FXML
+    public void saveSlot1 () {
+        System.out.println("slot 1 saved");
+    }
+
+    @FXML
+    public void saveSlot2 () {
+        System.out.println("slot 2 saved");
+    }
+
+    @FXML
+    public void saveSlot3 () {
+        System.out.println("slot 3 saved");
+    }
+
+
+
+    // Back to menu buttons
+    @FXML
+    public void backToMenu () {
+        setMenuPage("startMenuButtons");
+    }
+
+    @FXML
+    public void backToPauseMenu () {
+        setMenuPage("ingameMenuButtons");
     }
 
 
