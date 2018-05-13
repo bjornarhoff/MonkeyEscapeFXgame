@@ -79,12 +79,13 @@ public class LevelOne implements Serializable {
         enemy1 = new Enemy(20,450, 6,0,290,400);
         enemy2 = new Enemy(290, 10, 0, 5, 290, 380);
         enemy3 = new Enemy(350, 210, 5, 3, 440, 590);
-
+        enemy4 = new Enemy(80, 10, 0, 5,130, 380);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
         enemyList.add(enemy2);
         enemyList.add(enemy3);
+        enemyList.add(enemy4);
 
 
 
