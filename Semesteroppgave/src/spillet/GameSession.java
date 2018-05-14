@@ -348,4 +348,5 @@ public class GameSession implements Serializable {
     public GameSession getGS() {
         return this;
     }
+
 }
