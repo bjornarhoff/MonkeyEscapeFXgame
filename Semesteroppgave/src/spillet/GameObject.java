@@ -103,22 +103,6 @@ public class GameObject implements Serializable {
         return exists;
     }
 
-    public void setDX(double DX) {
-        this.DX = DX;
-    }
-
-    public void setDY(double DY) {
-        this.DY = DY;
-    }
-
-    public double getDX() {
-        return DX;
-    }
-
-    public double getDY() {
-        return DY;
-    }
-
     /**
      * Metode for å rendere avataren med image, positionX, positionY samt tar bredde w og høyde h som parametere
      *

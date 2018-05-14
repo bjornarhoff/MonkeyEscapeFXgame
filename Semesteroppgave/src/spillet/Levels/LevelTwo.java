@@ -17,33 +17,38 @@ public class LevelTwo implements Serializable {
     private ArrayList<Fruit> fruitList;
 
     private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15,wall16,wall17;
-    private Enemy enemy1, enemy2, enemy3;
+    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(0,530,10,100);
+        gate = new Gate(0,577,10,70);
 
-        wall1 = new Wall(0, 0, 10, HEIGHT-100); // LEFT WALL
-        wall2 = new Wall(80, 0, WIDTH, 10); // TOP WALL
+        wall1 = new Wall(0, 0, 10, HEIGHT-65); // LEFT WALL
+        wall2 = new Wall(0, 0, WIDTH, 10); // TOP WALL
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // RIGHT WALL
         wall4 = new Wall(0, 640, WIDTH, 10); // BOTTOM WAll
 
-        wall5 = new Wall(80, 0, 10, 200);
-        wall6 = new Wall(80, 510, 10, 70);
-        wall7 = new Wall(155, 370, 160, 10);
-        wall8 = new Wall(155, 370, 10, 120);
-        wall9 = new Wall(190, 80, 10, 190);
-        wall10 = new Wall(315, 180, 10, 200);
-        wall11 = new Wall(570, 0, 10, 100);
-        wall12 = new Wall(440, 130, 10, 100);
-        wall13 = new Wall(283, 520, 200, 10);
-        wall14 = new Wall(283, 450, 10, 130);
-        wall15 = new Wall(540, 410, 100, 10);
-        wall16 = new Wall (565,550,10,90 );
-        wall17 = new Wall (400,350,80,10);
+        wall5 = new Wall(580, 0, 10, 70); //  Entry wall
+        wall6 = new Wall(430, 70, 160, 10); // Top right box
+        wall7 = new Wall(430, 70, 10, 510); // Left side of right box
+        wall8 = new Wall(60, 70, 320, 10); // Top horizontal wall
+        wall9 = new Wall(370, 70, 10, 90); // Short vertical top middle
+        wall10 = new Wall(370, 210, 10, 150); // Little longer vertical middle
+        wall11= new Wall(370, 410, 10, 170); // Vertical down middle
+        wall12 = new Wall(305, 150, 75, 10); // Very short horizontal top middle
+        wall13 = new Wall(305, 150, 10, 130); // Vertical middle
+        wall14 = new Wall(130, 350, 185, 160); // Box
+        wall15 = new Wall(60, 70, 10, 210); // Vertical top left
+        wall16 = new Wall(60, 350, 10, 230); // Vertical down left
+        wall17 = new Wall(130, 570,240, 10); // Horizontal down left
+
+
+
+
+
 
 
         wallList = new ArrayList<>();
@@ -66,23 +71,32 @@ public class LevelTwo implements Serializable {
         wallList.add(wall17);
 
 
+
         // ENEMY
-        enemy1 = new Enemy(20,440, 7,0,320,400);
-        enemy2 = new Enemy(320, 168, 0,2, 300,600);
-        enemy3 = new Enemy(200, 100, 0, 4, 200,500);
+        enemy1 = new Enemy(10,290, 6,0,330,290);
+        enemy2 = new Enemy(325, 168, 0,6, 300,520);
+        enemy3 = new Enemy(15, 15, 9, 0, 540,15);
+        enemy4 = new Enemy(460, 380, 0, 5, 450, 580);
+        enemy5 = new Enemy(520, 240, 0, 5, 500, 400);
+        enemy6 = new Enemy(600, 170, 0 , 5, 570, 340);
+        enemy7 = new Enemy(600, 380, 0,5, 600, 580);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
         enemyList.add(enemy2);
         enemyList.add(enemy3);
+        enemyList.add(enemy4);
+        enemyList.add(enemy5);
+        enemyList.add(enemy6);
+        enemyList.add(enemy7);
 
 
         // FRUITS
-        fruit1 = new Fruit(450, 450);
-        fruit2 = new Fruit(420 ,100);
-        fruit3 = new Fruit( 50, 300);
-        fruit4 = new Fruit(10,400);
-        fruit5 = new Fruit(100,500);
+        fruit1 = new Fruit(600, 380);
+        fruit2 = new Fruit(600 ,610);
+        fruit3 = new Fruit( 540, 30);
+        fruit4 = new Fruit(330,110);
+        fruit5 = new Fruit(20,25);
 
         fruitList = new ArrayList<>();
         fruitList.add(fruit1);

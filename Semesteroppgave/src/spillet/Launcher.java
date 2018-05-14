@@ -24,6 +24,8 @@ public class Launcher extends Application {
         launch(args);
     }
 
+
+
     /**
      * Metoden overrider start-metoden i Application og starter vinduet og legger til innholdet.
      *
