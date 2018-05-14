@@ -54,8 +54,13 @@ public class LevelThree implements Serializable {
         wall20 = new Wall(220, 200, 205, 10); // Horizontal up middle
         wall21 = new Wall(415, 140, 10, 60); // Short vertical right middle
         wall22 = new Wall(320, 200, 10, 60); // Short vertical middle divider
-        wall23 = new Wall(120, 260, 50, 10); // Short vertical left middle
+        wall23 = new Wall(120, 260, 50, 10); // Short horizontal left middle
         wall24 = new Wall(220, 260, 150, 10); // Horizontal bottom divider middle
+        wall25 = new Wall(420, 200, 55, 10); // Short horizontal right middle
+        wall26 = new Wall(120, 260, 10, 260); // Vertical middle right
+        wall27 = new Wall(120, 340, 200, 10); // Long horizontal middle
+        wall28 = new Wall(320, 340, 10, 60); // Short vertical down middle
+        wall29 = new Wall(180, 400, 200, 10); // Horizontal down middle
 
 
 
@@ -89,6 +94,11 @@ public class LevelThree implements Serializable {
         wallList.add(wall22);
         wallList.add(wall23);
         wallList.add(wall24);
+        wallList.add(wall25);
+        wallList.add(wall26);
+        wallList.add(wall27);
+        wallList.add(wall28);
+        wallList.add(wall29);
 
 
 

@@ -43,7 +43,7 @@ public class GameSession implements Serializable {
     private LevelTwo levelTwo = new LevelTwo();
     private LevelFour levelFour = new LevelFour();
     private LevelThree levelThree = new LevelThree();
-    private int currentLevel = 1;
+    private int currentLevel = 3;
     private int score = 0;
     private GameState save = new GameState();
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
