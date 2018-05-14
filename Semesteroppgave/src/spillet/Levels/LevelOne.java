@@ -24,8 +24,8 @@ public class LevelOne implements Serializable {
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
 
-    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15, wall16, wall17, wall18, wall19;
-    private Enemy enemy1, enemy2, enemy3,enemy4,enemy5;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15, wall16, wall17, wall18, wall19, wall20, wall21, wall22;
+    private Enemy enemy1, enemy2, enemy3,enemy4,enemy5, enemy6;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
@@ -51,6 +51,12 @@ public class LevelOne implements Serializable {
         wall14 = new Wall(330, 200, 10, 185); // Left side of box
         wall15 = new Wall(330, 200, 150, 10); // Top of box
         wall16 = new Wall(120, 130, 160, 255); // Big box
+        wall17 = new Wall(410, 10, 10, 70);
+        wall18 = new Wall(410, 130, 10, 70);
+        wall19 = new Wall(350, 70, 10, 70);
+        wall20 = new Wall(480, 70, 10, 70);
+        wall21 = new Wall(480, 70, 100, 10);
+        wall22 = new Wall(480, 130, 100, 10);
 
 
         wallList = new ArrayList<>();
@@ -70,6 +76,12 @@ public class LevelOne implements Serializable {
         wallList.add(wall14);
         wallList.add(wall15);
         wallList.add(wall16);
+        wallList.add(wall17);
+        wallList.add(wall18);
+        wallList.add(wall19);
+        wallList.add(wall20);
+        wallList.add(wall21);
+        wallList.add(wall22);
 
 
 
@@ -80,21 +92,25 @@ public class LevelOne implements Serializable {
         enemy2 = new Enemy(290, 10, 0, 5, 290, 380);
         enemy3 = new Enemy(350, 210, 5, 3, 440, 590);
         enemy4 = new Enemy(80, 10, 0, 5,130, 380);
+        enemy5 = new Enemy(600, 15, 0, 3, 600, 150);
+        enemy6 = new Enemy(500, 200, 6,4, 600, 590);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
         enemyList.add(enemy2);
         enemyList.add(enemy3);
         enemyList.add(enemy4);
+        enemyList.add(enemy5);
+        enemyList.add(enemy6);
 
 
 
         // FRUIT
-        fruit1 = new Fruit(590, 460);
-        fruit2 = new Fruit(430 ,305);
-        fruit3 = new Fruit( 595, 95);
-        fruit4 = new Fruit(10,400);
-        fruit5 = new Fruit(100,500);
+        fruit1 = new Fruit(15, 610); // Bottom left
+        fruit2 = new Fruit(180 ,610); // Bottom middle
+        fruit3 = new Fruit( 80, 15); // Top left
+        fruit4 = new Fruit(440,220); // Middle right
+        fruit5 = new Fruit(500,90); // Top right
 
         fruitList = new ArrayList<>();
         fruitList.add(fruit1);
