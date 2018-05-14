@@ -1,7 +1,7 @@
 package spillet;
 
 import Controller.MenuController;
-import filbehandling.Filbehandling;
+
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
