@@ -3,8 +3,10 @@ package spillet.Levels;
 
 import spillet.Enemy;
 import spillet.Fruit;
+import spillet.Gate;
 import spillet.Wall;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * @Gaute, @Eirik, @Bjørnar
  */
 
-public class LevelThree {
+public class LevelThree implements Serializable {
 
     private final int WIDTH = 650;
     private final int HEIGHT = 650;
@@ -22,27 +24,49 @@ public class LevelThree {
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
 
-    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15, wall16, wall17, wall18, wall19, wall20, wall21, wall22, wall23, wall24, wall25, wall26, wall27, wall28, wall29, wall30;
     private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
+    private Gate gate;
 
 
     public LevelThree() {
-        wall1 = new Wall(85, 0, WIDTH, 10); // TOP
-        wall2 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
+        wall1 = new Wall(0, 0, WIDTH-80, 10); // TOP
+        wall2 = new Wall( 640, 0, 10, HEIGHT); // Right wall
         wall3 = new Wall(0, 0, 10, HEIGHT); // Left wall
-        wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
+        wall4 = new Wall(0, 640, WIDTH, 10); // Bottom wall
 
-        wall5 = new Wall(75, 500, 10, 250);  // Left bottom corner
-        wall6 = new Wall(150, 425, 10, 250); // Second left bottom corner
-        wall7 = new Wall(0, 425, 75, 10); // Short one, left bottom corner
-        wall8 = new Wall(85, 0, 10, 150); // Top left corner
-        wall9 = new Wall(385, 315, 10, 250); // Vertical right side of the bottom box
-        wall10 = new Wall(225, 425, 160, 10); // Horizontal top of the bottom box
-        wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
-        wall12 = new Wall(170, 200, 225, 115); // Big box
-        wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
-        // wall14 = new Wall(0, 0, 85, 10); // Finish line
+        wall5 = new Wall(400, 580, 240, 10); // Entry horizontal bottom right
+        wall6 = new Wall(475, 0, 10, 300); // Long vertical  up right
+        wall7 = new Wall(475, 350, 10, 180); // Long vertical down right
+        wall8 = new Wall(200, 580, 150, 10); // Horizontal down middle
+        wall9 = new Wall(60, 580, 90, 10); // Horizontal down left
+        wall10 = new Wall(60, 450, 10, 130); // Vertical down left
+        wall11 = new Wall(60, 260, 10, 140); // Vertical middle left
+        wall12 = new Wall(60, 80, 10, 110); // Vertical top left
+        wall13 = new Wall(120, 80, 100, 10); // Horizontal top left
+        wall14 = new Wall(270, 80, 120, 10); // Horizontal top middle
+        wall15 = new Wall(270, 90, 10, 50); // Short vertical middle
+        wall16 = new Wall(270, 140, 205, 10); // Horizontal top right
+        wall17 = new Wall(120, 140, 100, 10); // Horizontal second top middle
+        wall18 = new Wall(120, 140, 10, 50); // Vertical second top left
+        wall19 = new Wall(220, 140, 10, 60); // Vertical top second middle
+        wall20 = new Wall(220, 200, 205, 10); // Horizontal up middle
+        wall21 = new Wall(415, 140, 10, 60); // Short vertical right middle
+        wall22 = new Wall(320, 200, 10, 60); // Short vertical middle divider
+        wall23 = new Wall(120, 260, 50, 10); // Short horizontal left middle
+        wall24 = new Wall(220, 260, 150, 10); // Horizontal bottom divider middle
+        wall25 = new Wall(420, 200, 55, 10); // Short horizontal right middle
+        wall26 = new Wall(120, 260, 10, 260); // Vertical middle right
+        wall27 = new Wall(120, 340, 200, 10); // Long horizontal middle
+        wall28 = new Wall(320, 340, 10, 60); // Short vertical down middle
+        wall29 = new Wall(180, 400, 200, 10); // Horizontal down middle
+
+
+
+
+
+        gate = new Gate(570, 0, 70, 10); // Finish line
 
 
         wallList = new ArrayList<>();
@@ -59,10 +83,27 @@ public class LevelThree {
         wallList.add(wall11);
         wallList.add(wall12);
         wallList.add(wall13);
-        //wallList.add(wall14);
+        wallList.add(wall14);
+        wallList.add(wall15);
+        wallList.add(wall16);
+        wallList.add(wall17);
+        wallList.add(wall18);
+        wallList.add(wall19);
+        wallList.add(wall20);
+        wallList.add(wall21);
+        wallList.add(wall22);
+        wallList.add(wall23);
+        wallList.add(wall24);
+        wallList.add(wall25);
+        wallList.add(wall26);
+        wallList.add(wall27);
+        wallList.add(wall28);
+        wallList.add(wall29);
 
 
-        enemy1 = new Enemy(20,360, 7,0,320,400);  // Horizontal left
+
+
+        enemy1 = new Enemy(75,80, 0,4,75,500);  // Horizontal left
         enemy2 = new Enemy(165, 450, 2,7, 325,575); // Zig Zag in the box
         enemy3 = new Enemy(415, 135, 0, 5, 200,500); // Vertical middle lane
         enemy4 = new Enemy(500, 100, 4, 5, 575, 500); // Right side
@@ -101,5 +142,9 @@ public class LevelThree {
 
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
+    }
+
+    public Gate getGate() {
+        return gate;
     }
 }

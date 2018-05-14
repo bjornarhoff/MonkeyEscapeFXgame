@@ -6,7 +6,7 @@ public class Wall extends GameObject {
 
     public Wall(double x, double y, double w, double h) {
         super(x, y);
-        Image bilde = new Image("IMG/wall.png");
+        Image bilde = new Image("IMG/woods.jpg");
         setImage(bilde);
         setX(x);
         setY(y);

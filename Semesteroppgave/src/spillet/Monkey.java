@@ -13,16 +13,17 @@ import java.util.*;
 
 public class Monkey extends GameObject {
 
-    private double playerWidth = 50;
-    private double playerHeight = 50;
-    Image monkeyDown = new Image("IMG/monkeyDown.png");
-    Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
-    Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");
-    Image monkeyLeft = new Image("IMG/monkeyLeft.png");
-    Image monkeyRight = new Image("IMG/monkeyRight.png");
-    Image monkeyUp = new Image("IMG/monkeyUp.png");
-    Image monkeyUpLeft = new Image("IMG/monkeyUpLeft.png");
-    Image monkeyUpRight = new Image("IMG/monkeyUpRight.png");
+    private double playerWidth = 40;
+    private double playerHeight = 40;
+    private Image monkeyDown = new Image("IMG/monkeyDown.png");
+    private Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
+    private Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");
+    private Image monkeyLeft = new Image("IMG/monkeyLeft.png");
+    private Image monkeyRight = new Image("IMG/monkeyRight.png");
+    private Image monkeyUp = new Image("IMG/monkeyUp.png");
+    private Image monkeyUpLeft = new Image("IMG/monkeyUpLeft.png");
+    private Image monkeyUpRight = new Image("IMG/monkeyUpRight.png");
+
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
      *
@@ -31,7 +32,7 @@ public class Monkey extends GameObject {
      */
     public Monkey(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/monkeyUp.png");
+        Image bilde = new Image("IMG/monkeydown.png");
 
         setImage(bilde);
         setX(x);
@@ -41,19 +42,19 @@ public class Monkey extends GameObject {
     }
 
     public Rectangle2D boundaryLeft() {
-        return new Rectangle2D(getX(), getY() + 5, 5, getH() - 10);
+        return new Rectangle2D(getX(), getY() + 10, 5, getH() - 20);
     }
 
     public Rectangle2D boundaryRight() {
-        return new Rectangle2D(getX() + getW() - 5, getY() + 5, 5, getH() - 10);
+        return new Rectangle2D(getX() + getW() - 5, getY() + 10, 5, getH() - 20);
     }
 
     public Rectangle2D boundaryTop() {
-        return new Rectangle2D(getX() + 5, getY(), getW() - 10, 5);
+        return new Rectangle2D(getX() + 10, getY(), getW() - 20, 5);
     }
 
     public Rectangle2D boundaryBottom() {
-        return new Rectangle2D(getX() + 5, getY() + getH() - 5, getW() - 10, 5);
+        return new Rectangle2D(getX() + 10, getY() + getH() - 5, getW() - 20, 5);
     }
 
     public boolean collisionLeft(GameObject s) {
@@ -79,52 +80,91 @@ public class Monkey extends GameObject {
     public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
         // Move Up
-        if (input.contains("UP") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionTop")) {
-            moveAngled((Math.PI) * 3 / 2);
+        if (input.contains("UP") && !input.contains("LEFT") && !input.contains("RIGHT")) {
             setImage(monkeyUp);
 
+            if (!collision.contains("CollisionTop")) {
+                moveAngled((Math.PI) * 3 / 2);
+            }
         }
 
         // Move Down
-        if (input.contains("DOWN") && !input.contains("LEFT") && !input.contains("RIGHT") && !collision.contains("CollisionBottom")) {
-            moveAngled(Math.PI / 2);
+        if (input.contains("DOWN") && !input.contains("LEFT") && !input.contains("RIGHT")) {
             setImage(monkeyDown);
+
+            if (!collision.contains("CollisionBottom")) {
+                moveAngled(Math.PI / 2);
+            }
         }
 
         // Move Left
-        if (input.contains("LEFT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionLeft")) {
-            moveAngled(Math.PI);
+        if (input.contains("LEFT") && !input.contains("UP") && !input.contains("DOWN")) {
             setImage(monkeyLeft);
+
+            if (!collision.contains("CollisionLeft")) {
+                moveAngled(Math.PI);
+            }
         }
 
         // Move Right
-        if (input.contains("RIGHT") && !input.contains("UP") && !input.contains("DOWN") && !collision.contains("CollisionRight")) {
-            moveAngled(0);
+        if (input.contains("RIGHT") && !input.contains("UP") && !input.contains("DOWN")) {
             setImage(monkeyRight);
+
+            if (!collision.contains("CollisionRight")) {
+                moveAngled(0);
+            }
         }
 
         // Move Up-Right
-        if (input.contains("UP") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
-            moveAngled(Math.PI * 7 / 4);
+        if (input.contains("UP") && input.contains("RIGHT")) {
             setImage(monkeyUpRight);
+
+            if (!collision.contains("CollisionRight") && !collision.contains("CollisionTop")) {
+                moveAngled(Math.PI * 7 / 4);
+            } else if (!collision.contains("CollisionTop")) {
+                moveAngled((Math.PI) * 3 / 2);
+            } else if (!collision.contains("CollisionRight")) {
+                moveAngled(0);
+            }
         }
 
         // Move Down-Right
-        if (input.contains("DOWN") && input.contains("RIGHT") && !collision.contains("CollisionRight") && !collision.contains("CollisionBottom")) {
-            moveAngled(Math.PI / 4);
+        if (input.contains("DOWN") && input.contains("RIGHT")) {
             setImage(monkeyDownRight);
+
+            if (!collision.contains("CollisionRight") && !collision.contains("CollisionBottom")) {
+                moveAngled(Math.PI / 4);
+            } else if (!collision.contains("CollisionBottom")) {
+                moveAngled(Math.PI / 2);
+            } else if (!collision.contains("CollisionRight")) {
+                moveAngled(0);
+            }
         }
 
         // Move Down-Left
-        if (input.contains("DOWN") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionBottom")) {
-            moveAngled(Math.PI * 3 / 4);
+        if (input.contains("DOWN") && input.contains("LEFT")) {
             setImage(monkeyDownLeft);
+
+            if (!collision.contains("CollisionLeft") && !collision.contains("CollisionBottom")) {
+                moveAngled(Math.PI * 3 / 4);
+            } else if (!collision.contains("CollisionBottom")) {
+                moveAngled(Math.PI / 2);
+            } else if (!collision.contains("CollisionLeft")) {
+                moveAngled(Math.PI);
+            }
         }
 
         // Move Up-left
-        if (input.contains("UP") && input.contains("LEFT") && !collision.contains("CollisionLeft") && !collision.contains("CollisionTop")) {
-            moveAngled(Math.PI * 5 / 4);
+        if (input.contains("UP") && input.contains("LEFT")) {
             setImage(monkeyUpLeft);
+
+            if (!collision.contains("CollisionLeft") && !collision.contains("CollisionTop")) {
+                moveAngled(Math.PI * 5 / 4);
+            } else if (!collision.contains("CollisionTop")) {
+                moveAngled((Math.PI) * 3 / 2);
+            } else if (!collision.contains("CollisionLeft")) {
+                moveAngled(Math.PI);
+            }
         }
 
         // Menu

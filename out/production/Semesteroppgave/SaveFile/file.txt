@@ -1,0 +1,5 @@
+100 3 87.89949493661155 19.100505063388333 
+true true true true true 
+true true true true true 
+true true true false true 
+true true true true true 

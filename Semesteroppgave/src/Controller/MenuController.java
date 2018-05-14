@@ -19,6 +19,7 @@ public class MenuController implements Initializable{
     private static GameSession gs;
 
 
+
     /**
      * Start menu
      */
@@ -37,6 +38,8 @@ public class MenuController implements Initializable{
     public void loadGame() {
         setMenuPage("loadSlot");
         System.out.println("Load game");
+
+
     }
 
     @FXML
@@ -74,6 +77,9 @@ public class MenuController implements Initializable{
     public void saveGame() {
         setMenuPage("saveSlot");
         System.out.println("Game saved");
+        gs.saveGame();
+        gs.loadGame();
+
     }
 
     @FXML

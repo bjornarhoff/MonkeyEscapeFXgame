@@ -6,21 +6,25 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import spillet.Levels.LevelFour;
 import spillet.Levels.LevelOne;
 import spillet.Levels.LevelThree;
 import spillet.Levels.LevelTwo;
+import spillet.Levels.LevelThree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import static javafx.scene.paint.Color.WHITE;
 
 
-public class GameSession {
+public class GameSession implements Serializable {
 
     private MenuController controller;
     private String gameState;
@@ -29,21 +33,22 @@ public class GameSession {
     public Canvas canvas;
     public AnimationTimer timer;
     private GraphicsContext gc;
-    private final int WIDTH = 850;
-    private final int HEIGHT = 850;
+    private final int WIDTH = 650;
+    private final int HEIGHT = 650;
     private Monkey monkey;
     private long timeLstFrm;
     private ArrayList<String> collision = new ArrayList<>();
-    private ArrayList<Enemy> enemyList = new ArrayList<>();
-    private ArrayList<Wall> wallList = new ArrayList<>();
-    private ArrayList<Fruit> fruitList = new ArrayList<>();
     private LevelOne levelOne = new LevelOne();
     private LevelTwo levelTwo = new LevelTwo();
+    private LevelFour levelFour = new LevelFour();
     private LevelThree levelThree = new LevelThree();
     private int currentLevel = 1;
     private int score = 0;
+    private GameState save = new GameState();
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
+
+
 
     /**
      * Konstruktør
@@ -60,7 +65,6 @@ public class GameSession {
         Timer();
 
     }
-
 
     /**
      * Animation timer
@@ -83,11 +87,11 @@ public class GameSession {
                         drawScore(gc);
                         monkey.move(Input.getInput(), getGS(), collision);
 
-                        //System.out.println(player.getX());
-                        //System.out.println(player.getY());
-
-
                         timeLstFrm = System.nanoTime();
+
+                        save.setGameState(score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList(),
+                                levelTwo.getFruitList(), levelThree.getFruitList(), levelFour.getFruitList());
+
 
                     }
                 }
@@ -116,7 +120,7 @@ public class GameSession {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        monkey = new Monkey(590, 590);
+        monkey = new Monkey(15, 15);
 
 
     }
@@ -146,37 +150,69 @@ public class GameSession {
 
 
         if (getCurrentLevel() == 1) {
-            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList());
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 585, 10);
             levelOne.getGate().render(gc);
         } else if (getCurrentLevel() == 2) {
-            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList());
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 575, 550);
             levelTwo.getGate().render(gc);
+        } else if (getCurrentLevel() == 3) {
+            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 580, 595);
+            levelThree.getGate().render(gc);
+        }else if (getCurrentLevel() == 4) {
+            levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList(), levelFour.getGate(), 1, 10, 10);
+            levelFour.getGate().render(gc);
         }
 
+/*
         if (monkey.collide(levelOne.getGate())) {
             setCurrentLevel(2);
+            monkey.setX(585);
+            monkey.setY(10);
+        }
+
+        else if (monkey.collide(levelTwo.getGate())) {
+            setCurrentLevel(3);
+            monkey.setX(575);
+            monkey.setY(550);
+        }
+        else if (monkey.collide(levelThree.getGate())){
+            setCurrentLevel(4);
+            monkey.setX(580);
+            monkey.setY(595);
+        }
+        else if (monkey.collide(levelFour.getGate())){
+            setCurrentLevel(1);
             monkey.setX(10);
             monkey.setY(10);
         }
 
-        if (monkey.collide(levelTwo.getGate())) {
-            setCurrentLevel(1);
-        }
 
-
+*/
         // Tegner avatar
         monkey.render(gc);
 
     }
 
-    public void levelIterator(ArrayList<Wall> wallArrayList, ArrayList<Fruit> fruitArrayList, ArrayList<Enemy> enemyArrayList) {
+
+    public void levelIterator(ArrayList<Wall> wallArrayList, ArrayList<Fruit> fruitArrayList, ArrayList<Enemy> enemyArrayList, Gate gate, int level, double x, double y) {
         wallArrayList.forEach(p -> p.render(gc));
         fruitArrayList.forEach(p -> p.render(gc));
         enemyArrayList.forEach(p -> p.render(gc));
+        gate.render(gc);
 
         collisionIterator(wallArrayList);
         fruitIterator(fruitArrayList);
         enemyIterator(enemyArrayList);
+        gateIterator(gate, level, x, y);
+
+    }
+
+    public void gateIterator(Gate gate, int level, double x, double y) {
+        if (monkey.collide(gate)) {
+            setCurrentLevel(level);
+            monkey.setX(x);
+            monkey.setY(y);
+        }
     }
 
     public void collisionIterator(ArrayList<Wall> wallList) {
@@ -205,7 +241,6 @@ public class GameSession {
             }
 
         }
-
     }
 
     public void fruitIterator(ArrayList<Fruit> fruitList) {
@@ -233,11 +268,7 @@ public class GameSession {
 
             if (monkey.collide(enemy)) {
                 score = 0;
-            }
-
-
-            if (monkey.collide(enemy)) {
-                score = 0;
+                timer.stop();
 
                 for (Node node : nodeList) {
                     if (("gameOver").equals(node.getId())) {
@@ -249,9 +280,7 @@ public class GameSession {
                 }
             }
         }
-
     }
-
 
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
@@ -287,8 +316,6 @@ public class GameSession {
         }
     }
 
-
-
     /**
      * Pause method
      */
@@ -301,6 +328,17 @@ public class GameSession {
             sound.play();
         }
 
+    }
+
+    public void saveGame() {
+        save.saveGame();
+    }
+
+    public void loadGame() {
+        save.saveGame();
+   //     save.getGameState();
+        System.out.println("Current score: " + save.getScore() + " Current Level: " + save.getCurrentLevel());
+     //   save.getFruitArrayList();
     }
 
 
