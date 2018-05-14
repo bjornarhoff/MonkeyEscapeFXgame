@@ -117,36 +117,4 @@ public class LevelOne implements Serializable {
         return gate;
     }
 
-    public void serializeArray() {
-
-        try {
-            FileOutputStream fo = new FileOutputStream(filePathSr);
-            ObjectOutputStream oo = new ObjectOutputStream(fo);
-
-            oo.writeObject(fruitList);
-            System.out.println("a message serializd into outbox");
-            //p.println(text);
-            oo.close();
-            fo.close();
-        } catch (IOException e) {
-            System.err.println("error writing to file");
-        }
-    }
-
-    public ArrayList<Fruit> getFruitArrayList() {
-        try {
-            FileInputStream fi = new FileInputStream(filePathSr);
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            this.fruitSrList = (ArrayList<Fruit>) oi.readObject();
-
-            oi.close();
-        } catch (IOException e) {
-            System.out.println("IUN");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return this.fruitSrList;
-
-    }
 }
