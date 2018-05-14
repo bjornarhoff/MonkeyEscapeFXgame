@@ -30,10 +30,10 @@ public class LevelFour {
 
 
     public LevelFour() {
-        wall1 = new Wall(80, 0, WIDTH, 10); // TOP
+        wall1 = new Wall(85, 0, WIDTH, 10); // TOP
         wall2 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
         wall3 = new Wall(0, 0, 10, HEIGHT); // Left wall
-        wall4 = new Wall(0, HEIGHT - 10, 650, 10); // Bottom wall
+        wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
 
         wall5 = new Wall(75, 500, 10, 250);  // Left bottom corner
         wall6 = new Wall(150, 425, 10, 250); // Second left bottom corner
@@ -44,7 +44,7 @@ public class LevelFour {
         wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
         wall12 = new Wall(170, 200, 225, 115); // Big box
         wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
-        gate = new Gate(10, 0, 70, 10); // Finish line
+        gate = new Gate(0, 0, 85, 10); // Finish line
 
 
         wallList = new ArrayList<>();
