@@ -89,7 +89,8 @@ public class GameSession implements Serializable {
 
                         timeLstFrm = System.nanoTime();
 
-                        setGameState(score, currentLevel, monkey.getX(), monkey.getY());
+                        save.setGameState(score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList(),
+                                levelTwo.getFruitList(), levelThree.getFruitList(), levelFour.getFruitList());
 
 
                     }

@@ -101,7 +101,7 @@ public class GameState {
     public void getGameState() {
 
         try {
-            br = new BufferedReader(new FileReader(filePath));
+            br = new BufferedReader(new FileReader(filePathTxt));
 
             String line;
             String line2;
