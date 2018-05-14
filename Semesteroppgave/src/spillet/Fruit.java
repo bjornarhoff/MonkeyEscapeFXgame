@@ -18,7 +18,7 @@ public class Fruit extends GameObject {
      */
     public Fruit(double x, double y) {
         super(x, y);
-        Image bilde = new Image("/IMG/banana.png");
+        Image bilde = new Image(getClass().getResourceAsStream("/IMG/banana.png"));
         setImage(bilde);
         setX(x);
         setY(y);
