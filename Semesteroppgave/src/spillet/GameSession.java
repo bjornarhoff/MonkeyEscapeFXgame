@@ -92,7 +92,6 @@ public class GameSession implements Serializable {
                         save.setGameState(score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList(),
                                 levelTwo.getFruitList(), levelThree.getFruitList(), levelFour.getFruitList());
 
-
                     }
                 }
             }

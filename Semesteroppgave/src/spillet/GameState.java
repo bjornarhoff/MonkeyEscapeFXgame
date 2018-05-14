@@ -18,13 +18,9 @@ public class GameState {
     private ArrayList<Fruit> fruitArrayList2;
     private ArrayList<Fruit> fruitArrayList3;
     private ArrayList<Fruit> fruitArrayList4;
-    private String filePathTxt = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/file.txt";
+    private String filePathTxt = "IMG/file.txt";
 
     public GameState()  {
-
-        file = new File(filePathTxt);
-
-
 
     }
 
