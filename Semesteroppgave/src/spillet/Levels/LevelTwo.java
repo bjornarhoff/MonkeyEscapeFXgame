@@ -88,8 +88,8 @@ public class LevelTwo implements Serializable {
         enemy5 = new Enemy(520, 240, 0, 5, 500, 400);
         enemy6 = new Enemy(600, 170, 0 , 5, 570, 340);
         enemy7 = new Enemy(600, 380, 0,5, 600, 580);
-        enemy8 = new Enemy(90, 90, 0, 5, 90, 210);
-        enemy9 = new Enemy(250, 90, 0, 5, 260, 210);
+        enemy8 = new Enemy(90, 90, 0, 4, 90, 210);
+        enemy9 = new Enemy(250, 90, 0, 4, 260, 210);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
