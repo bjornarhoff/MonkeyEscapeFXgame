@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import spillet.Levels.LevelFour;
 import spillet.Levels.LevelOne;
-import spillet.Levels.LevelFour;
+import spillet.Levels.LevelThree;
 import spillet.Levels.LevelTwo;
 import spillet.Levels.LevelThree;
 
@@ -42,7 +42,7 @@ public class GameSession implements Serializable {
     private LevelTwo levelTwo = new LevelTwo();
     private LevelFour levelFour = new LevelFour();
     private LevelThree levelThree = new LevelThree();
-    private int currentLevel = 3;
+    private int currentLevel = 1;
     private int score = 0;
     private GameState save = new GameState();
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
@@ -273,6 +273,8 @@ public class GameSession implements Serializable {
                     if (("gameOver").equals(node.getId())) {
                         node.setVisible(true);
                         canvas.setVisible(false);
+                        timer.stop();
+                        sound.stop();
                     }
                 }
             }

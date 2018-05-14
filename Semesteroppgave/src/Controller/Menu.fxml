@@ -147,5 +147,87 @@
             </VBox>
          </children>
       </Pane>
+      <Pane fx:id="saveSlot" layoutX="68.0" layoutY="54.0" prefHeight="316.0" prefWidth="532.0" visible="false">
+         <children>
+            <VBox layoutX="98.0" layoutY="290.0" prefHeight="275.0" prefWidth="292.0">
+               <children>
+                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#saveSlot1" prefHeight="63.0" prefWidth="367.0" styleClass="MenuButton" text="SLOT 1" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#saveSlot2" prefHeight="62.0" prefWidth="411.0" styleClass="MenuButton" text="SLOT 2" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#saveSlot3" prefHeight="62.0" prefWidth="408.0" styleClass="MenuButton" text="SLOT 3" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#backToPauseMenu" prefHeight="68.0" prefWidth="405.0" styleClass="MenuButton" text="Back to menu" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Label prefHeight="95.0" prefWidth="480.0" text="MonkeyEscape" textFill="#d06614">
+               <font>
+                  <Font name="Herculanum" size="64.0" />
+               </font>
+            </Label>
+            <Label layoutX="153.0" layoutY="191.0" prefHeight="48.0" prefWidth="218.0" text="Saved games:" textFill="#fcfcfc">
+               <font>
+                  <Font name="Herculanum" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="loadSlot" layoutX="78.0" layoutY="64.0" prefHeight="316.0" prefWidth="532.0" visible="false">
+         <children>
+            <VBox layoutX="98.0" layoutY="290.0" prefHeight="275.0" prefWidth="292.0">
+               <children>
+                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#loadSlot1" prefHeight="63.0" prefWidth="367.0" styleClass="MenuButton" text="SLOT 1" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#loadSlot2" prefHeight="62.0" prefWidth="411.0" styleClass="MenuButton" text="SLOT 2" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#loadSlot3" prefHeight="62.0" prefWidth="408.0" styleClass="MenuButton" text="SLOT 3" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#backToMenu" prefHeight="68.0" prefWidth="405.0" styleClass="MenuButton" text="Back to menu" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Label prefHeight="95.0" prefWidth="480.0" text="MonkeyEscape" textFill="#d06614">
+               <font>
+                  <Font name="Herculanum" size="64.0" />
+               </font>
+            </Label>
+            <Label layoutX="153.0" layoutY="191.0" prefHeight="48.0" prefWidth="218.0" text="Load game: " textFill="#fcfcfc">
+               <font>
+                  <Font name="Herculanum" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
