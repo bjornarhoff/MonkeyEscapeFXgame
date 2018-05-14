@@ -82,6 +82,7 @@ public class MenuController implements Initializable{
     @FXML
     public void saveSlot1 () {
         System.out.println("slot 1 saved");
+        gs.saveGame();
     }
 
     @FXML

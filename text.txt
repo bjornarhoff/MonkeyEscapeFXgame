@@ -1,5 +1,5 @@
-0 1 15.0 15.0 
-true true true true true 
+100 1 161.64823227814085 66.05025253169413 
+true true false true true 
 true true true true true 
 true true true true true 
 true true true true true 

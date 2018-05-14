@@ -1,5 +1,5 @@
-200 3 26.9497474683058 335.4472221513641 
+0 1 15.0 15.0 
 true true true true true 
 true true true true true 
-true true true false false 
+true true true true true 
 true true true true true 

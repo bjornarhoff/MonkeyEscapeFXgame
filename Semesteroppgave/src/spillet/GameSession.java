@@ -331,6 +331,7 @@ public class GameSession implements Serializable {
 
     public void saveGame() {
         save.saveGame();
+        save.loadGame();
     }
 
     public void loadGame() {

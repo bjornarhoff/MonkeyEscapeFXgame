@@ -1,6 +1,7 @@
 package spillet;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,10 +19,14 @@ public class GameState {
     private ArrayList<Fruit> fruitArrayList2;
     private ArrayList<Fruit> fruitArrayList3;
     private ArrayList<Fruit> fruitArrayList4;
-    private String filePathTxt = "IMG/file.txt";
+    ClassLoader classLoader = getClass().getClassLoader();
+
+    private String filePathTxt = "Resource/file.txt";
+
+//    private String filePath = getClass().getResource("SaveFile/file.txt").toString();
 
     public GameState()  {
-
+        // file = new File(filePathTxt);
     }
 
     public void setGameState(int score, int currentLevel, double monkeyX, double monkeyY,
@@ -39,8 +44,18 @@ public class GameState {
     public void saveGame() {
 
         try {
-            pw = new PrintWriter(file);
+
+            ClassLoader classLoader = getClass().getClassLoader();
+            String filePath = getClass().getResource("/SaveFile/file.txt").toString().replace("file:", "");
+            System.out.println(filePath);
+            System.out.println(getClass().getResource("/SaveFile/file.txt").toString());
+            System.out.println(getClass().getResource("/SaveFile/file.txt").getFile());
+            System.out.println(getClass().getResource("/SaveFile/file.txt").getPath());
+            System.out.println(classLoader.getResource("SaveFile/file.txt").getFile());
+            System.out.println();
+            pw = new PrintWriter("text.txt");
             sb = new StringBuilder();
+
 
             sb.append(score + " ");
             sb.append(currentLevel + " ");
@@ -94,10 +109,10 @@ public class GameState {
 
     }
 
-    public void getGameState() {
+    public void loadGame() {
 
         try {
-            br = new BufferedReader(new FileReader(filePathTxt));
+            br = new BufferedReader(new FileReader("text.txt"));
 
             String line;
             String line2;
@@ -106,7 +121,8 @@ public class GameState {
             String line5;
 
             line = br.readLine();
-
+            line2 = br.readLine();
+/*
             String[] gameState = line.split(" ");
 
             setScore(Integer.parseInt(gameState[1]));
@@ -118,6 +134,9 @@ public class GameState {
 
             line2 = br.readLine();
 
+            System.out.println(line2); */
+
+            System.out.println(line);
             System.out.println(line2);
 
         } catch (IOException e) {
