@@ -86,7 +86,8 @@ public class GameSession implements Serializable {
 
                         timeLstFrm = System.nanoTime();
 
-                        setGameState(score, currentLevel, monkey.getX(), monkey.getY());
+                        save.setGameState(score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList(),
+                                levelTwo.getFruitList(), levelThree.getFruitList(), levelFour.getFruitList());
 
                     }
                 }
@@ -313,11 +314,10 @@ public class GameSession implements Serializable {
     }
 
     public void saveGame() {
-        save.setGameState("Save1", score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList());
+        save.saveGame();
     }
 
     public void loadGame() {
-        save.setGameState("Save1", score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList());
         save.getGameState();
         System.out.println("Current score: " + save.getScore() + " Current Level: " + save.getCurrentLevel());
      //   save.getFruitArrayList();

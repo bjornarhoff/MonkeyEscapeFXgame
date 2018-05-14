@@ -1,26 +1,24 @@
 package spillet;
 
 import java.io.*;
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GameState implements Serializable {
 
     private File file;
-    private PrintWriter pwOne;
+    private PrintWriter pw;
 
-    private StringBuilder sbOne;
+    private StringBuilder sb;
     private int score;
     private int currentLevel;
     private double monkeyX;
     private double monkeyY;
-    private BufferedReader brOne;
-    private ArrayList<Fruit> fruitArrayList;
+    private BufferedReader br;
+    private ArrayList<Fruit> fruitArrayList1;
     private ArrayList<Fruit> fruitArrayList2;
-    private String filePathCsv = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/gameState.csv";
-    private String filePathSr = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/outbox.ser";
+    private ArrayList<Fruit> fruitArrayList3;
+    private ArrayList<Fruit> fruitArrayList4;
     private String filePathTxt = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/file.txt";
 
     public GameState() {
@@ -31,34 +29,46 @@ public class GameState implements Serializable {
 
     }
 
-    public void setGameState(String save, int score, int currentLevel, double monkeyX, double monkeyY, ArrayList<Fruit> fruitList) {
+    public void setGameState(int score, int currentLevel, double monkeyX, double monkeyY,
+                             ArrayList<Fruit> fruitList1, ArrayList<Fruit> fruitList2, ArrayList<Fruit> fruitList3, ArrayList<Fruit> fruitList4) {
+        this.score = score;
+        this.currentLevel = currentLevel;
+        this.monkeyX = monkeyX;
+        this.monkeyY = monkeyY;
+        this.fruitArrayList1 = fruitList1;
+        this.fruitArrayList2 = fruitList2;
+        this.fruitArrayList3 = fruitList3;
+        this.fruitArrayList4 = fruitList4;
+    }
+
+    public void saveGame() {
 
         try {
-            pwOne = new PrintWriter(file);
+            pw = new PrintWriter(file);
+            sb = new StringBuilder();
 
-            sbOne = new StringBuilder();
+            sb.append(score + " ");
+            sb.append(currentLevel + " ");
+            sb.append(monkeyX + " ");
+            sb.append(monkeyY + " ");
 
-            sbOne.append(save + ",");
-            sbOne.append(score + ",");
-            sbOne.append(currentLevel + ",");
-            sbOne.append(monkeyX + ",");
-            sbOne.append(monkeyY + ",");
+            sb.append("\n");
 
-            Iterator<Fruit> fruktIterator = fruitList.iterator();
+            Iterator<Fruit> fruktIterator = fruitArrayList1.iterator();
             while (fruktIterator.hasNext()) {
                 Fruit fruit = fruktIterator.next();
 
                 String fruitString = String.valueOf(fruit.exists());
-                sbOne.append(fruitString + ",");
+                sb.append(fruitString + " ");
             }
 
-            sbOne.append("\n");
-            sbOne.append("HEYY");
+            sb.append("\n");
+            sb.append("HEYY");
 
-            pwOne.write(sbOne.toString());
+            pw.write(sb.toString());
 
 
-            pwOne.close();
+            pw.close();
 
 
 
@@ -71,27 +81,28 @@ public class GameState implements Serializable {
     public void getGameState() {
 
         try {
-            brOne = new BufferedReader(new FileReader(filePathCsv));
+            br = new BufferedReader(new FileReader(filePathTxt));
 
             String line;
+            String line2;
+            String line3;
+            String line4;
+            String line5;
 
+            line = br.readLine();
 
-            while ((line = brOne.readLine()) != null) {
+            String[] gameState = line.split(" ");
 
-     /*           // use comma as separator
-                String[] gameState = line.split(",");
+            setScore(Integer.parseInt(gameState[1]));
+            setCurrentLevel(Integer.parseInt(gameState[2]));
+            setMonkeyX(Double.parseDouble(gameState[3]));
+            setMonkeyY(Double.parseDouble(gameState[4]));
 
-                //  System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
+            System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
 
-                setScore(Integer.parseInt(gameState[1]));
-                setCurrentLevel(Integer.parseInt(gameState[2]));
-                setMonkeyX(Double.parseDouble(gameState[3]));
-                setMonkeyY(Double.parseDouble(gameState[4])); */
+            line2 = br.readLine();
 
-                System.out.println(line);
-
-            }
-
+            System.out.println(line2);
 
         } catch (IOException e) {
             System.out.println("IOException in getGameState");
@@ -103,10 +114,6 @@ public class GameState implements Serializable {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public void setFruit(Fruit fruit) {
-
     }
 
     public int getScore() {
@@ -137,22 +144,4 @@ public class GameState implements Serializable {
         this.monkeyY = monkeyY;
     }
 
-
-/*
-    public ArrayList<Fruit> getFruitArrayList() {
-        try {
-            FileInputStream fi = new FileInputStream(filePathSr);
-            ObjectInputStream oi = new ObjectInputStream(fi);
-            fruitArrayList2 = (ArrayList<Fruit>) oi.readObject();
-
-            oi.close();
-        } catch (IOException e) {
-            System.out.println("IUN");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return fruitArrayList2;
-
-    } */
 }
