@@ -194,26 +194,18 @@ public class GameSession implements Serializable {
 
             if (monkey.collisionLeft(wall)) {
                 collision.add("CollisionLeft");
-                gc.strokeText("CollisionLeft", 150, 50);
-                gc.setStroke(Color.WHITE);
             }
 
             if (monkey.collisionRight(wall)) {
                 collision.add("CollisionRight");
-                gc.strokeText("CollisionRight", 150, 100);
-                gc.setStroke(Color.WHITE);
             }
 
             if (monkey.collisionBottom(wall)) {
                 collision.add("CollisionBottom");
-                gc.strokeText("CollisionBottom", 150, 150);
-                gc.setStroke(Color.WHITE);
             }
 
             if (monkey.collisionTop(wall)) {
                 collision.add("CollisionTop");
-                gc.strokeText("CollisionTop", 150, 200);
-                gc.setStroke(Color.WHITE);
             }
         }
     }
@@ -228,8 +220,6 @@ public class GameSession implements Serializable {
                 fruit.kill();
                 bananaSound();
                 fruit.exists();
-                System.out.println(fruit.toString() + fruit.exists());
-
                 score += 100;
             }
         }
