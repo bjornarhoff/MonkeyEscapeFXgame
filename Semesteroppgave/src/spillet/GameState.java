@@ -54,22 +54,44 @@ public class GameState implements Serializable {
 
             sb.append("\n");
 
-            Iterator<Fruit> fruktIterator = fruitArrayList1.iterator();
-            while (fruktIterator.hasNext()) {
-                Fruit fruit = fruktIterator.next();
+            Iterator<Fruit> fruitIterator1 = fruitArrayList1.iterator();
+            while (fruitIterator1.hasNext()) {
+                Fruit fruit = fruitIterator1.next();
 
                 String fruitString = String.valueOf(fruit.exists());
                 sb.append(fruitString + " ");
             }
 
             sb.append("\n");
-            sb.append("HEYY");
+            Iterator<Fruit> fruitIterator2 = fruitArrayList2.iterator();
+            while (fruitIterator2.hasNext()) {
+                Fruit fruit = fruitIterator2.next();
+
+                String fruitString = String.valueOf(fruit.exists());
+                sb.append(fruitString + " ");
+            }
+
+            sb.append("\n");
+            Iterator<Fruit> fruitIterator3 = fruitArrayList3.iterator();
+            while (fruitIterator3.hasNext()) {
+                Fruit fruit = fruitIterator3.next();
+
+                String fruitString = String.valueOf(fruit.exists());
+                sb.append(fruitString + " ");
+            }
+
+            sb.append("\n");
+            Iterator<Fruit> fruitIterator4 = fruitArrayList4.iterator();
+            while (fruitIterator4.hasNext()) {
+                Fruit fruit = fruitIterator4.next();
+
+                String fruitString = String.valueOf(fruit.exists());
+                sb.append(fruitString + " ");
+            }
 
             pw.write(sb.toString());
 
-
             pw.close();
-
 
 
         } catch (FileNotFoundException e) {

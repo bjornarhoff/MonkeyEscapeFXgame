@@ -281,14 +281,6 @@ public class GameSession implements Serializable {
         }
     }
 
-    public void setGameState(int score, int currentLevel, double monkeyX, double monkeyY) {
-
-        save.setScore(score);
-        save.setCurrentLevel(currentLevel);
-        save.setMonkeyX(monkeyX);
-        save.setMonkeyY(monkeyY);
-    }
-
     /**
      * Pause method
      */
@@ -308,7 +300,8 @@ public class GameSession implements Serializable {
     }
 
     public void loadGame() {
-        save.getGameState();
+        save.saveGame();
+   //     save.getGameState();
         System.out.println("Current score: " + save.getScore() + " Current Level: " + save.getCurrentLevel());
      //   save.getFruitArrayList();
     }
