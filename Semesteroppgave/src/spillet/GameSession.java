@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
@@ -42,11 +43,13 @@ public class GameSession implements Serializable {
     private LevelTwo levelTwo = new LevelTwo();
     private LevelFour levelFour = new LevelFour();
     private LevelThree levelThree = new LevelThree();
-    private int currentLevel = 3;
+    private int currentLevel = 1;
     private int score = 0;
     private GameState save = new GameState();
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
+
+
 
     /**
      * Konstruktør
@@ -117,7 +120,7 @@ public class GameSession implements Serializable {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        monkey = new Monkey(600, 595);
+        monkey = new Monkey(15, 15);
 
 
     }
