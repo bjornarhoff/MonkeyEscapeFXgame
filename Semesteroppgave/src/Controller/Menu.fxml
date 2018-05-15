@@ -45,7 +45,7 @@
             </VBox>
             <ImageView fitHeight="69.0" fitWidth="126.0" layoutX="271.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/IMG/monkeydown.png" />
+                  <Image url="@/IMG/monkeyDown.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="165.0" fitWidth="143.0" layoutX="465.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
@@ -53,7 +53,7 @@
                   <Image url="@/IMG/keys.png" />
                </image>
             </ImageView>
-            <Label layoutX="85.0" layoutY="570.0" prefHeight="20.0" prefWidth="116.0" text="= 100 points" textFill="WHITE">
+            <Label layoutX="85.0" layoutY="570.0" prefHeight="20.0" prefWidth="400.0" text="= Collet the bananas to unlock next level" textFill="WHITE">
                <font>
                   <Font name="Herculanum" size="16.0" />
                </font>
@@ -225,6 +225,37 @@
             <Label layoutX="153.0" layoutY="191.0" prefHeight="48.0" prefWidth="218.0" text="Load game: " textFill="#fcfcfc">
                <font>
                   <Font name="Herculanum" size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="Win" layoutX="68.0" layoutY="54.0" prefHeight="316.0" prefWidth="532.0" visible="false">
+         <children>
+            <ImageView fitHeight="180.0" fitWidth="162.0" layoutX="193.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/IMG/win.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="109.0" layoutY="391.0" prefHeight="180.0" prefWidth="300.0">
+               <children>
+                  <Button layoutX="10.0" layoutY="72.0" mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#newGame" prefHeight="62.0" prefWidth="409.0" styleClass="MenuButton" text="NEW GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" mouseTransparent="false" onMouseClicked="#exitGame" prefHeight="67.0" prefWidth="405.0" styleClass="MenuButton" text="EXIT GAME" textFill="WHITE" textOverrun="CLIP">
+                     <font>
+                        <Font name="Herculanum" size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Label layoutX="75.0" prefHeight="81.0" prefWidth="457.0" text="YOU WON! " textFill="WHITE">
+               <font>
+                  <Font name="Herculanum" size="61.0" />
                </font>
             </Label>
          </children>

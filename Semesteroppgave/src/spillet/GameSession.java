@@ -84,13 +84,13 @@ public class GameSession implements Serializable {
                     if (gameState.equals("running")) {
 
                         renderLevel();
+
                         monkey.move(Input.getInput(), getGS(), collision);
 
                         timeLstFrm = System.nanoTime();
 
                         save.setGameState(score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList(),
                                 levelTwo.getFruitList(), levelThree.getFruitList(), levelFour.getFruitList());
-
 
                     }
                 }
@@ -212,11 +212,14 @@ public class GameSession implements Serializable {
             monkey.setX(x);
             monkey.setY(y);
             score = 0;
-        }
-        else if (monkey.collide(gate) && score > 400 && currentLevel == 4){
+        } else if (monkey.collide(gate) && currentLevel == 4 && score > 400) {
             setNodeVisible("Win");
         }
 
+        if (score == 500) {
+            Image image = new Image ("IMG/opengate.png");
+            gate.setImage(image);
+        }
     }
 
     public void collisionIterator(ArrayList<Wall> wallList) {
@@ -328,7 +331,9 @@ public class GameSession implements Serializable {
     }
 
     public void saveGame() {
+
         save.saveGame();
+        save.loadGame();
     }
 
     public void loadGame() {
