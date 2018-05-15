@@ -232,12 +232,6 @@ public class GameSession implements Serializable {
 
     }
 
-    public void openGate () {
-        if(monkey.collide(levelOne.getGate())) {
-            System.out.println("YE");
-        }
-    }
-
     public void collisionIterator(ArrayList<Wall> wallList) {
         collision.clear();
 

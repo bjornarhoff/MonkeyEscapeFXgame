@@ -24,7 +24,7 @@ public class LevelTwo implements Serializable {
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(0,578,10,70);
+        gate = new Gate(0,578,10,65);
 
         wall1 = new Wall(0, 0, 10, HEIGHT-65); // LEFT WALL
         wall2 = new Wall(0, 0, WIDTH, 10); // TOP WALL
