@@ -3,6 +3,7 @@ package spillet;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -32,7 +33,9 @@ public class Monkey extends GameObject {
      */
     public Monkey(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/monkeydown.png");
+    //    String s = Monkey.class.getClassLoader().getResource("package1/resources/repository/SSL-Key/cert.jks");
+    //    System.out.println(inputStream);
+        Image bilde = new Image(Monkey.class.getClassLoader().getResource("IMG/monkeyDown.png").toString());
 
         setImage(bilde);
         setX(x);
@@ -94,6 +97,7 @@ public class Monkey extends GameObject {
 
             if (!collision.contains("CollisionBottom")) {
                 moveAngled(Math.PI / 2);
+
             }
         }
 

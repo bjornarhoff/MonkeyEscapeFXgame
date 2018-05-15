@@ -1,6 +1,7 @@
 package spillet;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -18,13 +19,13 @@ public class GameState {
     private ArrayList<Fruit> fruitArrayList2;
     private ArrayList<Fruit> fruitArrayList3;
     private ArrayList<Fruit> fruitArrayList4;
-    private String filePathTxt = "/Users/gautetessandbaalsrud/Documents/GitHub/progdev/Semesteroppgave/Resource/SaveFile/file.txt";
+    ClassLoader classLoader = getClass().getClassLoader();
+
+    private String filePathTxt = "SaveFile/file.txt";
+    private String filePathLocal = "/Users/gautetessandbaalsrud/Documents/GitHub/programutviklingtest/Resource/SaveFile/file.txt";
+
 
     public GameState()  {
-
-        file = new File(filePathTxt);
-
-
 
     }
 
@@ -43,8 +44,9 @@ public class GameState {
     public void saveGame() {
 
         try {
-            pw = new PrintWriter(file);
+            pw = new PrintWriter(new FileOutputStream(filePathLocal), true);
             sb = new StringBuilder();
+
 
             sb.append(score + " ");
             sb.append(currentLevel + " ");
@@ -98,10 +100,10 @@ public class GameState {
 
     }
 
-    public void getGameState() {
+    public void loadGame() {
 
         try {
-            br = new BufferedReader(new FileReader(filePathTxt));
+            br = new BufferedReader(new FileReader(filePathLocal));
 
             String line;
             String line2;
@@ -113,15 +115,16 @@ public class GameState {
 
             String[] gameState = line.split(" ");
 
-            setScore(Integer.parseInt(gameState[1]));
-            setCurrentLevel(Integer.parseInt(gameState[2]));
-            setMonkeyX(Double.parseDouble(gameState[3]));
-            setMonkeyY(Double.parseDouble(gameState[4]));
+            setScore(Integer.parseInt(gameState[0]));
+            setCurrentLevel(Integer.parseInt(gameState[1]));
+            setMonkeyX(Double.parseDouble(gameState[2]));
+            setMonkeyY(Double.parseDouble(gameState[3]));
 
-            System.out.println(gameState[0] + " Current Score: " + gameState[1] + " Current Level: " + gameState[2]);
 
+            System.out.println(Double.parseDouble(gameState[3]));
             line2 = br.readLine();
 
+            System.out.println(line);
             System.out.println(line2);
 
         } catch (IOException e) {
