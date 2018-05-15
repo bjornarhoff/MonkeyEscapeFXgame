@@ -120,7 +120,7 @@ public class GameSession implements Serializable {
         /** Tegner */
         gc = canvas.getGraphicsContext2D();
 
-        monkey = new Monkey(15, 20);
+        monkey = new Monkey(15, 15);
 
 
     }
@@ -150,13 +150,13 @@ public class GameSession implements Serializable {
 
 
         if (getCurrentLevel() == 1) {
-            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 595, 15);
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 585, 10);
             levelOne.getGate().render(gc);
         } else if (getCurrentLevel() == 2) {
-            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 585, 595);
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 575, 550);
             levelTwo.getGate().render(gc);
         } else if (getCurrentLevel() == 3) {
-            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 585, 595);
+            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 580, 595);
             levelThree.getGate().render(gc);
         }else if (getCurrentLevel() == 4) {
             levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList(), levelFour.getGate(), 1, 10, 10);
