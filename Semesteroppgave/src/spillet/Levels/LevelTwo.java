@@ -16,22 +16,22 @@ public class LevelTwo implements Serializable {
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
 
-    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15,wall16,wall17;
-    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15,wall16,wall17,wall18,wall19, wall20;
+    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7,enemy8, enemy9;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(0,577,10,70);
+        gate = new Gate(0,578,10,70);
 
         wall1 = new Wall(0, 0, 10, HEIGHT-65); // LEFT WALL
         wall2 = new Wall(0, 0, WIDTH, 10); // TOP WALL
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // RIGHT WALL
-        wall4 = new Wall(0, 640, WIDTH, 10); // BOTTOM WAll
+        wall4 = new Wall(0, 640, 650, 10); // BOTTOM WAll
 
-        wall5 = new Wall(580, 0, 10, 70); //  Entry wall
+        wall5 = new Wall(580, 10, 10, 60); //  Entry wall
         wall6 = new Wall(430, 70, 160, 10); // Top right box
         wall7 = new Wall(430, 70, 10, 510); // Left side of right box
         wall8 = new Wall(60, 70, 320, 10); // Top horizontal wall
@@ -44,6 +44,11 @@ public class LevelTwo implements Serializable {
         wall15 = new Wall(60, 70, 10, 210); // Vertical top left
         wall16 = new Wall(60, 350, 10, 230); // Vertical down left
         wall17 = new Wall(130, 570,240, 10); // Horizontal down left
+        wall18 = new Wall(70, 270, 90, 10); // Horizontal middle left
+        wall19 = new Wall(215, 270, 90, 10); // Horizontal middle right
+        wall20 = new Wall(160, 200, 50, 20); // Horizontal middle middle
+
+
 
 
 
@@ -69,6 +74,9 @@ public class LevelTwo implements Serializable {
         wallList.add(wall15);
         wallList.add(wall16);
         wallList.add(wall17);
+        wallList.add(wall18);
+        wallList.add(wall19);
+        wallList.add(wall20);
 
 
 
@@ -80,6 +88,8 @@ public class LevelTwo implements Serializable {
         enemy5 = new Enemy(520, 240, 0, 5, 500, 400);
         enemy6 = new Enemy(600, 170, 0 , 5, 570, 340);
         enemy7 = new Enemy(600, 380, 0,5, 600, 580);
+        enemy8 = new Enemy(90, 90, 0, 4, 90, 210);
+        enemy9 = new Enemy(250, 90, 0, 4, 260, 210);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
@@ -89,6 +99,8 @@ public class LevelTwo implements Serializable {
         enemyList.add(enemy5);
         enemyList.add(enemy6);
         enemyList.add(enemy7);
+        enemyList.add(enemy8);
+        enemyList.add(enemy9);
 
 
         // FRUITS

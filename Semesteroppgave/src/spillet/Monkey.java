@@ -3,6 +3,7 @@ package spillet;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -15,14 +16,14 @@ public class Monkey extends GameObject {
 
     private double playerWidth = 40;
     private double playerHeight = 40;
-    private Image monkeyDown = new Image(Monkey.class.getResource("/IMG/monkeyDown.png").toString());
-    private Image monkeyDownLeft = new Image(Monkey.class.getResource("/IMG/monkeyDownLeft.png").toString());
-    private Image monkeyDownRight = new Image(Monkey.class.getResource("/IMG/monkeyDownRight.png").toString());
-    private Image monkeyLeft = new Image(Monkey.class.getResource("/IMG/monkeyLeft.png").toString());
-    private Image monkeyRight = new Image(Monkey.class.getResource("/IMG/monkeyRight.png").toString());
-    private Image monkeyUp = new Image(Monkey.class.getResource("/IMG/monkeyUp.png").toString());
-    private Image monkeyUpLeft = new Image(Monkey.class.getResource("/IMG/monkeyUpLeft.png").toString());
-    private Image monkeyUpRight = new Image(Monkey.class.getResource("/IMG/monkeyUpRight.png").toString());
+    private Image monkeyDown = new Image("IMG/monkeyDown.png");
+    private Image monkeyDownLeft = new Image("IMG/monkeyDownLeft.png");
+    private Image monkeyDownRight = new Image("IMG/monkeyDownRight.png");
+    private Image monkeyLeft = new Image("IMG/monkeyLeft.png");
+    private Image monkeyRight = new Image("IMG/monkeyRight.png");
+    private Image monkeyUp = new Image("IMG/monkeyUp.png");
+    private Image monkeyUpLeft = new Image("IMG/monkeyUpLeft.png");
+    private Image monkeyUpRight = new Image("IMG/monkeyUpRight.png");
 
     /**
      * Constructor for Monkey, denne overrider konstruktøren til spillobjekt.
@@ -32,7 +33,9 @@ public class Monkey extends GameObject {
      */
     public Monkey(double x, double y) {
         super(x, y);
-        Image bilde = new Image("IMG/monkeydown.png");
+    //    String s = Monkey.class.getClassLoader().getResource("package1/resources/repository/SSL-Key/cert.jks");
+    //    System.out.println(inputStream);
+        Image bilde = new Image(Monkey.class.getClassLoader().getResource("IMG/monkeyDown.png").toString());
 
         setImage(bilde);
         setX(x);
@@ -94,7 +97,7 @@ public class Monkey extends GameObject {
 
             if (!collision.contains("CollisionBottom")) {
                 moveAngled(Math.PI / 2);
-                System.out.println(Monkey.class.getResource("/IMG/monkeyDown.png").toString());
+
             }
         }
 

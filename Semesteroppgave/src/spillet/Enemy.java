@@ -19,7 +19,7 @@ public class Enemy extends GameObject {
      */
     public Enemy(double x, double y, double dx, double dy, double xMax, double yMax) {
         super(x, y);
-        image = new Image(Enemy.class.getResource("/IMG/zookeeper.png").toString());
+        image = new Image("/IMG/zookeeper.png");
         setImage(image);
         setX(x);
         setY(y);

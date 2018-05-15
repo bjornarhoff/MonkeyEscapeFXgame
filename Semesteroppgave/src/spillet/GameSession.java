@@ -84,7 +84,7 @@ public class GameSession implements Serializable {
                     if (gameState.equals("running")) {
 
                         renderLevel();
-                        drawScore(gc);
+
                         monkey.move(Input.getInput(), getGS(), collision);
 
                         timeLstFrm = System.nanoTime();
@@ -207,10 +207,18 @@ public class GameSession implements Serializable {
     }
 
     public void gateIterator(Gate gate, int level, double x, double y) {
-        if (monkey.collide(gate)) {
+        if (monkey.collide(gate) && score > 400 && (currentLevel == 1 || currentLevel == 2 || currentLevel == 3)) {
             setCurrentLevel(level);
             monkey.setX(x);
             monkey.setY(y);
+            score = 0;
+        } else if (monkey.collide(gate) && currentLevel == 4 && score > 400) {
+            setNodeVisible("Win");
+        }
+
+        if (score == 500) {
+            Image image = new Image ("IMG/opengate.png");
+            gate.setImage(image);
         }
     }
 
@@ -264,7 +272,7 @@ public class GameSession implements Serializable {
             Enemy enemy = fiendeIterator.next();
 
             enemy.bounce();
-
+/*
             if (monkey.collide(enemy)) {
                 score = 0;
                 timer.stop();
@@ -277,7 +285,7 @@ public class GameSession implements Serializable {
                         sound.stop();
                     }
                 }
-            }
+            } */
         }
     }
 
@@ -296,11 +304,7 @@ public class GameSession implements Serializable {
     /**
      * Metode som tegner score på brettet
      */
-    public void drawScore(GraphicsContext gc) {
-        gc.strokeText("Score: " + score + "/ 500", 450.0, 50.0, 150);
-        gc.setFont(new Font(30));
-        gc.setStroke(WHITE);
-    }
+
 
     /**
      * Arraylist for å sjekke input. Setter spillet på pause (går til menyen)
@@ -330,6 +334,7 @@ public class GameSession implements Serializable {
     }
 
     public void saveGame() {
+
         save.saveGame();
         save.loadGame();
     }

@@ -6,7 +6,7 @@ public class Gate extends GameObject {
 
     public Gate(double x, double y, double w, double h) {
         super(x, y);
-        Image bilde = new Image(Gate.class.getResource("/IMG/red.png").toString());
+        Image bilde = new Image("IMG/red.png");
         setImage(bilde);
         setX(x);
         setY(y);
