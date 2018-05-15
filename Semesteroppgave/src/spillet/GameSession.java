@@ -125,9 +125,8 @@ public class GameSession implements Serializable {
     }
 
     /**
-     * This method iterates through the nodelist and sets the selected node to visible
-     *
-     * @param nodeID the fxID of the node to be set visible
+     * Denne metoden itererer gjennom nodelist og setter den valgte node til synlig
+     * @param nodeID fxID av node sett synlig
      */
     private void setNodeVisible(String nodeID) {
         for (Node node : nodeList) {
@@ -297,13 +296,13 @@ public class GameSession implements Serializable {
         return this.currentLevel;
     }
 
+
+    /**
+     * Metode som spiller av lyd når apen spiser bananer
+     */
     private void bananaSound() {
         clip.play();
     }
-
-    /**
-     * Metode som tegner score på brettet
-     */
 
 
     /**
@@ -320,7 +319,7 @@ public class GameSession implements Serializable {
     }
 
     /**
-     * Pause method
+     * Pause metode
      */
     public void pause() {
         if (gameState.equals("running")) {
@@ -348,7 +347,7 @@ public class GameSession implements Serializable {
 
 
     /**
-     * Get method
+     * Get metode
      */
     public GameSession getGS() {
         return this;

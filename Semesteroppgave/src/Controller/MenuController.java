@@ -11,6 +11,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+/**
+ * Klasse for menykontrolleren
+ * Metoder og funksjonaliteter til alle knapper
+ */
 public class MenuController implements Initializable{
 
     @FXML
@@ -19,10 +23,6 @@ public class MenuController implements Initializable{
     private static GameSession gs;
 
 
-
-    /**
-     * Start menu
-     */
     @FXML
     public void newGame() {
         gs = new GameSession(rootPane, this);
@@ -62,9 +62,7 @@ public class MenuController implements Initializable{
         
     }
 
-    /**
-     * Pause menu
-     */
+    // Pause meny
     @FXML
     public void resumeGame() {
         setMenuPage("gameCanvas");
@@ -72,7 +70,7 @@ public class MenuController implements Initializable{
     }
 
 
-    // Save game menu
+    // Save game meny
     @FXML
     public void saveGame() {
         setMenuPage("saveSlot");
@@ -97,7 +95,7 @@ public class MenuController implements Initializable{
 
 
 
-    // Back to menu buttons
+    // Back to menu
     @FXML
     public void backToMenu () {
         setMenuPage("startMenuButtons");
@@ -111,7 +109,8 @@ public class MenuController implements Initializable{
 
 
     /**
-     * Pause menu
+     * Denne metoden itererer gjennom nodelist og setter den valgte node til synlig
+     * @param nodeID fxID av node sett synlig
      */
     public void setMenuPage(String nodeID) {
         ObservableList<Node> list = rootPane.getChildren();
@@ -126,6 +125,11 @@ public class MenuController implements Initializable{
     }
 
 
+    /**
+     * Metode som setter startmenyen
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setMenuPage("startMenuButtons");
