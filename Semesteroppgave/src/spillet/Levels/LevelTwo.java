@@ -24,14 +24,14 @@ public class LevelTwo implements Serializable {
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(0,577,10,70);
+        gate = new Gate(0,578,10,70);
 
         wall1 = new Wall(0, 0, 10, HEIGHT-65); // LEFT WALL
         wall2 = new Wall(0, 0, WIDTH, 10); // TOP WALL
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // RIGHT WALL
-        wall4 = new Wall(0, 640, WIDTH, 10); // BOTTOM WAll
+        wall4 = new Wall(0, 640, 650, 10); // BOTTOM WAll
 
-        wall5 = new Wall(580, 0, 10, 70); //  Entry wall
+        wall5 = new Wall(580, 10, 10, 60); //  Entry wall
         wall6 = new Wall(430, 70, 160, 10); // Top right box
         wall7 = new Wall(430, 70, 10, 510); // Left side of right box
         wall8 = new Wall(60, 70, 320, 10); // Top horizontal wall
@@ -88,8 +88,8 @@ public class LevelTwo implements Serializable {
         enemy5 = new Enemy(520, 240, 0, 5, 500, 400);
         enemy6 = new Enemy(600, 170, 0 , 5, 570, 340);
         enemy7 = new Enemy(600, 380, 0,5, 600, 580);
-        enemy8 = new Enemy(90, 90, 0, 5, 90, 210);
-        enemy9 = new Enemy(250, 90, 0, 5, 260, 210);
+        enemy8 = new Enemy(90, 90, 0, 4, 90, 210);
+        enemy9 = new Enemy(250, 90, 0, 4, 260, 210);
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);

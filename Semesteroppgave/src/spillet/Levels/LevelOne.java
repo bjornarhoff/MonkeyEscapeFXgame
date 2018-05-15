@@ -37,7 +37,7 @@ public class LevelOne implements Serializable {
         wall1 = new Wall(0, 0, 10, HEIGHT);  // Left wall
         wall2 = new Wall(0, 0, WIDTH, 10); // Top wall
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
-        wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
+        wall4 = new Wall(0, HEIGHT - 10, 570, 10); // Bottom wall
 
         wall5 = new Wall(60, 0, 10, 185); // Entry vertical wall
         wall6 = new Wall(60, 235, 10, 150); // Vertical left side
@@ -51,12 +51,12 @@ public class LevelOne implements Serializable {
         wall14 = new Wall(330, 200, 10, 185); // Left side of box
         wall15 = new Wall(330, 200, 150, 10); // Top of box
         wall16 = new Wall(120, 130, 160, 255); // Big box
-        wall17 = new Wall(410, 10, 10, 70);
-        wall18 = new Wall(410, 130, 10, 70);
-        wall19 = new Wall(350, 70, 10, 70);
-        wall20 = new Wall(480, 70, 10, 70);
-        wall21 = new Wall(480, 70, 100, 10);
-        wall22 = new Wall(480, 130, 100, 10);
+        wall17 = new Wall(410, 10, 10, 70); // Top middle
+        wall18 = new Wall(410, 130, 10, 70); // Top low middle
+        wall19 = new Wall(350, 70, 10, 70); // Short vertical top middle
+        wall20 = new Wall(480, 70, 10, 70); // Top of little box up right
+        wall21 = new Wall(480, 70, 100, 10); // Vertical little box up right
+        wall22 = new Wall(480, 130, 100, 10); //Bottom of little box up right
 
 
         wallList = new ArrayList<>();

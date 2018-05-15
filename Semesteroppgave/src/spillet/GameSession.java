@@ -152,6 +152,7 @@ public class GameSession implements Serializable {
         if (getCurrentLevel() == 1) {
             levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 595, 15);
             levelOne.getGate().render(gc);
+
         } else if (getCurrentLevel() == 2) {
             levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 585, 595);
             levelTwo.getGate().render(gc);
@@ -161,6 +162,9 @@ public class GameSession implements Serializable {
         }else if (getCurrentLevel() == 4) {
             levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList(), levelFour.getGate(), 1, 10, 10);
             levelFour.getGate().render(gc);
+
+
+
         }
 
 /*
@@ -208,10 +212,29 @@ public class GameSession implements Serializable {
     }
 
     public void gateIterator(Gate gate, int level, double x, double y) {
-        if (monkey.collide(gate)) {
+        if (monkey.collide(gate) && score > 400 && (currentLevel == 1 || currentLevel == 2 || currentLevel == 3)){
             setCurrentLevel(level);
             monkey.setX(x);
             monkey.setY(y);
+            score = 0;
+            // openGate();
+        }   else if (monkey.collide(gate) && currentLevel == 4 && score > 400){
+            setNodeVisible("ingameMenuButtons");
+        }
+
+
+        
+        if(score == 500) {
+            Image image = new Image ("IMG/opengate.png");
+            gate.setImage(image);
+        }
+
+
+    }
+
+    public void openGate () {
+        if(monkey.collide(levelOne.getGate())) {
+            System.out.println("YE");
         }
     }
 
