@@ -39,24 +39,24 @@ public class LevelOne implements Serializable {
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
         wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
 
-        wall5 = new Wall(60, 0, 10, 185); // Entry vertical wall
+        wall5 = new Wall(60, 10, 10, 175); // Entry vertical wall
         wall6 = new Wall(60, 235, 10, 150); // Vertical left side
-        wall7 = new Wall(0, 435, 150, 10); // horizontal left side
+        wall7 = new Wall(10, 435, 140, 10); // horizontal left side
         wall8 = new Wall(200, 435, 140, 10); // Horizontal down middle
-        wall9 = new Wall(0, 500, 115, 10); // Horizontal down left
+        wall9 = new Wall(10, 500, 105, 10); // Horizontal down left
         wall10 = new Wall(165, 500, 115, 10); // horizontal downdown middle
         wall11 = new Wall(330, 435, 10, 155); // Vertical down middle
         wall12 = new Wall(165, 500, 10, 140); // Vertical down left
-        wall13 = new Wall(480, 200, 10, 450); // Vertical right side of box
+        wall13 = new Wall(480, 200, 10, 440); // Vertical right side of box
         wall14 = new Wall(330, 200, 10, 185); // Left side of box
         wall15 = new Wall(330, 200, 150, 10); // Top of box
         wall16 = new Wall(120, 130, 160, 255); // Big box
-        wall17 = new Wall(410, 10, 10, 70);
-        wall18 = new Wall(410, 130, 10, 70);
-        wall19 = new Wall(350, 70, 10, 70);
-        wall20 = new Wall(480, 70, 10, 70);
-        wall21 = new Wall(480, 70, 100, 10);
-        wall22 = new Wall(480, 130, 100, 10);
+        wall17 = new Wall(410, 10, 10, 70); // Top vertical middle
+        wall18 = new Wall(410, 130, 10, 70); // Top vertical low middle
+        wall19 = new Wall(350, 70, 10, 70); // Short vertical top left middle
+        wall20 = new Wall(480, 70, 10, 70); // Top of little box up right
+        wall21 = new Wall(480, 70, 100, 10); // Vertical little box up right
+        wall22 = new Wall(480, 130, 100, 10); // Bottom of little box up right
 
 
         wallList = new ArrayList<>();

@@ -24,14 +24,14 @@ public class LevelTwo implements Serializable {
     public LevelTwo () {
 
         // MAP
-        gate = new Gate(0,577,10,70);
+        gate = new Gate(0,583,10,65);
 
-        wall1 = new Wall(0, 0, 10, HEIGHT-65); // LEFT WALL
+        wall1 = new Wall(0, 0, 10, HEIGHT-60); // LEFT WALL
         wall2 = new Wall(0, 0, WIDTH, 10); // TOP WALL
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // RIGHT WALL
         wall4 = new Wall(0, 640, WIDTH, 10); // BOTTOM WAll
 
-        wall5 = new Wall(580, 0, 10, 70); //  Entry wall
+        wall5 = new Wall(580, 10, 10, 60); //  Entry wall
         wall6 = new Wall(430, 70, 160, 10); // Top right box
         wall7 = new Wall(430, 70, 10, 510); // Left side of right box
         wall8 = new Wall(60, 70, 320, 10); // Top horizontal wall

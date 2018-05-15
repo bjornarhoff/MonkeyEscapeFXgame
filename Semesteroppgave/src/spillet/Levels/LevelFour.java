@@ -35,10 +35,10 @@ public class LevelFour {
         wall3 = new Wall(0, 0, 10, HEIGHT); // Left wall
         wall4 = new Wall(0, HEIGHT - 10, 650, 10); // Bottom wall
 
-        wall5 = new Wall(75, 500, 10, 250);  // Left bottom corner
-        wall6 = new Wall(150, 425, 10, 250); // Second left bottom corner
-        wall7 = new Wall(0, 425, 75, 10); // Short one, left bottom corner
-        wall8 = new Wall(85, 0, 10, 150); // Top left corner
+        wall5 = new Wall(75, 500, 10, 140);  // Left bottom corner
+        wall6 = new Wall(150, 425, 10, 215); // Second left bottom corner
+        wall7 = new Wall(10, 425, 65, 10); // Short one, left bottom corner
+        wall8 = new Wall(80, 10, 10, 140); // Top left corner
         wall9 = new Wall(385, 315, 10, 250); // Vertical right side of the bottom box
         wall10 = new Wall(225, 425, 160, 10); // Horizontal top of the bottom box
         wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
