@@ -272,7 +272,7 @@ public class GameSession implements Serializable {
             Enemy enemy = fiendeIterator.next();
 
             enemy.bounce();
-/*
+
             if (monkey.collide(enemy)) {
                 score = 0;
                 timer.stop();
@@ -285,7 +285,7 @@ public class GameSession implements Serializable {
                         sound.stop();
                     }
                 }
-            } */
+            } 
         }
     }
 
