@@ -8,6 +8,11 @@ import spillet.Wall;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Dette er hvor vi lager de ulike levelene. I dette tilfellet level 1. Her opprettes vegger, fiender og bananer.
+ * De bestemmes ut i fra posisjon i x og y.
+ */
+
 public class LevelTwo implements Serializable {
 
     private final int WIDTH = 650;

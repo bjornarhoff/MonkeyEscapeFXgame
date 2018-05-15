@@ -10,10 +10,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "Launcher". Det skal etterhvert
- * opprettes en del spillerbrett og det vil være veldig bedre med en klasse som genererer disse.
- *
- * @Gaute, @Eirik, @Bjørnar
+ * Dette er hvor vi lager de ulike levelene. I dette tilfellet level 1. Her opprettes vegger, fiender og bananer.
+ * De bestemmes ut i fra posisjon i x og y.
  */
 
 public class LevelOne implements Serializable {
