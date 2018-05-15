@@ -21,7 +21,7 @@ public class GameState {
     private ArrayList<Fruit> fruitArrayList4;
     ClassLoader classLoader = getClass().getClassLoader();
 
-    private String filePathTxt = "Resource/file.txt";
+  //  private String filePathTxt = "Resource/file.txt";
 
 //    private String filePath = getClass().getResource("SaveFile/file.txt").toString();
 
@@ -44,7 +44,7 @@ public class GameState {
     public void saveGame() {
 
         try {
-
+/*
             ClassLoader classLoader = getClass().getClassLoader();
             String filePath = getClass().getResource("/SaveFile/file.txt").toString().replace("file:", "");
             System.out.println(filePath);
@@ -52,7 +52,7 @@ public class GameState {
             System.out.println(getClass().getResource("/SaveFile/file.txt").getFile());
             System.out.println(getClass().getResource("/SaveFile/file.txt").getPath());
             System.out.println(classLoader.getResource("SaveFile/file.txt").getFile());
-            System.out.println();
+            System.out.println(); */
             pw = new PrintWriter("text.txt");
             sb = new StringBuilder();
 
