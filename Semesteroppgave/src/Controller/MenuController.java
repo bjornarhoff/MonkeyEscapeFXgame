@@ -47,8 +47,6 @@ public class MenuController implements Initializable {
         System.out.println("slot 1 loaded");
     }
 
-<<<<<<< HEAD
-=======
     @FXML
     public void loadSlot2() {
         gs = new GameSession(rootPane, this);
@@ -69,7 +67,7 @@ public class MenuController implements Initializable {
 
     }
 
->>>>>>> 8d981b133820b195135f4272fac7385cb5e9ac0b
+
     /**
      * Pause menu
      */
