@@ -10,12 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "Launcher". Det skal etterhvert
- * opprettes en del spillerbrett og det vil være veldig bedre med en klasse som genererer disse.
+ * Dette er klassen som generer level 1 i spillet
  *
  * @Gaute, @Eirik, @Bjørnar
  */
-
 public class LevelOne implements Serializable {
 
     private final int WIDTH = 650;
@@ -29,9 +27,10 @@ public class LevelOne implements Serializable {
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
+    /**
+     * Konstruktør som instansierer objektene i level 1. Vegger, porter, frukter blir generert og puttet i arraylister.
+     */
     public LevelOne() {
-
-        // MAP
         gate = new Gate(570,640,70,10);
 
         wall1 = new Wall(0, 0, 10, HEIGHT);  // Left wall
@@ -58,7 +57,6 @@ public class LevelOne implements Serializable {
         wall21 = new Wall(480, 70, 100, 10); // Vertical little box up right
         wall22 = new Wall(480, 130, 100, 10); //Bottom of little box up right
 
-
         wallList = new ArrayList<>();
         wallList.add(wall1);
         wallList.add(wall2);
@@ -83,11 +81,6 @@ public class LevelOne implements Serializable {
         wallList.add(wall21);
         wallList.add(wall22);
 
-
-
-
-
-        // ENEMY
         enemy1 = new Enemy(20,450, 6,0,290,400);
         enemy2 = new Enemy(290, 10, 0, 5, 290, 380);
         enemy3 = new Enemy(350, 210, 5, 3, 440, 590);
@@ -103,9 +96,6 @@ public class LevelOne implements Serializable {
         enemyList.add(enemy5);
         enemyList.add(enemy6);
 
-
-
-        // FRUIT
         fruit1 = new Fruit(15, 610); // Bottom left
         fruit2 = new Fruit(180 ,610); // Bottom middle
         fruit3 = new Fruit( 80, 15); // Top left
@@ -118,21 +108,36 @@ public class LevelOne implements Serializable {
         fruitList.add(fruit3);
         fruitList.add(fruit4);
         fruitList.add(fruit5);
-
     }
 
+    /**
+     * Returnerer arraylisten med vegger
+     * @return ArraList<Wall>
+     */
     public ArrayList<Wall> getWallList() {
         return wallList;
     }
 
+    /**
+     * Returnerer arraylisten med fiender
+     * @return ArraList<Enemy>
+     */
     public ArrayList<Enemy> getEnemyList() {
         return enemyList;
     }
 
+    /**
+     * Returnerer arraylisten med vegger
+     * @return ArraList<Fruit>
+     */
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
     }
 
+    /**
+     * Returnerer porten til neste nivå
+     * @return Gate
+     */
     public Gate getGate() {
         return gate;
     }

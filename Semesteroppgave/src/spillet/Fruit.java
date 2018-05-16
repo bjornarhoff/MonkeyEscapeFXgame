@@ -3,15 +3,14 @@ package spillet;
 import javafx.scene.image.Image;
 
 /**
- * Dette er class for power-ups.
+ * Dette er class for bananer som må samles for å nå neste nivå.
  *
  * @Gaute, @Eirik og @Bjørnar
  */
-
 public class Fruit extends GameObject {
 
     /**
-     * Constructor for Fruit, denne overrider konstruktøren til avatar.
+     * Constructor for Fruit som setter bildet, x- og y-posisjon samt bredde og høyde.
      *
      * @param x
      * @param y
@@ -25,6 +24,4 @@ public class Fruit extends GameObject {
         setW(32);
         setH(20);
     }
-
-
 }

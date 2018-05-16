@@ -44,41 +44,78 @@ public class Monkey extends GameObject {
         setW(playerWidth);
     }
 
+    /**
+     * Returnerer en boks med grensen til venstre
+     * @return Rectangle2D
+     */
     public Rectangle2D boundaryLeft() {
         return new Rectangle2D(getX(), getY() + 10, 5, getH() - 20);
     }
 
+    /**
+     * Returnerer en boks med grensen til høyre
+     * @return Rectangle2D
+     */
     public Rectangle2D boundaryRight() {
         return new Rectangle2D(getX() + getW() - 5, getY() + 10, 5, getH() - 20);
     }
 
+    /**
+     * Returnerer en boks med grensen ovenfra
+     * @return Rectangle2D
+     */
     public Rectangle2D boundaryTop() {
         return new Rectangle2D(getX() + 10, getY(), getW() - 20, 5);
     }
 
+    /**
+     * Returnerer en boks med grensen nedenfra
+     * @return Rectangle2D
+     */
     public Rectangle2D boundaryBottom() {
         return new Rectangle2D(getX() + 10, getY() + getH() - 5, getW() - 20, 5);
     }
 
+    /**
+     * Tar inn et gameobject som parameter og returnerer true når det detekteres en kollisjon til venstre.
+     * @param s
+     * @return Boolean
+     */
     public boolean collisionLeft(GameObject s) {
         return s.boundary().intersects(this.boundaryLeft());
     }
 
+    /**
+     * Tar inn et gameobject som parameter og returnerer true når det detekteres en kollisjon til høyre.
+     * @param s
+     * @return Boolean
+     */
     public boolean collisionRight(GameObject s) {
         return s.boundary().intersects(this.boundaryRight());
     }
 
+    /**
+     * Tar inn et gameobject som parameter og returnerer true når det detekteres en kollisjon ovenfra.
+     * @param s
+     * @return Boolean
+     */
     public boolean collisionTop(GameObject s) {
         return s.boundary().intersects(this.boundaryTop());
     }
 
+    /**
+     * Tar inn et gameobject som parameter og returnerer true når det detekteres en kollisjon nedenfra.
+     * @param s
+     * @return Boolean
+     */
     public boolean collisionBottom(GameObject s) {
         return s.boundary().intersects(this.boundaryBottom());
     }
 
     /**
      * Dette er en metode for å bevege spilleren basert på string-nøkkelord som kommer inn.
-     * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene
+     * Den brukes i launcherklassen for å oppdatere posisjonen til spilleren basert på tastetrykk med piltastene og kollison
+     * i ulike retninger.
      */
     public void move(ArrayList<String> input, GameSession gs, ArrayList<String> collision) {
 
