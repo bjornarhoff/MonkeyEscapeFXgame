@@ -10,11 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Dette er hvor vi lager de ulike levelene. I dette tilfellet level 3. Her opprettes vegger, fiender og bananer.
- * De bestemmes ut i fra posisjon i x og y.
+ * Dette er klassen som generer level 3 i spillet
  *
+ * @Gaute, @Eirik, @Bjørnar
  */
-
 public class LevelThree implements Serializable {
 
     private final int WIDTH = 650;
@@ -28,7 +27,9 @@ public class LevelThree implements Serializable {
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
-
+    /**
+     * Konstruktør som instansierer objektene i level 3. Vegger, porter, frukter blir generert og puttet i arraylister.
+     */
     public LevelThree() {
         wall1 = new Wall(0, 0, WIDTH-80, 10); // TOP
         wall2 = new Wall( 640, 0, 10, HEIGHT); // Right wall
@@ -36,7 +37,7 @@ public class LevelThree implements Serializable {
         wall4 = new Wall(0, 640, WIDTH, 10); // Bottom wall
 
         wall5 = new Wall(400, 580, 240, 10); // Entry horizontal bottom right
-        wall6 = new Wall(475, 10, 10, 290); // Long vertical  up right
+        wall6 = new Wall(475, 0, 10, 290); // Long vertical  up right
         wall7 = new Wall(475, 350, 10, 180); // Long vertical down right
         wall8 = new Wall(200, 580, 150, 10); // Horizontal down middle
         wall9 = new Wall(60, 580, 90, 10); // Horizontal down left
@@ -64,12 +65,7 @@ public class LevelThree implements Serializable {
         wall31 = new Wall(320, 480, 155, 10); // Horizontal down middle right
         wall32 = new Wall(485, 10, 85, 70); // Small box up right
 
-
-
-
-
         gate = new Gate(570, 0, 70, 10); // Finish line
-
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -105,9 +101,6 @@ public class LevelThree implements Serializable {
         wallList.add(wall31);
         wallList.add(wall32);
 
-
-
-
         enemy1 = new Enemy(80,15, 7,0,440,15);  // Top horizontal
         enemy2 = new Enemy(80, 90, 0,6, 80,520); // Left vertical
         enemy3 = new Enemy(140, 280, 5, 0, 440,280); // middle horizontal
@@ -123,7 +116,6 @@ public class LevelThree implements Serializable {
         enemyList.add(enemy5);
         enemyList.add(enemy6);
 
-
         fruit1 = new Fruit(290, 110); // Middle bottom box
         fruit2 = new Fruit(435 ,165); // Right middle vertical lane
         fruit3 = new Fruit( 280, 360); // Right side
@@ -136,21 +128,36 @@ public class LevelThree implements Serializable {
         fruitList.add(fruit3);
         fruitList.add(fruit4);
         fruitList.add(fruit5);
-
     }
 
+    /**
+     * Returnerer arraylisten med vegger
+     * @return ArraList<Wall>
+     */
     public ArrayList<Wall> getWallList() {
         return wallList;
     }
 
+    /**
+     * Returnerer arraylisten med fiender
+     * @return ArraList<Enemy>
+     */
     public ArrayList<Enemy> getEnemyList() {
         return enemyList;
     }
 
+    /**
+     * Returnerer arraylisten med vegger
+     * @return ArraList<Fruit>
+     */
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
     }
 
+    /**
+     * Returnerer porten til neste nivå
+     * @return Gate
+     */
     public Gate getGate() {
         return gate;
     }
