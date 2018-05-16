@@ -2,12 +2,15 @@ package spillet;
 
 import javafx.scene.image.Image;
 
-
+/**
+ * Dette er klassen som generer fiender.
+ *
+ * @Gaute, @Eirik og @Bjørnar
+ */
 public class Enemy extends GameObject {
 
-
-    private double alienWidth =50;
-    private double alienHeight = 50;
+    private double enemyWidth = 35;
+    private double enemyHeight = 50;
     private double dx, dy, xMax, yMax, xMin, yMin;
 
     /**
@@ -19,12 +22,12 @@ public class Enemy extends GameObject {
      */
     public Enemy(double x, double y, double dx, double dy, double xMax, double yMax) {
         super(x, y);
-        image = new Image("/IMG/alien.png");
+        image = new Image("/IMG/zookeeper.png");
         setImage(image);
         setX(x);
         setY(y);
-        setH(alienHeight);
-        setW(alienWidth);
+        setH(enemyHeight);
+        setW(enemyWidth);
         this.dx = dx;
         this.dy = dy;
         this.xMax = xMax;
@@ -36,19 +39,14 @@ public class Enemy extends GameObject {
     /**
      * Metode som beveger fiende, og "bouncer" mellom to x og y verdier som blir oppgitt i GameSession
      */
-    public void bounce () {
-
-
+    public void bounce() {
         if (getX() > xMax || getX() < xMin) {
-            dx = dx*-1;
+            dx = dx * -1;
         }
-        if(getY() > yMax || getY() < yMin) {
-            dy = dy*-1;
+        if (getY() > yMax || getY() < yMin) {
+            dy = dy * -1;
         }
-        setX(getX()+dx);
-        setY(getY()+dy);
+        setX(getX() + dx);
+        setY(getY() + dy);
     }
-
-
-
 }
