@@ -9,8 +9,7 @@ import spillet.Wall;
 import java.util.ArrayList;
 
 /**
- * Dette er et tentativt forsøk på å konstruere spillerbrettet utenfor launcherklassen "Launcher". Det skal etterhvert
- * opprettes en del spillerbrett og det vil være veldig bedre med en klasse som genererer disse.
+ * Dette er klassen som generer level 4 i spillet
  *
  * @Gaute, @Eirik, @Bjørnar
  */
@@ -23,29 +22,33 @@ public class LevelFour {
     private ArrayList<Enemy> enemyList;
     private ArrayList<Fruit> fruitList;
 
-    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14;
-    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
+    private Wall wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8, wall9, wall10, wall11, wall12, wall13, wall14, wall15;
+    private Enemy enemy1, enemy2, enemy3, enemy4, enemy5, enemy6, enemy7, enemy8;
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
-
+    /**
+     * Konstruktør som instansierer objektene i level 4. Vegger, porter, frukter blir generert og puttet i arraylister.
+     */
     public LevelFour() {
         wall1 = new Wall(80, 0, WIDTH, 10); // TOP
         wall2 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
         wall3 = new Wall(0, 0, 10, HEIGHT); // Left wall
         wall4 = new Wall(0, HEIGHT - 10, 650, 10); // Bottom wall
 
-        wall5 = new Wall(75, 500, 10, 250);  // Left bottom corner
-        wall6 = new Wall(150, 425, 10, 250); // Second left bottom corner
-        wall7 = new Wall(0, 425, 75, 10); // Short one, left bottom corner
-        wall8 = new Wall(85, 0, 10, 150); // Top left corner
+        wall5 = new Wall(75, 500, 10, 140);  // Left bottom corner
+        wall6 = new Wall(150, 425, 10, 215); // Second left bottom corner
+        wall7 = new Wall(10, 425, 65, 10); // Short one, left bottom corner
+        wall8 = new Wall(80, 10, 10, 140); // Top left corner
         wall9 = new Wall(385, 315, 10, 250); // Vertical right side of the bottom box
         wall10 = new Wall(225, 425, 160, 10); // Horizontal top of the bottom box
         wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
-        wall12 = new Wall(170, 200, 225, 115); // Big box
-        wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
-        gate = new Gate(10, 0, 70, 10); // Finish line
+        wall12 = new Wall(170, 200, 215, 115); // Big box
+        wall13 = new Wall(385, 125, 10, 190); // Little one on top of box
+        wall14 = new Wall(385, 10, 10, 60); // Short vertical top middle right
+        wall15 = new Wall(260, 70, 10, 70); // Short vertical top middle middle
 
+        gate = new Gate(10, 0, 70, 10); // Finish line
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -61,14 +64,17 @@ public class LevelFour {
         wallList.add(wall11);
         wallList.add(wall12);
         wallList.add(wall13);
-        //wallList.add(wall14);
+        wallList.add(wall14);
+        wallList.add(wall15);
 
-
-        enemy1 = new Enemy(20,360, 7,0,320,400);  // Horizontal left
-        enemy2 = new Enemy(165, 450, 2,7, 325,575); // Zig Zag in the box
-        enemy3 = new Enemy(415, 135, 0, 5, 200,500); // Vertical middle lane
-        enemy4 = new Enemy(500, 100, 4, 5, 575, 500); // Right side
-        enemy5 = new Enemy(215, 20, 0, 4, 300, 135); // Top one
+        enemy1 = new Enemy(20,360, 7,0,350,400);  // Horizontal left
+        enemy2 = new Enemy(165, 450, 2,7, 350,575); // Zig Zag in the box
+        enemy3 = new Enemy(425, 130, 0, 5, 425,510); // Vertical middle lane
+        enemy4 = new Enemy(500, 130, 4, 5, 600, 510); // Right zigzag
+        enemy5 = new Enemy(110, 20, 0, 4, 300, 145); // Top left vertical
+        enemy6 = new Enemy(95, 435, 0, 5, 95, 575); // Left bottom corner
+        enemy7 = new Enemy(100, 15, 5, 0, 350, 15); // Horizontal top
+        enemy8 = new Enemy(100, 140, 5, 0, 350, 140); // Horizontal second top
 
         enemyList = new ArrayList<>();
         enemyList.add(enemy1);
@@ -76,12 +82,15 @@ public class LevelFour {
         enemyList.add(enemy3);
         enemyList.add(enemy4);
         enemyList.add(enemy5);
+        enemyList.add(enemy6);
+        enemyList.add(enemy7);
+        enemyList.add(enemy8);
 
 
         fruit1 = new Fruit(175, 600); // Middle bottom box
         fruit2 = new Fruit(425 ,350); // Right middle vertical lane
         fruit3 = new Fruit( 550, 150); // Right side
-        fruit4 = new Fruit(15,400); // Left middle
+        fruit4 = new Fruit(170,100); // Left middle
         fruit5 = new Fruit(35,600); // left bottom corner
 
         fruitList = new ArrayList<>();
@@ -93,18 +102,34 @@ public class LevelFour {
 
     }
 
+    /**
+     * Returnerer arraylisten med vegger
+     * @return ArraList<Wall>
+     */
     public ArrayList<Wall> getWallList() {
         return wallList;
     }
 
+    /**
+     * Returnerer arraylisten med fiender
+     * @return ArraList<Enemy>
+     */
     public ArrayList<Enemy> getEnemyList() {
         return enemyList;
     }
 
+    /**
+     * Returnerer arraylisten med vegger
+     * @return ArraList<Fruit>
+     */
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
     }
 
+    /**
+     * Returnerer porten til neste nivå
+     * @return Gate
+     */
     public Gate getGate() {
         return gate;
     }

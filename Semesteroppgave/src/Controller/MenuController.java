@@ -11,11 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-/**
- * Klasse for menykontrolleren
- * Metoder og funksjonaliteter til alle knapper
- */
-public class MenuController implements Initializable{
+public class MenuController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
@@ -23,6 +19,9 @@ public class MenuController implements Initializable{
     private static GameSession gs;
 
 
+    /**
+     * Start menu
+     */
     @FXML
     public void newGame() {
         gs = new GameSession(rootPane, this);
@@ -39,30 +38,41 @@ public class MenuController implements Initializable{
         setMenuPage("loadSlot");
         System.out.println("Load game");
 
-
     }
 
     @FXML
-    public void loadSlot1 () {
+    public void loadSlot1() {
+        gs = new GameSession(rootPane, this);
+        gs.loadGame(1);
         System.out.println("slot 1 loaded");
     }
+
+<<<<<<< HEAD
+=======
     @FXML
-    public void loadSlot2 () {
+    public void loadSlot2() {
+        gs = new GameSession(rootPane, this);
+        gs.loadGame(2);
         System.out.println("slot 2 loaded");
     }
 
     @FXML
-    public void loadSlot3 () {
+    public void loadSlot3() {
+        gs = new GameSession(rootPane, this);
+        gs.loadGame(3);
         System.out.println("slot 3 loaded");
     }
 
 
     @FXML
     public void gameOver() {
-        
+
     }
 
-    // Pause meny
+>>>>>>> 8d981b133820b195135f4272fac7385cb5e9ac0b
+    /**
+     * Pause menu
+     */
     @FXML
     public void resumeGame() {
         setMenuPage("gameCanvas");
@@ -70,47 +80,46 @@ public class MenuController implements Initializable{
     }
 
 
-    // Save game meny
+    // Save game menu
     @FXML
     public void saveGame() {
         setMenuPage("saveSlot");
-        
+
     }
 
     @FXML
-    public void saveSlot1 () {
+    public void saveSlot1() {
         System.out.println("slot 1 saved");
-        gs.saveGame();
+        gs.saveGame(1);
     }
 
     @FXML
-    public void saveSlot2 () {
+    public void saveSlot2() {
+        gs.saveGame(2);
         System.out.println("slot 2 saved");
     }
 
     @FXML
-    public void saveSlot3 () {
+    public void saveSlot3() {
+        gs.saveGame(3);
         System.out.println("slot 3 saved");
     }
 
 
-
-    // Back to menu
+    // Back to menu buttons
     @FXML
-    public void backToMenu () {
+    public void backToMenu() {
         setMenuPage("startMenuButtons");
     }
 
     @FXML
-    public void backToPauseMenu () {
+    public void backToPauseMenu() {
         setMenuPage("ingameMenuButtons");
     }
 
 
-
     /**
-     * Denne metoden itererer gjennom nodelist og setter den valgte node til synlig
-     * @param nodeID fxID av node sett synlig
+     * Pause menu
      */
     public void setMenuPage(String nodeID) {
         ObservableList<Node> list = rootPane.getChildren();
@@ -125,11 +134,6 @@ public class MenuController implements Initializable{
     }
 
 
-    /**
-     * Metode som setter startmenyen
-     * @param location
-     * @param resources
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setMenuPage("startMenuButtons");

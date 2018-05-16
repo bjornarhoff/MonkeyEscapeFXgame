@@ -1,5 +1,9 @@
 package spillet;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 import java.util.ArrayList;
 
 /**
