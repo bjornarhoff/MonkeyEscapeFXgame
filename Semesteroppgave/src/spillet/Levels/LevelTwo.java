@@ -9,10 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Dette er klassen som generer level 2 i spillet
- *
- * @Gaute, @Eirik, @Bjørnar
+ * Dette er hvor vi lager de ulike levelene. I dette tilfellet level 1. Her opprettes vegger, fiender og bananer.
+ * De bestemmes ut i fra posisjon i x og y.
  */
+
 public class LevelTwo implements Serializable {
 
     private final int WIDTH = 650;
@@ -26,11 +26,9 @@ public class LevelTwo implements Serializable {
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
-    /**
-     * Konstruktør som instansierer objektene i level 3. Vegger, porter, frukter blir generert og puttet i arraylister.
-     */
     public LevelTwo () {
 
+        // MAP
         gate = new Gate(0,578,10,70);
 
         wall1 = new Wall(0, 0, 10, HEIGHT-65); // LEFT WALL
@@ -55,6 +53,14 @@ public class LevelTwo implements Serializable {
         wall19 = new Wall(215, 270, 90, 10); // Horizontal middle right
         wall20 = new Wall(160, 200, 50, 20); // Horizontal middle middle
 
+
+
+
+
+
+
+
+
         wallList = new ArrayList<>();
         wallList.add(wall1);
         wallList.add(wall2);
@@ -76,6 +82,8 @@ public class LevelTwo implements Serializable {
         wallList.add(wall18);
         wallList.add(wall19);
         wallList.add(wall20);
+
+
 
         // ENEMY
         enemy1 = new Enemy(10,290, 6,0,330,290);
@@ -116,34 +124,18 @@ public class LevelTwo implements Serializable {
 
     }
 
-    /**
-     * Returnerer arraylisten med vegger
-     * @return ArraList<Wall>
-     */
     public ArrayList<Wall> getWallList() {
         return wallList;
     }
 
-    /**
-     * Returnerer arraylisten med fiender
-     * @return ArraList<Enemy>
-     */
     public ArrayList<Enemy> getEnemyList() {
         return enemyList;
     }
 
-    /**
-     * Returnerer arraylisten med vegger
-     * @return ArraList<Fruit>
-     */
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
     }
 
-    /**
-     * Returnerer porten til neste nivå
-     * @return Gate
-     */
     public Gate getGate() {
         return gate;
     }

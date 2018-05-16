@@ -11,12 +11,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class MenuController implements Initializable {
+public class MenuController implements Initializable{
 
     @FXML
     private AnchorPane rootPane;
 
     private static GameSession gs;
+
 
 
     /**
@@ -38,38 +39,29 @@ public class MenuController implements Initializable {
         setMenuPage("loadSlot");
         System.out.println("Load game");
 
+
     }
 
     @FXML
-    public void loadSlot1() {
-        gs = new GameSession(rootPane, this);
-        gs.loadGame(1);
+    public void loadSlot1 () {
         System.out.println("slot 1 loaded");
     }
-
-<<<<<<< HEAD
-=======
     @FXML
-    public void loadSlot2() {
-        gs = new GameSession(rootPane, this);
-        gs.loadGame(2);
+    public void loadSlot2 () {
         System.out.println("slot 2 loaded");
     }
 
     @FXML
-    public void loadSlot3() {
-        gs = new GameSession(rootPane, this);
-        gs.loadGame(3);
+    public void loadSlot3 () {
         System.out.println("slot 3 loaded");
     }
 
 
     @FXML
     public void gameOver() {
-
+        
     }
 
->>>>>>> 8d981b133820b195135f4272fac7385cb5e9ac0b
     /**
      * Pause menu
      */
@@ -84,38 +76,38 @@ public class MenuController implements Initializable {
     @FXML
     public void saveGame() {
         setMenuPage("saveSlot");
-
+        
     }
 
     @FXML
-    public void saveSlot1() {
+    public void saveSlot1 () {
         System.out.println("slot 1 saved");
-        gs.saveGame(1);
+        gs.saveGame();
     }
 
     @FXML
-    public void saveSlot2() {
-        gs.saveGame(2);
+    public void saveSlot2 () {
         System.out.println("slot 2 saved");
     }
 
     @FXML
-    public void saveSlot3() {
-        gs.saveGame(3);
+    public void saveSlot3 () {
         System.out.println("slot 3 saved");
     }
 
 
+
     // Back to menu buttons
     @FXML
-    public void backToMenu() {
+    public void backToMenu () {
         setMenuPage("startMenuButtons");
     }
 
     @FXML
-    public void backToPauseMenu() {
+    public void backToPauseMenu () {
         setMenuPage("ingameMenuButtons");
     }
+
 
 
     /**

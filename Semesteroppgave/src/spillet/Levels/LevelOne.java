@@ -10,10 +10,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Dette er klassen som generer level 1 i spillet
- *
- * @Gaute, @Eirik, @Bjørnar
+ * Dette er hvor vi lager de ulike levelene. I dette tilfellet level 1. Her opprettes vegger, fiender og bananer.
+ * De bestemmes ut i fra posisjon i x og y.
  */
+
 public class LevelOne implements Serializable {
 
     private final int WIDTH = 650;
@@ -27,16 +27,15 @@ public class LevelOne implements Serializable {
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
-    /**
-     * Konstruktør som instansierer objektene i level 1. Vegger, porter, frukter blir generert og puttet i arraylister.
-     */
     public LevelOne() {
+
+        // MAP
         gate = new Gate(570,640,70,10);
 
         wall1 = new Wall(0, 0, 10, HEIGHT);  // Left wall
         wall2 = new Wall(0, 0, WIDTH, 10); // Top wall
         wall3 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
-        wall4 = new Wall(0, HEIGHT - 10, 570, 10); // Bottom wall
+        wall4 = new Wall(0, HEIGHT - 10, 575, 10); // Bottom wall
 
         wall5 = new Wall(60, 10, 10, 175); // Entry vertical wall
         wall6 = new Wall(60, 235, 10, 150); // Vertical left side
@@ -50,12 +49,13 @@ public class LevelOne implements Serializable {
         wall14 = new Wall(330, 200, 10, 185); // Left side of box
         wall15 = new Wall(330, 200, 150, 10); // Top of box
         wall16 = new Wall(120, 130, 160, 255); // Big box
-        wall17 = new Wall(410, 10, 10, 70); // Top middle
-        wall18 = new Wall(410, 130, 10, 70); // Top low middle
-        wall19 = new Wall(350, 70, 10, 70); // Short vertical top middle
+        wall17 = new Wall(410, 10, 10, 70); // Top vertical middle
+        wall18 = new Wall(410, 130, 10, 70); // Top vertical low middle
+        wall19 = new Wall(350, 70, 10, 70); // Short vertical top left middle
         wall20 = new Wall(480, 70, 10, 70); // Top of little box up right
         wall21 = new Wall(480, 70, 100, 10); // Vertical little box up right
-        wall22 = new Wall(480, 130, 100, 10); //Bottom of little box up right
+        wall22 = new Wall(480, 130, 100, 10); // Bottom of little box up right
+
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -81,6 +81,11 @@ public class LevelOne implements Serializable {
         wallList.add(wall21);
         wallList.add(wall22);
 
+
+
+
+
+        // ENEMY
         enemy1 = new Enemy(20,450, 6,0,290,400);
         enemy2 = new Enemy(290, 10, 0, 5, 290, 380);
         enemy3 = new Enemy(350, 210, 5, 3, 440, 590);
@@ -96,6 +101,9 @@ public class LevelOne implements Serializable {
         enemyList.add(enemy5);
         enemyList.add(enemy6);
 
+
+
+        // FRUIT
         fruit1 = new Fruit(15, 610); // Bottom left
         fruit2 = new Fruit(180 ,610); // Bottom middle
         fruit3 = new Fruit( 80, 15); // Top left
@@ -108,36 +116,21 @@ public class LevelOne implements Serializable {
         fruitList.add(fruit3);
         fruitList.add(fruit4);
         fruitList.add(fruit5);
+
     }
 
-    /**
-     * Returnerer arraylisten med vegger
-     * @return ArraList<Wall>
-     */
     public ArrayList<Wall> getWallList() {
         return wallList;
     }
 
-    /**
-     * Returnerer arraylisten med fiender
-     * @return ArraList<Enemy>
-     */
     public ArrayList<Enemy> getEnemyList() {
         return enemyList;
     }
 
-    /**
-     * Returnerer arraylisten med vegger
-     * @return ArraList<Fruit>
-     */
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
     }
 
-    /**
-     * Returnerer porten til neste nivå
-     * @return Gate
-     */
     public Gate getGate() {
         return gate;
     }

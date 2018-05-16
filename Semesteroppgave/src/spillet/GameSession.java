@@ -10,19 +10,20 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import spillet.Levels.LevelFour;
 import spillet.Levels.LevelOne;
 import spillet.Levels.LevelThree;
 import spillet.Levels.LevelTwo;
+import spillet.Levels.LevelThree;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Klasse som generer en gamesession. Her blir alle objekten instansiert og et objekt av typen
- * gamesession blir startet ved spillets start. Denne klassen inneholder motoren til spillet.
- */
+import static javafx.scene.paint.Color.WHITE;
+
+
 public class GameSession implements Serializable {
 
     private MenuController controller;
@@ -46,6 +47,8 @@ public class GameSession implements Serializable {
     private GameState save = new GameState();
     private static AudioClip sound = new AudioClip(GameSession.class.getResource("/Audio/sound.mp3").toString());
     private static AudioClip clip = new AudioClip(GameSession.class.getResource("/Audio/power.mp3").toString());
+
+
 
     /**
      * Konstruktør
@@ -79,11 +82,16 @@ public class GameSession implements Serializable {
                     handleGameStateInput(Input.getInput());
 
                     if (gameState.equals("running")) {
+
                         renderLevel();
+
                         monkey.move(Input.getInput(), getGS(), collision);
+
                         timeLstFrm = System.nanoTime();
+
                         save.setGameState(score, currentLevel, monkey.getX(), monkey.getY(), levelOne.getFruitList(),
                                 levelTwo.getFruitList(), levelThree.getFruitList(), levelFour.getFruitList());
+
                     }
                 }
             }
@@ -107,14 +115,19 @@ public class GameSession implements Serializable {
             setNodeVisible("gameCanvas");
         }
 
+
+        /** Tegner */
         gc = canvas.getGraphicsContext2D();
-        monkey = new Monkey(15, 15);
+
+        monkey = new Monkey(15, 20);
+
+
     }
 
     /**
-     * Denne metoden itererer gjennom nodelisten og setter metoden som synlig eller ikke.
+     * This method iterates through the nodelist and sets the selected node to visible
      *
-     * @param nodeID fxID for noden som skal settes synlig elelr ikke.
+     * @param nodeID the fxID of the node to be set visible
      */
     private void setNodeVisible(String nodeID) {
         for (Node node : nodeList) {
@@ -127,8 +140,7 @@ public class GameSession implements Serializable {
     }
 
     /**
-     * Metode som fjerner og reanimerer levelet basert på hva som er nåværende nivå og
-     * animerer avataren (currentLevel).
+     * Metode som fjerner og reanimerer innholdet i scenen.
      */
     public void renderLevel() {
         gc.clearRect(0, 0, WIDTH, HEIGHT);
@@ -137,36 +149,50 @@ public class GameSession implements Serializable {
 
 
         if (getCurrentLevel() == 1) {
-            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 585, 10);
+            levelIterator(levelOne.getWallList(), levelOne.getFruitList(), levelOne.getEnemyList(), levelOne.getGate(), 2, 595, 15);
             levelOne.getGate().render(gc);
         } else if (getCurrentLevel() == 2) {
-            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 575, 550);
+            levelIterator(levelTwo.getWallList(), levelTwo.getFruitList(), levelTwo.getEnemyList(), levelTwo.getGate(), 3, 585, 595);
             levelTwo.getGate().render(gc);
         } else if (getCurrentLevel() == 3) {
-            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 580, 595);
+            levelIterator(levelThree.getWallList(), levelThree.getFruitList(), levelThree.getEnemyList(), levelThree.getGate(), 4, 585, 595);
             levelThree.getGate().render(gc);
-        } else if (getCurrentLevel() == 4) {
+        }else if (getCurrentLevel() == 4) {
             levelIterator(levelFour.getWallList(), levelFour.getFruitList(), levelFour.getEnemyList(), levelFour.getGate(), 1, 10, 10);
             levelFour.getGate().render(gc);
         }
+
+/*
+        if (monkey.collide(levelOne.getGate())) {
+            setCurrentLevel(2);
+            monkey.setX(585);
+            monkey.setY(10);
+        }
+
+        else if (monkey.collide(levelTwo.getGate())) {
+            setCurrentLevel(3);
+            monkey.setX(575);
+            monkey.setY(550);
+        }
+        else if (monkey.collide(levelThree.getGate())){
+            setCurrentLevel(4);
+            monkey.setX(580);
+            monkey.setY(595);
+        }
+        else if (monkey.collide(levelFour.getGate())){
+            setCurrentLevel(1);
+            monkey.setX(10);
+            monkey.setY(10);
+        }
+
+
+*/
         // Tegner avatar
         monkey.render(gc);
 
     }
 
 
-    /**
-     * Denne metoden tar inn arraylister med objekter som skal animeres basert på nåværende nivå (currentLevel). Den innholder
-     * også parametere for hvor apen skal animeres når man når et nytt nivå.
-     *
-     * @param wallArrayList
-     * @param fruitArrayList
-     * @param enemyArrayList
-     * @param gate
-     * @param level
-     * @param x
-     * @param y
-     */
     public void levelIterator(ArrayList<Wall> wallArrayList, ArrayList<Fruit> fruitArrayList, ArrayList<Enemy> enemyArrayList, Gate gate, int level, double x, double y) {
         wallArrayList.forEach(p -> p.render(gc));
         fruitArrayList.forEach(p -> p.render(gc));
@@ -176,20 +202,11 @@ public class GameSession implements Serializable {
         collisionIterator(wallArrayList);
         fruitIterator(fruitArrayList);
         enemyIterator(enemyArrayList);
-        gateCollision(gate, level, x, y);
+        gateIterator(gate, level, x, y);
 
     }
 
-    /**
-     * Denne metoden håndterer logikken for kollisjon med portene til neste nivå. Gitt at alle bananer er samlet inn (score = 500)
-     * vil man bli sendt til neste nivå. Den innholder også logikken for kollisjon med siste port som gir noden "Win".
-     *
-     * @param gate
-     * @param level
-     * @param x
-     * @param y
-     */
-    public void gateCollision(Gate gate, int level, double x, double y) {
+    public void gateIterator(Gate gate, int level, double x, double y) {
         if (monkey.collide(gate) && score > 400 && (currentLevel == 1 || currentLevel == 2 || currentLevel == 3)) {
             setCurrentLevel(level);
             monkey.setX(x);
@@ -200,37 +217,16 @@ public class GameSession implements Serializable {
         }
 
         if (score == 500) {
-            Image image = new Image("IMG/opengate.png");
+            Image image = new Image ("IMG/opengate.png");
             gate.setImage(image);
-        }
-
-        if (monkey.collisionLeft(gate) && score < 500) {
-            collision.add("CollisionLeft");
-        }
-
-        if (monkey.collisionRight(gate) && score < 500) {
-            collision.add("CollisionRight");
-        }
-
-        if (monkey.collisionBottom(gate) && score < 500) {
-            collision.add("CollisionBottom");
-        }
-
-        if (monkey.collisionTop(gate) && score < 500) {
-            collision.add("CollisionTop");
         }
     }
 
-
-    /**
-     * Denne metoden itererer gjennom arraylistene med vegger og detekterer kollisjon mellom spiller og vegg og setter
-     * kollisjon som blir brukt i metoden for bevegelse av avataren.
-     *
-     * @param wallList
-     */
     public void collisionIterator(ArrayList<Wall> wallList) {
         collision.clear();
+
         Iterator<Wall> hinderIterator = wallList.iterator();
+
         while (hinderIterator.hasNext()) {
 
             Wall wall = hinderIterator.next();
@@ -250,54 +246,26 @@ public class GameSession implements Serializable {
             if (monkey.collisionTop(wall)) {
                 collision.add("CollisionTop");
             }
+
         }
     }
 
-    /**
-     * Denne metoden itererer gjennom listen av frukter og detekterer kollisjon mellom frukt og spiller.
-     * Ved kollisjon vil frukten forsvinne og score øke med 100.
-     *
-     * @param fruitList
-     */
     public void fruitIterator(ArrayList<Fruit> fruitList) {
         Iterator<Fruit> fruktIterator = fruitList.iterator();
         while (fruktIterator.hasNext()) {
             Fruit fruit = fruktIterator.next();
 
             // Kollisjon med fruit, legger til +100 på score
-            if (monkey.collide(fruit) && fruit.getExist()) {
-                fruit.setExist(false);
+            if (monkey.collide(fruit) && fruit.exists()) {
+                fruit.kill();
                 bananaSound();
-                fruit.getExist();
+                fruit.exists();
                 score += 100;
             }
         }
     }
 
-    /**
-     * Denne metoden gjør gjennom en liste med Strings returnert fra fil og setter om fruktene fantes ved lagring eller ikke.
-     *
-     * @param fruitList
-     * @param fruitGetter
-     */
-    public void fruitSetter(ArrayList<Fruit> fruitList, String[] fruitGetter) {
 
-        int x = 0;
-        Iterator<Fruit> fruktIterator = fruitList.iterator();
-        while (fruktIterator.hasNext()) {
-            Fruit fruit = fruktIterator.next();
-
-            fruit.setExist(Boolean.parseBoolean(fruitGetter[x]));
-            x++;
-        }
-    }
-
-    /**
-     * Denne metoden iterer gjennom fiender og starter metoden for patruljering til hver enkelt, samt
-     * styrer logikken for hva som skjer ved kollisjon mellom spiller og fiender.
-     *
-     * @param enemyList
-     */
     public void enemyIterator(ArrayList<Enemy> enemyList) {
         Iterator<Enemy> fiendeIterator = enemyList.iterator();
         while (fiendeIterator.hasNext()) {
@@ -321,39 +289,19 @@ public class GameSession implements Serializable {
         }
     }
 
-    /**
-     * Setter currentLevel
-     *
-     * @param currentLevel
-     */
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }
 
-    /**
-     * Setter score
-     *
-     * @param score
-     */
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    /**
-     * Getter currentLevel
-     *
-     * @return currentLevel
-     */
     public int getCurrentLevel() {
         return this.currentLevel;
     }
 
-    /**
-     * Spiller av en lyd når bananer samles inn.
-     */
     private void bananaSound() {
         clip.play();
     }
+
+
 
     /**
      * Arraylist for å sjekke input. Setter spillet på pause (går til menyen)
@@ -379,41 +327,25 @@ public class GameSession implements Serializable {
             gameState = "running";
             sound.play();
         }
-    }
-
-    /**
-     * Denne metoden lagrer spillet i GameState klassen ved å skrive gamestate til fil.
-     * Metoden tar inn int i som parameter for å kunne bestemme hvilken knapp som har blitt trykket på
-     * og dermed hvilken fil som skal skrives til.
-     *
-     * @param i
-     */
-    public void saveGame(int i) {
-        save.saveGame(i);
-    }
-
-    /**
-     * Denne metoden laster spillet ved å lese fra fil i gamestate.
-     * Metoden tar inn int i som parameter for å kunne bestemme hvilken knapp som har blitt trykket på
-     * og dermed hvilekn fil som skal leses fra.
-     * Det som returneres settes i gamesession.
-     * @param i
-     */
-    public void loadGame(int i) {
-        save.loadGame(i);
-        setCurrentLevel(save.getCurrentLevel());
-        setScore(save.getScore());
-        monkey.setX(save.getMonkeyX());
-        monkey.setY(save.getMonkeyY());
-        fruitSetter(levelOne.getFruitList(), save.getFruitLevelOne());
-        fruitSetter(levelTwo.getFruitList(), save.getFruitLevelTwo());
-        fruitSetter(levelThree.getFruitList(), save.getFruitLevelThree());
-        fruitSetter(levelFour.getFruitList(), save.getFruitLevelFour());
 
     }
 
+    public void saveGame() {
+
+        save.saveGame();
+        save.loadGame();
+    }
+
+    public void loadGame() {
+        save.saveGame();
+   //     save.getGameState();
+        System.out.println("Current score: " + save.getScore() + " Current Level: " + save.getCurrentLevel());
+     //   save.getFruitArrayList();
+    }
+
+
     /**
-     * Getter GameSession
+     * Get method
      */
     public GameSession getGS() {
         return this;

@@ -1,14 +1,13 @@
 package spillet;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Denne klassen lagrer statusen i spillet i form av score, currentlevel, x- og y-posisjoen til avataren samt om bananene har blitt samlet inn eller ikke.
- */
 public class GameState {
 
+    private File file;
     private PrintWriter pw;
     private StringBuilder sb;
     private int score;
@@ -20,26 +19,16 @@ public class GameState {
     private ArrayList<Fruit> fruitArrayList2;
     private ArrayList<Fruit> fruitArrayList3;
     private ArrayList<Fruit> fruitArrayList4;
-    private String[] fruitLevelOne;
-    private String[] fruitLevelTwo;
-    private String[] fruitLevelThree;
-    private String[] fruitLevelFour;
-    private String filePath1 = "SaveFile/SaveSlot1.txt";
-    private String filePath2 = "SaveFile/SaveSlot2.txt";
-    private String filePath3 = "SaveFile/SaveSlot3.txt";
+    ClassLoader classLoader = getClass().getClassLoader();
 
-    /**
-     * Denne metoden setter tilstanden til spillet ved hvert tick i form av score, currentlevel, x- og y-posisjonen til apen og om
-     * bananene er samlet inn eller ikke.
-     * @param score
-     * @param currentLevel
-     * @param monkeyX
-     * @param monkeyY
-     * @param fruitList1
-     * @param fruitList2
-     * @param fruitList3
-     * @param fruitList4
-     */
+    private String filePathTxt = "SaveFile/file.txt";
+    private String filePathLocal = "/Users/gautetessandbaalsrud/Documents/GitHub/programutviklingtest/Resource/SaveFile/file.txt";
+
+
+    public GameState()  {
+
+    }
+
     public void setGameState(int score, int currentLevel, double monkeyX, double monkeyY,
                              ArrayList<Fruit> fruitList1, ArrayList<Fruit> fruitList2, ArrayList<Fruit> fruitList3, ArrayList<Fruit> fruitList4) {
         this.score = score;
@@ -52,25 +41,12 @@ public class GameState {
         this.fruitArrayList4 = fruitList4;
     }
 
-    /**
-     * Denne metoden lagrer gamestate i et tekstdokuemtn når den blir påkalt, og velger hvilken fil den skal skrive til ved å sette printwriter fra en
-     * int parameter i metoden. Dette gjør at man kan lagre informasjoen som man trenger for å gjenopprette gamestate.
-     * @param i
-     */
-    public void saveGame(int i) {
+    public void saveGame() {
+
         try {
-
-            if (i == 1) {
-                pw = new PrintWriter(new FileOutputStream(filePath1), true);
-            } else if (i == 2) {
-                pw = new PrintWriter(new FileOutputStream(filePath2), true);
-            } else if (i == 3) {
-                pw = new PrintWriter(new FileOutputStream(filePath3), true);
-            }
-
-            br = new BufferedReader(new FileReader(filePath1));
-
+            pw = new PrintWriter(new FileOutputStream(filePathLocal), true);
             sb = new StringBuilder();
+
 
             sb.append(score + " ");
             sb.append(currentLevel + " ");
@@ -83,7 +59,7 @@ public class GameState {
             while (fruitIterator1.hasNext()) {
                 Fruit fruit = fruitIterator1.next();
 
-                String fruitString = String.valueOf(fruit.getExist());
+                String fruitString = String.valueOf(fruit.exists());
                 sb.append(fruitString + " ");
             }
 
@@ -92,7 +68,7 @@ public class GameState {
             while (fruitIterator2.hasNext()) {
                 Fruit fruit = fruitIterator2.next();
 
-                String fruitString = String.valueOf(fruit.getExist());
+                String fruitString = String.valueOf(fruit.exists());
                 sb.append(fruitString + " ");
             }
 
@@ -101,7 +77,7 @@ public class GameState {
             while (fruitIterator3.hasNext()) {
                 Fruit fruit = fruitIterator3.next();
 
-                String fruitString = String.valueOf(fruit.getExist());
+                String fruitString = String.valueOf(fruit.exists());
                 sb.append(fruitString + " ");
             }
 
@@ -110,7 +86,7 @@ public class GameState {
             while (fruitIterator4.hasNext()) {
                 Fruit fruit = fruitIterator4.next();
 
-                String fruitString = String.valueOf(fruit.getExist());
+                String fruitString = String.valueOf(fruit.exists());
                 sb.append(fruitString + " ");
             }
 
@@ -121,25 +97,13 @@ public class GameState {
         } catch (FileNotFoundException e) {
             System.err.println("File not found! Make sure that pathname of file is correct");
         }
+
     }
 
-    /**
-     * Denne metoden leser fra filene hvor parameteren i bestemmer hvilken fil som blir lest fra.
-     * Her blir score, currentlevel, x- og y-posisjonen til spilleren returnert samt String arrays med statusen til frukt i
-     * alle nivåene.
-     * @param i
-     */
-    public void loadGame(int i) {
+    public void loadGame() {
 
         try {
-
-            if (i == 1) {
-                br = new BufferedReader(new FileReader(filePath1));
-            } else if (i == 2) {
-                br = new BufferedReader(new FileReader(filePath2));
-            } else if (i == 3) {
-                br = new BufferedReader(new FileReader(filePath3));
-            }
+            br = new BufferedReader(new FileReader(filePathLocal));
 
             String line;
             String line2;
@@ -156,21 +120,12 @@ public class GameState {
             setMonkeyX(Double.parseDouble(gameState[2]));
             setMonkeyY(Double.parseDouble(gameState[3]));
 
+
+            System.out.println(Double.parseDouble(gameState[3]));
             line2 = br.readLine();
-            String[] fruitLevelOne = line2.split(" ");
-            setFruitOne(fruitLevelOne);
 
-            line3 = br.readLine();
-            String[] fruitLevelTwo = line3.split(" ");
-            setFruitTwo(fruitLevelTwo);
-
-            line4 = br.readLine();
-            String[] fruitLevelThree = line4.split(" ");
-            setFruitThree(fruitLevelThree);
-
-            line5 = br.readLine();
-            String[] fruitLevelFour = line5.split(" ");
-            setFruitFour(fruitLevelFour);
+            System.out.println(line);
+            System.out.println(line2);
 
         } catch (IOException e) {
             System.out.println("IOException in getGameState");
@@ -179,129 +134,38 @@ public class GameState {
         }
     }
 
-    /**
-     * Setter score
-     * @param score
-     */
+
+
     public void setScore(int score) {
         this.score = score;
     }
 
-    /**
-     * Getter score
-     * @return score
-     */
     public int getScore() {
         return this.score;
     }
 
-    /**
-     * Getter currentlevel
-     * @return currentlevel
-     */
     public int getCurrentLevel() {
         return currentLevel;
     }
 
-    /**
-     * Setter currentlevel
-     * @param currentLevel
-     */
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }
 
-    /**
-     * Getter x-posisjonen til spilleren
-     * @return monkeyX
-     */
     public double getMonkeyX() {
         return monkeyX;
     }
 
-    /**
-     * Setter x-posisjonen til spilleren
-     * @param monkeyX
-     */
     public void setMonkeyX(double monkeyX) {
         this.monkeyX = monkeyX;
     }
-    /**
-     * Getter y-posisjonen til spilleren
-     * @return monkeyY
-     */
+
     public double getMonkeyY() {
         return monkeyY;
     }
-    /**
-     * Setter y-posisjonen til spilleren
-     * @param monkeyY
-     */
+
     public void setMonkeyY(double monkeyY) {
         this.monkeyY = monkeyY;
     }
 
-    /**
-     * Setter en String array for tilstanden til bananen fra tekstdokumentet i level 1
-     * @param fruitLevelOne
-     */
-    public void setFruitOne(String[] fruitLevelOne) {
-        this.fruitLevelOne = fruitLevelOne;
-    }
-
-    /**
-     * Setter en String array for tilstanden til bananen fra tekstdokumentet i level 2
-     * @param fruitLevelTwo
-     */
-    public void setFruitTwo(String[] fruitLevelTwo) {
-        this.fruitLevelTwo = fruitLevelTwo;
-    }
-
-    /**
-     * Setter en String array for tilstanden til bananen fra tekstdokumentet i level 3
-     * @param fruitLevelThree
-     */
-    public void setFruitThree (String [] fruitLevelThree) {
-        this.fruitLevelThree=fruitLevelThree;
-    }
-
-    /**
-     * Setter en String array for tilstanden til bananene fra tekstdokumentet i level 4
-     * @param fruitLevelFour
-     */
-    public void setFruitFour (String [] fruitLevelFour) {
-        this.fruitLevelFour=fruitLevelFour;
-    }
-
-    /**
-     * Getter en String array for tilsanden til bananene fra tekstdokumentet i level 1
-     * @return fruitLevelOne
-     */
-    public String[] getFruitLevelOne() {
-        return fruitLevelOne;
-    }
-
-    /**
-     * Getter en String array for tilsanden til bananene fra tekstdokumentet i level 2
-     * @return fruitLevelTwo
-     */
-    public String[] getFruitLevelTwo() {
-        return fruitLevelTwo;
-    }
-
-    /**
-     * Getter en String array for tilsanden til bananene fra tekstdokumentet i level 3
-     * @return fruitLevelThree
-     */
-    public String[] getFruitLevelThree() {
-        return fruitLevelThree;
-    }
-
-    /**
-     * Getter en String array for tilsanden til bananene fra tekstdokumentet i level 4
-     * @return fruitLevelFour
-     */
-    public String[] getFruitLevelFour() {
-        return fruitLevelFour;
-    }
 }

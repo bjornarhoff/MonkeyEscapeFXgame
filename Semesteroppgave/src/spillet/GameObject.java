@@ -5,9 +5,10 @@ import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
- * Dette er superclass for spillobjekter.
+ * Dette er superclass for spillobjekter skal arve fra. Dette inkluderer Apen, Zookeepers, power-ups osv.
  *
  * @Gaute, @Eirik og @Bjørnar
  */
@@ -23,12 +24,15 @@ public class GameObject implements Serializable {
     private boolean exists = true;
 
     /**
-     * Dette er classconstructor for spillobjekter som tar inn x- og y-posisjon
+     * Dette er classconstructor som tar inn pathen til bildet som skal animeres samt setter
+     * posisjonen til objektet.
      *
      * @param x
      * @param y
      */
-    public GameObject(double x, double y) {}
+    public GameObject(double x, double y) {
+
+    }
 
     /**
      * Setter image.
@@ -36,15 +40,11 @@ public class GameObject implements Serializable {
      * @param i
      */
     public void setImage(Image i) {
-<<<<<<< HEAD:Semesteroppgave/src/spillet/SpillObjekt.java
-        this.bilde = i;
-=======
         this.image = i;
->>>>>>> master:Semesteroppgave/src/spillet/GameObject.java
     }
 
     /**
-     * Setter x-posisjonen til spillobjektet
+     * Setter x-posisjonen til avataren
      *
      * @param x
      */
@@ -53,7 +53,7 @@ public class GameObject implements Serializable {
     }
 
     /**
-     * Setter y-posisjon til spillobjektet
+     * Setter y-posisjon til avataren
      *
      * @param y
      */
@@ -62,120 +62,67 @@ public class GameObject implements Serializable {
     }
 
     /**
-     * Getter x-posisjonen til spillobjektet
+     * Getter x-posisjonen til avataren
      *
-     * @return X
+     * @return positionX
      */
     public double getX() {
         return X;
     }
 
     /**
-     * Getter y-posisjon til spillobjektet
+     * Getter y-posisjon til avataren
      *
-     * @return Y
+     * @return positionY
      */
     public double getY() {
         return Y;
     }
 
-    /**
-     * Setter bredden til spillobjektet
-     *
-     * @param w
-     */
     public void setW(double w) {
         this.W = w;
     }
 
-    /**
-     * Getter bredden til spillobjektet
-     *
-     * @return W
-     */
     public double getW() {
         return W;
     }
 
-    /**
-     * Setter høyden til spillobjektet
-     *
-     * @param h
-     */
     public void setH(double h) {
         this.H = h;
     }
 
-    /**
-     * Getter høyden til spillobjektet
-     *
-     * @return W
-     */
     public double getH() {
         return H;
     }
 
-    /**
-     * Setter boolean for om spillobjektet finnes eller ikke.
-     *
-     * @param exists
-     */
-    public void setExist(boolean exists) {
-        this.exists = exists;
+    public void kill() {
+        this.exists = false;
     }
 
-    /**
-     * Getter boolean for om spillobjektet finnes eller ikke.
-     *
-     * @return exists
-     */
-    public boolean getExist() {
+    public boolean exists() {
         return exists;
     }
 
     /**
-     * Metode for å rendere spillobjektet i GraphicsContext, gitt at det finnes.
-     * drawImage tar image, positionX, positionY samt tar bredde w og høyde h som parametere
+     * Metode for å rendere avataren med image, positionX, positionY samt tar bredde w og høyde h som parametere
      *
      * @param gc
      */
     public void render(GraphicsContext gc) {
-<<<<<<< HEAD
-<<<<<<< HEAD:Semesteroppgave/src/spillet/SpillObjekt.java
-        gc.drawImage(bilde, X, Y, W, H);
-=======
         if (exists()) {
-=======
-        if (getExist()) {
->>>>>>> 8d981b133820b195135f4272fac7385cb5e9ac0b
             gc.drawImage(image, X, Y, W, H);
         }
->>>>>>> master:Semesteroppgave/src/spillet/GameObject.java
     }
 
-    /**
-     * Metode som beveger spillobjektet i forskjellige retninger basert på en double som gir
-     * vinklen (i radianer) objektet skal bevege seg i.
-     *
-     * @param angle
-     */
     public void moveAngled(double angle) {
         X += DX * Math.cos(angle);
         Y += DY * Math.sin(angle);
     }
 
-    /**
-     * Metode som lager en grense rundt spillobjektet i form av en Rectangle2D baser på X- og Y-posisjonen og bredde og høyde.
-     *
-     */
     public Rectangle2D boundary() {
         return new Rectangle2D(X, Y, W, H);
     }
 
-    /**
-     * Metode som returnerer true hvis det er en kollisjon mellom to spillobjekter
-     *
-     */
     public boolean collide(GameObject s) {
         return s.boundary().intersects(this.boundary());
     }

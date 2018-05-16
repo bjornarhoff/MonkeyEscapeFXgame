@@ -9,9 +9,8 @@ import spillet.Wall;
 import java.util.ArrayList;
 
 /**
- * Dette er klassen som generer level 4 i spillet
- *
- * @Gaute, @Eirik, @Bjørnar
+ * Dette er hvor vi lager de ulike levelene. I dette tilfellet level 1. Her opprettes vegger, fiender og bananer.
+ * De bestemmes ut i fra posisjon i x og y.
  */
 
 public class LevelFour {
@@ -27,9 +26,7 @@ public class LevelFour {
     private Fruit fruit1, fruit2, fruit3, fruit4, fruit5;
     private Gate gate;
 
-    /**
-     * Konstruktør som instansierer objektene i level 4. Vegger, porter, frukter blir generert og puttet i arraylister.
-     */
+
     public LevelFour() {
         wall1 = new Wall(80, 0, WIDTH, 10); // TOP
         wall2 = new Wall(WIDTH - 10, 0, 10, HEIGHT); // Right wall
@@ -43,12 +40,14 @@ public class LevelFour {
         wall9 = new Wall(385, 315, 10, 250); // Vertical right side of the bottom box
         wall10 = new Wall(225, 425, 160, 10); // Horizontal top of the bottom box
         wall11 = new Wall(485, 125, 10, 440); // Long vertical right side
-        wall12 = new Wall(170, 200, 215, 115); // Big box
-        wall13 = new Wall(385, 125, 10, 190); // Little one on top of box
+        wall12 = new Wall(170, 200, 225, 115); // Big box
+        wall13 = new Wall(385, 125, 10, 85); // Little one on top of box
         wall14 = new Wall(385, 10, 10, 60); // Short vertical top middle right
         wall15 = new Wall(260, 70, 10, 70); // Short vertical top middle middle
 
+
         gate = new Gate(10, 0, 70, 10); // Finish line
+
 
         wallList = new ArrayList<>();
         wallList.add(wall1);
@@ -66,6 +65,7 @@ public class LevelFour {
         wallList.add(wall13);
         wallList.add(wall14);
         wallList.add(wall15);
+
 
         enemy1 = new Enemy(20,360, 7,0,350,400);  // Horizontal left
         enemy2 = new Enemy(165, 450, 2,7, 350,575); // Zig Zag in the box
@@ -102,34 +102,18 @@ public class LevelFour {
 
     }
 
-    /**
-     * Returnerer arraylisten med vegger
-     * @return ArraList<Wall>
-     */
     public ArrayList<Wall> getWallList() {
         return wallList;
     }
 
-    /**
-     * Returnerer arraylisten med fiender
-     * @return ArraList<Enemy>
-     */
     public ArrayList<Enemy> getEnemyList() {
         return enemyList;
     }
 
-    /**
-     * Returnerer arraylisten med vegger
-     * @return ArraList<Fruit>
-     */
     public ArrayList<Fruit> getFruitList() {
         return fruitList;
     }
 
-    /**
-     * Returnerer porten til neste nivå
-     * @return Gate
-     */
     public Gate getGate() {
         return gate;
     }
