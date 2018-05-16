@@ -11,11 +11,7 @@ import javafx.scene.image.Image;
 public class Fruit extends GameObject {
 
     /**
-<<<<<<< HEAD:Semesteroppgave/src/spillet/Frukt.java
-     * Constructor for Frukt, denne overrider konstruktøren til avatar.
-=======
      * Constructor for Fruit, denne overrider konstruktøren til avatar.
->>>>>>> master:Semesteroppgave/src/spillet/Fruit.java
      *
      * @param x
      * @param y
