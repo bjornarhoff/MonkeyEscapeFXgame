@@ -36,11 +36,10 @@ public class GameObject implements Serializable {
      * @param i
      */
     public void setImage(Image i) {
-<<<<<<< HEAD:Semesteroppgave/src/spillet/SpillObjekt.java
-        this.bilde = i;
-=======
+
+
         this.image = i;
->>>>>>> master:Semesteroppgave/src/spillet/GameObject.java
+
     }
 
     /**
@@ -140,17 +139,12 @@ public class GameObject implements Serializable {
      * @param gc
      */
     public void render(GraphicsContext gc) {
-<<<<<<< HEAD
-<<<<<<< HEAD:Semesteroppgave/src/spillet/SpillObjekt.java
-        gc.drawImage(bilde, X, Y, W, H);
-=======
-        if (exists()) {
-=======
+
         if (getExist()) {
->>>>>>> 8d981b133820b195135f4272fac7385cb5e9ac0b
+
             gc.drawImage(image, X, Y, W, H);
         }
->>>>>>> master:Semesteroppgave/src/spillet/GameObject.java
+
     }
 
     /**
