@@ -1,2 +1,0 @@
-# progdev
-School project
