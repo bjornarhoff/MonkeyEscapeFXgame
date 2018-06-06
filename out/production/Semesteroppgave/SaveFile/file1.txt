@@ -1,5 +1,0 @@
-100 1 124.94974746830583 96.94974746830583 
-true true false true true 
-true true true true true 
-true true true true true 
-true true true true true 
